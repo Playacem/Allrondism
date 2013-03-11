@@ -9,7 +9,7 @@
   "authorList": [
     "Playacem"],
   "credits": "By Playacem. Uses your ideas.",
-  "logoFile": "mods/am/textures/logo/logo.png",
+  "logoFile": "/mods/am/textures/logo/logo.png",
   "screenshots": [
   ],
   "parent":"",
