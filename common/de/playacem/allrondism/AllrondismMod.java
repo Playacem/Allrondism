@@ -1,8 +1,20 @@
 package de.playacem.allrondism;
+// inspired by Pahimar's EE3 
+//(https://github.com/pahimar/Equivalent-Exchange-3/tree/master/ee3_common/com/pahimar/ee3)
+
+import java.io.File;
+
+import net.minecraft.creativetab.CreativeTabs;
 
 //Importing my classes
 import de.playacem.allrondism.lib.Reference;
+import de.playacem.allrondism.configuration.ConfigurationHandler;
+import de.playacem.allrondism.core.helper.LogHelper;
 import de.playacem.allrondism.core.proxy.*;
+import de.playacem.allrondism.creativetab.CreativeTabAM;
+import de.playacem.allrondism.block.ModBlocks;
+import de.playacem.allrondism.item.ModItems;
+
 
 //General modloading imports
 import cpw.mods.fml.common.Mod;
@@ -16,31 +28,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-/** @Mod
-Tells Forge that this is the Base Mod class. Takes three parameters.
-
-modid
-	A unique name for the mod.
-name
-	Human readable name for the mod.
-version
-	The version of the mod.
-
-
-*/
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
-
-/** @NetworkMod
-*
-*Tells Forge how to handle what happens when the client or the server has the client installed. Takes two parameters.
-*
-* clientSideRequired
-* 	Asks if you need this on the client to use this mod.
-* serverSideRequired
-* 	Asks if you need this on the server for the client to be able to connect. This should always be false, else you can't join a server if the server doesn't have the mod installed, but you do.
-*
-*
-**/
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
 /**
  * Allrondism-Mod
@@ -55,18 +43,26 @@ public class AllrondismMod {
 
 	@Instance(Reference.MOD_ID)
 	public static AllrondismMod instance;
-	/**
-	 * @SidedProxy 
-     * This proxy is where Forge decides which class to load depending on 
-     * whether or not the client or server is running. 
-     * 
-	 */
+	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 	
+	 public static CreativeTabs tabsAM = new CreativeTabAM(CreativeTabs.getNextID(), Reference.MOD_ID);
+	 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
-            // Stub Method
+    	// Here goes  stuff like reading config files
+    	
+    	// Initialize the log helper
+        LogHelper.init();
+        
+        // Initialize the configuration
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + "\\am\\" + Reference.MOD_ID + ".cfg"));
+        
+        // TODO ModBlocks
+        ModBlocks.init();
+        //Initialize mod items
+        ModItems.init();
     }
    
     @Init
