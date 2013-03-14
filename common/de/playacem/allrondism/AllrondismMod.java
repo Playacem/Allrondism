@@ -47,7 +47,7 @@ public class AllrondismMod {
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 	
-	 public static CreativeTabs tabsAM = new CreativeTabAM(CreativeTabs.getNextID(), Reference.MOD_ID);
+	public static CreativeTabs tabsAM = new CreativeTabAM(CreativeTabs.getNextID(), Reference.MOD_ID);
 	 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
