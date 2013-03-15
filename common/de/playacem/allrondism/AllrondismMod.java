@@ -58,11 +58,11 @@ public class AllrondismMod {
         
         // Initialize the configuration
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + "\\am\\" + Reference.MOD_ID + ".cfg"));
-        
-        // TODO ModBlocks
-        ModBlocks.init();
         //Initialize mod items
         ModItems.init();
+        // TODO ModBlocks
+        ModBlocks.init();
+        
     }
    
     @Init
