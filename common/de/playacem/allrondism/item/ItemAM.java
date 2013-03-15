@@ -3,6 +3,7 @@ package de.playacem.allrondism.item;
 import net.minecraft.item.Item;
 
 import de.playacem.allrondism.lib.Reference;
+import de.playacem.allrondism.lib.Sprites;
 
 public class ItemAM extends Item{
 
@@ -12,4 +13,8 @@ public class ItemAM extends Item{
 		setNoRepair();
 	}
 
+	public String getTextureFile() {
+		return Sprites.ITEMS_PNG;
+		
+	}
 }

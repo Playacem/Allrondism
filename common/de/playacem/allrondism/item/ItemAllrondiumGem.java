@@ -10,8 +10,9 @@ public class ItemAllrondiumGem extends ItemAM {
 		super(id);
 		this.setItemName(Strings.ALLRONDIUM_GEM);
 		this.setCreativeTab(AllrondismMod.tabsAM);
-		maxStackSize = 64;
-		
+		setMaxStackSize(64);
+		setIconIndex(0);
 	}
 
+	
 }
