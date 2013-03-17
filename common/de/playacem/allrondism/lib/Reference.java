@@ -11,8 +11,8 @@ package de.playacem.allrondism.lib;
  */
 public class Reference {
 	/* General Mod related constants*/
-	public static final String MOD_ID = "mod_allrondism";
-	public static final String MOD_NAME = "AllrondismMod";
+	public static final String MOD_ID = "allrondism";
+	public static final String MOD_NAME = "Allrondism";
 	//@VERSION@ will be replaced by an Apache Ant Build script
 	public static final String VERSION = "@VERSION@";
 	public static final int SHIFTED_ID_RANGE_CORRECTION = 256;

@@ -1,6 +1,6 @@
 package de.playacem.allrondism;
 // inspired by Pahimar's EE3 
-//(https://github.com/pahimar/Equivalent-Exchange-3/tree/master/ee3_common/com/pahimar/ee3)
+// (https://github.com/pahimar/Equivalent-Exchange-3/tree/master/ee3_common/com/pahimar/ee3)
 
 import java.io.File;
 
@@ -57,10 +57,12 @@ public class AllrondismMod {
         LogHelper.init();
         
         // Initialize the configuration
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + "\\am\\" + Reference.MOD_ID + ".cfg"));
-        //Initialize mod items
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath()  + "\\"  + Reference.MOD_ID + ".cfg"));
+        
+        // Initialize mod items
         ModItems.init();
-        // TODO ModBlocks
+        
+        // Initialize mod blocks
         ModBlocks.init();
         
     }
