@@ -10,6 +10,7 @@ package de.playacem.allrondism.lib;
  *
  */
 public class Reference {
+	
 	/* General Mod related constants*/
 	public static final String MOD_ID = "allrondism";
 	public static final String MOD_NAME = "Allrondism";

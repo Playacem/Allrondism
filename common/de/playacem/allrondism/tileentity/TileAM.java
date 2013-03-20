@@ -5,7 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import net.minecraftforge.common.ForgeDirection;
 
-import de.playacem.allrondism.lib.Strings;
+//import de.playacem.allrondism.lib.Strings;
 
 /**
  * Allrondism-Mod
