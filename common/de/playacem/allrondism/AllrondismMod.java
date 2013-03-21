@@ -2,11 +2,13 @@ package de.playacem.allrondism;
 // inspired by Pahimar's EE3 
 // (https://github.com/pahimar/Equivalent-Exchange-3/tree/master/ee3_common/com/pahimar/ee3)
 
+//java imports
 import java.io.File;
 
+//Vanilla Minecraft related imports
 import net.minecraft.creativetab.CreativeTabs;
 
-//Importing my classes
+//personal imports
 import de.playacem.allrondism.lib.Reference;
 import de.playacem.allrondism.configuration.ConfigurationHandler;
 import de.playacem.allrondism.core.helper.LogHelper;
@@ -14,7 +16,6 @@ import de.playacem.allrondism.core.proxy.*;
 import de.playacem.allrondism.creativetab.CreativeTabAM;
 import de.playacem.allrondism.block.ModBlocks;
 import de.playacem.allrondism.item.ModItems;
-
 
 //General modloading imports
 import cpw.mods.fml.common.Mod;
@@ -51,7 +52,7 @@ public class AllrondismMod {
 	 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
-    	// Here goes  stuff like reading config files
+    	// Here goes stuff like reading config files
     	
     	// Initialize the log helper
         LogHelper.init();
