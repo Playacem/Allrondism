@@ -12,7 +12,7 @@ public class BlockStorageAllrondium extends BlockAM {
 		super(id, textureID, Material.iron);
 		this.setHardness(13F);
 		this.setStepSound(soundMetalFootstep);
-		this.setBlockName(Strings.STORAGE_ALLRONDIUM_NAME);
+		this.setUnlocalizedName(Strings.STORAGE_ALLRONDIUM_NAME);
 	}
 
 }

@@ -14,7 +14,7 @@ public class BlockOreAllrondium extends BlockAM {
 		
 		super(id, textureID, Material.rock);
 		this.setHardness(15F);
-		this.setBlockName(Strings.ORE_ALLRONDIUM_NAME);
+		this.setUnlocalizedName(Strings.ORE_ALLRONDIUM_NAME);
 	}
 
 	public int idDropped(int par1, Random random, int zero){

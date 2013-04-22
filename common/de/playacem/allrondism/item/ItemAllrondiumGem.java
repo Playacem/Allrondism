@@ -8,7 +8,7 @@ public class ItemAllrondiumGem extends ItemAM {
 	public ItemAllrondiumGem(int id) {
 		
 		super(id);
-		this.setItemName(Strings.ALLRONDIUM_GEM);
+		this.setUnlocalizedName(Strings.ALLRONDIUM_GEM);
 		this.setCreativeTab(AllrondismMod.tabsAM);
 		setMaxStackSize(64);
 		setIconIndex(0);

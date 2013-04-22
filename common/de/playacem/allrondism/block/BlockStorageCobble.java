@@ -11,7 +11,7 @@ public class BlockStorageCobble extends BlockAM {
 		super(id, textureID, Material.iron);
 		this.setHardness(13F);
 		this.setStepSound(soundMetalFootstep);
-		this.setBlockName(Strings.STORAGE_COBBLE_NAME);
+		this.setUnlocalizedName(Strings.STORAGE_COBBLE_NAME);
 	}
 
 }
