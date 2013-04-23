@@ -12,7 +12,7 @@ package de.playacem.allrondism.lib;
 public class Sprites {
 
     // Base file paths
-    public static final String SPRITE_SHEET_LOCATION = "/mods/am/textures";
+    public static final String SPRITE_SHEET_LOCATION = "/mods/allrondism/textures";
 
     // Item/block sprite sheets
     public static final String ITEM_SPRITE_SHEET = "/items/items.png";

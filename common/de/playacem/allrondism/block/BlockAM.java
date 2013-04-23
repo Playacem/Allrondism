@@ -3,7 +3,10 @@ package de.playacem.allrondism.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import de.playacem.allrondism.AllrondismMod;
+import de.playacem.allrondism.lib.Reference;
 
 public class BlockAM extends Block {
 
@@ -15,8 +18,10 @@ public class BlockAM extends Block {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-
+        blockIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase()
+                + ":" + this.getUnlocalizedName2());
     }
 
 }

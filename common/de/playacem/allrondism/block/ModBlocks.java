@@ -27,12 +27,14 @@ public class ModBlocks {
         oreAllrondium = new BlockOreAllrondium(BlockIDs.ORE_ALLRONDIUM);
         storageDirt = new BlockStorageDirt(BlockIDs.STORAGE_DIRT);
         storageCobble = new BlockStorageCobble(BlockIDs.STORAGE_COBBLE);
-        storageAllrondium = new BlockStorageAllrondium(BlockIDs.STORAGE_ALLRONDIUM);
+        storageAllrondium = new BlockStorageAllrondium(
+                BlockIDs.STORAGE_ALLRONDIUM);
 
         GameRegistry.registerBlock(oreAllrondium, Strings.ORE_ALLRONDIUM_NAME);
         GameRegistry.registerBlock(storageDirt, Strings.STORAGE_DIRT_NAME);
         GameRegistry.registerBlock(storageCobble, Strings.STORAGE_COBBLE_NAME);
-        GameRegistry.registerBlock(storageAllrondium, Strings.STORAGE_ALLRONDIUM_NAME);
+        GameRegistry.registerBlock(storageAllrondium,
+                Strings.STORAGE_ALLRONDIUM_NAME);
 
         LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
         LanguageRegistry.addName(storageDirt, "Storage Dirt");
@@ -51,11 +53,14 @@ public class ModBlocks {
 
         // StorageBlock recipes
         addStorageRecipe(new ItemStack(storageDirt), new ItemStack(Block.dirt));
-        addStorageRecipe(new ItemStack(storageCobble), new ItemStack(Block.cobblestone));
-        addStorageRecipe(new ItemStack(storageAllrondium), new ItemStack(ModItems.gemAllrondium));
+        addStorageRecipe(new ItemStack(storageCobble), new ItemStack(
+                Block.cobblestone));
+        addStorageRecipe(new ItemStack(storageAllrondium), new ItemStack(
+                ModItems.gemAllrondium));
 
         // Smelting recipes
-        GameRegistry.addSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(ModItems.gemAllrondium, 3), 15.0F);
+        GameRegistry.addSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(
+                ModItems.gemAllrondium, 3), 15.0F);
     }
 
     private static void addStorageRecipe(ItemStack storageBlock,
