@@ -22,15 +22,15 @@ import de.playacem.allrondism.lib.Strings;
 public class ModItems {
 
     /* Mod item instances */
-    public static Item allrondiumGem;
+    public static Item gemAllrondium;
 
     public static void init() {
 
         /* Initialize each mod item individually */
-        allrondiumGem = new ItemAllrondiumGem(ItemIDs.ALLRONDIUM_GEM);
+        gemAllrondium = new ItemGemAllrondium(ItemIDs.GEM_ALLRONDIUM);
 
-        GameRegistry.registerItem(allrondiumGem, Strings.ALLRONDIUM_GEM);
-        LanguageRegistry.addName(allrondiumGem, "Allrondium");
+        GameRegistry.registerItem(gemAllrondium, Strings.GEM_ALLRONDIUM);
+        LanguageRegistry.addName(gemAllrondium, "Allrondium");
     }
 
 }

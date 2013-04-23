@@ -13,13 +13,13 @@ public class Strings {
 
     /* Block name constants */
     // Storage Blocks
-    public static final String STORAGE_DIRT_NAME = "dirtStorage";
-    public static final String STORAGE_ALLRONDIUM_NAME = "allrondiumStorage";
-    public static final String STORAGE_COBBLE_NAME = "cobbleStorage";
+    public static final String STORAGE_DIRT_NAME = "storageDirt";
+    public static final String STORAGE_ALLRONDIUM_NAME = "storageAllrondium";
+    public static final String STORAGE_COBBLE_NAME = "storageCobble";
 
     // Ores
-    public static final String ORE_ALLRONDIUM_NAME = "allrondiumOre";
+    public static final String ORE_ALLRONDIUM_NAME = "oreAllrondium";
 
     /* Item name constants */
-    public static final String ALLRONDIUM_GEM = "allrondiumGem";
+    public static final String GEM_ALLRONDIUM = "gemAllrondium";
 }

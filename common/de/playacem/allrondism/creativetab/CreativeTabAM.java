@@ -28,6 +28,6 @@ public class CreativeTabAM extends CreativeTabs {
      */
     public int getTabIconItemIndex() {
 
-        return ItemIDs.ALLRONDIUM_GEM;
+        return ItemIDs.GEM_ALLRONDIUM;
     }
 }

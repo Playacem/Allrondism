@@ -48,9 +48,9 @@ public class ConfigurationHandler {
                     BlockIDs.STORAGE_ALLRONDIUM_DEFAULT);
 
             /* Item configs */
-            ItemIDs.ALLRONDIUM_GEM = configuration.getItem(
-                    Strings.ALLRONDIUM_GEM, ItemIDs.ALLRONDIUM_GEM_DEFAULT)
-                    .getInt(ItemIDs.ALLRONDIUM_GEM_DEFAULT);
+            ItemIDs.GEM_ALLRONDIUM = configuration.getItem(
+                    Strings.GEM_ALLRONDIUM, ItemIDs.GEM_ALLRONDIUM_DEFAULT)
+                    .getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME

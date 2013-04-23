@@ -16,7 +16,7 @@ public class BlockOreAllrondium extends BlockAM {
 
     @Override
     public int idDropped(int par1, Random random, int zero) {
-        return ItemIDs.ALLRONDIUM_GEM;
+        return ItemIDs.GEM_ALLRONDIUM;
     }
 
 }

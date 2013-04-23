@@ -17,26 +17,24 @@ import de.playacem.allrondism.lib.Strings;
 public class ModBlocks {
 
     /* Mod block instances */
-    public static Block allrondiumOre;
+    public static Block oreAllrondium;
     public static Block storageDirt;
     public static Block storageCobble;
     public static Block storageAllrondium;
 
     public static void init() {
 
-        allrondiumOre = new BlockOreAllrondium(BlockIDs.ORE_ALLRONDIUM);
+        oreAllrondium = new BlockOreAllrondium(BlockIDs.ORE_ALLRONDIUM);
         storageDirt = new BlockStorageDirt(BlockIDs.STORAGE_DIRT);
         storageCobble = new BlockStorageCobble(BlockIDs.STORAGE_COBBLE);
-        storageAllrondium = new BlockStorageAllrondium(
-                BlockIDs.STORAGE_ALLRONDIUM);
+        storageAllrondium = new BlockStorageAllrondium(BlockIDs.STORAGE_ALLRONDIUM);
 
-        GameRegistry.registerBlock(allrondiumOre, Strings.ORE_ALLRONDIUM_NAME);
+        GameRegistry.registerBlock(oreAllrondium, Strings.ORE_ALLRONDIUM_NAME);
         GameRegistry.registerBlock(storageDirt, Strings.STORAGE_DIRT_NAME);
         GameRegistry.registerBlock(storageCobble, Strings.STORAGE_COBBLE_NAME);
-        GameRegistry.registerBlock(storageAllrondium,
-                Strings.STORAGE_ALLRONDIUM_NAME);
+        GameRegistry.registerBlock(storageAllrondium, Strings.STORAGE_ALLRONDIUM_NAME);
 
-        LanguageRegistry.addName(allrondiumOre, "Allrondium Ore");
+        LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
         LanguageRegistry.addName(storageDirt, "Storage Dirt");
         LanguageRegistry.addName(storageCobble, "Storage Cobble");
         LanguageRegistry.addName(storageAllrondium, "Storage Allrondium");
@@ -47,20 +45,17 @@ public class ModBlocks {
     private static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
-        GameRegistry.addRecipe(new ItemStack(allrondiumOre), new Object[] {
+        GameRegistry.addRecipe(new ItemStack(oreAllrondium), new Object[] {
                 "ddd", "dsd", "ddd", Character.valueOf('d'),
                 Block.blockDiamond, Character.valueOf('s'), Block.stone });
 
         // StorageBlock recipes
         addStorageRecipe(new ItemStack(storageDirt), new ItemStack(Block.dirt));
-        addStorageRecipe(new ItemStack(storageCobble), new ItemStack(
-                Block.cobblestone));
-        addStorageRecipe(new ItemStack(storageAllrondium), new ItemStack(
-                ModItems.allrondiumGem));
+        addStorageRecipe(new ItemStack(storageCobble), new ItemStack(Block.cobblestone));
+        addStorageRecipe(new ItemStack(storageAllrondium), new ItemStack(ModItems.gemAllrondium));
 
         // Smelting recipes
-        GameRegistry.addSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(
-                ModItems.allrondiumGem, 3), 15.0F);
+        GameRegistry.addSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(ModItems.gemAllrondium, 3), 15.0F);
     }
 
     private static void addStorageRecipe(ItemStack storageBlock,
