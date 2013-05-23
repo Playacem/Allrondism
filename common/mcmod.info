@@ -1,6 +1,6 @@
 [
 {
-  "modid": "mod_allrondism",
+  "modid": "allrondism",
   "name": "Allrondism",
   "description": "Store your stuff with style! Adds worldgen soon(TM).",
   "version": "@VERSION@",
@@ -9,7 +9,7 @@
   "authorList": [
     "Playacem"],
   "credits": "By Playacem. Uses your ideas.",
-  "logoFile": "/mods/Allrondism/textures/logo/logo.png",
+  "logoFile": "/mods/allrondism/textures/logo/logo.png",
   "screenshots": [
   ],
   "parent":"",
