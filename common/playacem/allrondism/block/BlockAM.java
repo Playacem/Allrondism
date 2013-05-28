@@ -20,8 +20,7 @@ public class BlockAM extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        blockIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase()
-                + ":" + this.getUnlocalizedName2());
+        blockIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase()+ ":" + this.getUnlocalizedName2());
     }
 
 }

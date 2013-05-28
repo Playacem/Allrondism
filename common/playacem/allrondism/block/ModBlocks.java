@@ -12,7 +12,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
  * ModBlocks
  * 
  * @author Playacem
- * 
+ * @credit pahimar
  */
 public class ModBlocks {
 

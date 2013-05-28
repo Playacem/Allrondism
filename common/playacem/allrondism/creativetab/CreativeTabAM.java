@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
- * 
+ * @credit pahimar
  */
 public class CreativeTabAM extends CreativeTabs {
 

@@ -13,7 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
- * 
+ * @credit pahimar
  */
 public class TileAM extends TileEntity {
 

@@ -1,21 +1,18 @@
 package playacem.allrondism;
 
 // inspired by Pahimar's EE3 
-// (https://github.com/pahimar/Equivalent-Exchange-3/tree/master/ee3_common/com/pahimar/ee3)
+// (https://github.com/pahimar/Equivalent-Exchange-3/)
 
-//java imports
 import java.io.File;
 
+import net.minecraft.creativetab.CreativeTabs;
 import playacem.allrondism.block.ModBlocks;
 import playacem.allrondism.configuration.ConfigurationHandler;
-import playacem.allrondism.core.helper.LogHelper;
 import playacem.allrondism.core.proxy.CommonProxy;
+import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.creativetab.CreativeTabAM;
 import playacem.allrondism.item.ModItems;
 import playacem.allrondism.lib.Reference;
-
-import net.minecraft.creativetab.CreativeTabs;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -27,8 +24,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-
-
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -60,11 +55,17 @@ public class AllrondismMod {
         LogHelper.init();
 
         // Initialize the configuration
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_ID + ".cfg"));
+        ConfigurationHandler
+                .init(new File(event.getModConfigurationDirectory()
+                        .getAbsolutePath()
+                        + File.separator
+                        + Reference.MOD_ID
+                        + ".cfg"));
 
-        //adding a name for the Custom Tab
-        LanguageRegistry.instance().addStringLocalization("itemGroup." + Reference.MOD_ID, "en_US", Reference.MOD_NAME);
-        
+        // adding a name for the Custom Tab
+        LanguageRegistry.instance().addStringLocalization(
+                "itemGroup." + Reference.MOD_ID, "en_US", Reference.MOD_NAME);
+
         // Initialize mod items
         ModItems.init();
 

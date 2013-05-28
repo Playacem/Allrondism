@@ -1,6 +1,5 @@
 package playacem.allrondism.core.proxy;
 
-import playacem.allrondism.lib.Sprites;
 
 /**
  * Allrondism-Mod
@@ -12,11 +11,6 @@ import playacem.allrondism.lib.Sprites;
  * 
  */
 public class CommonProxy {
-
-    public static String ITEMS_PNG = Sprites.SPRITE_SHEET_LOCATION
-            + Sprites.ITEM_SPRITE_SHEET;
-    public static String BLOCKS_PNG = Sprites.SPRITE_SHEET_LOCATION
-            + Sprites.BLOCK_SPRITE_SHEET;
 
     // Client stuff
     public void registerRenderers() {

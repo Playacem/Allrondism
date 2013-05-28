@@ -1,4 +1,4 @@
-package playacem.allrondism.core.helper;
+package playacem.allrondism.core.util;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
