@@ -18,6 +18,7 @@ public class BlockStorageCobble extends BlockAM {
         this.setHardness(13F);
         this.setStepSound(soundMetalFootstep);
         this.setUnlocalizedName(Strings.STORAGE_COBBLE_NAME);
+        
     }
 
 }

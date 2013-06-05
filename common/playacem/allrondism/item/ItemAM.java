@@ -6,6 +6,14 @@ import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+* Allrondism
+* 
+* ItemAM
+* 
+* @author Playacem
+* @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+*/
 public class ItemAM extends Item {
 
     public ItemAM(int id) {

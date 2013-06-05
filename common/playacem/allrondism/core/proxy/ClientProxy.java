@@ -5,7 +5,9 @@ package playacem.allrondism.core.proxy;
 /**
  * Allrondism
  * 
- * ClientProxy Handles the client stuff.
+ * ClientProxy
+ * 
+ * Handles the client stuff.
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)

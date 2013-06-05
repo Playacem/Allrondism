@@ -10,7 +10,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 //import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * ModItems
  * 
