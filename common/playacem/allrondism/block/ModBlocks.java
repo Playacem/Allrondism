@@ -9,9 +9,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 /**
+ * Allrondism
+ * 
  * ModBlocks
  * 
  * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * @credit pahimar
  */
 public class ModBlocks {

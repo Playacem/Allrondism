@@ -11,7 +11,7 @@ import playacem.allrondism.lib.Strings;
 import cpw.mods.fml.common.FMLLog;
 
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * ConfigurationHandler
  * 

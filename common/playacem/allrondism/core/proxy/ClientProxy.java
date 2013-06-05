@@ -3,7 +3,7 @@ package playacem.allrondism.core.proxy;
 //import net.minecraftforge.client.MinecraftForgeClient;
 
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * ClientProxy Handles the client stuff.
  * 

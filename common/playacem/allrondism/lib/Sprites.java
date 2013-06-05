@@ -1,7 +1,7 @@
 package playacem.allrondism.lib;
 
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * Sprites
  * 

@@ -7,7 +7,7 @@ import net.minecraftforge.common.ForgeDirection;
 //import de.playacem.allrondism.lib.Strings;
 
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * TileAM
  * 

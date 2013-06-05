@@ -23,12 +23,11 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * AllrondismMod
  * 
@@ -62,10 +61,6 @@ public class AllrondismMod {
                         + Reference.MOD_ID
                         + ".cfg"));
 
-        // adding a name for the Custom Tab
-        LanguageRegistry.instance().addStringLocalization(
-                "itemGroup." + Reference.MOD_ID, "en_US", Reference.MOD_NAME);
-
         // Initialize mod items
         ModItems.init();
 
@@ -85,5 +80,3 @@ public class AllrondismMod {
     }
 
 }
-
-// TODO UPDATE TEXTURE CODE

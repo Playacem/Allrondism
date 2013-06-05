@@ -8,7 +8,7 @@ import playacem.allrondism.lib.Reference;
 import cpw.mods.fml.common.FMLLog;
 
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * LogHelper
  * 

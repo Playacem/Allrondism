@@ -7,6 +7,14 @@ import playacem.allrondism.lib.Strings;
 
 import net.minecraft.block.material.Material;
 
+/**
+ * Allrondism
+ * 
+ * BlockOreAllrondium
+ * 
+ * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ */
 public class BlockOreAllrondium extends BlockAM {
 
     public BlockOreAllrondium(int id) {

@@ -2,7 +2,7 @@ package playacem.allrondism.core.proxy;
 
 
 /**
- * Allrondism-Mod
+ * Allrondism
  * 
  * CommonProxy
  * 
