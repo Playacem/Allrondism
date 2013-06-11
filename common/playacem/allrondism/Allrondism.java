@@ -35,10 +35,10 @@ import cpw.mods.fml.common.network.NetworkMod;
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class AllrondismMod {
+public class Allrondism {
 
     @Instance(Reference.MOD_ID)
-    public static AllrondismMod instance;
+    public static Allrondism instance;
 
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;

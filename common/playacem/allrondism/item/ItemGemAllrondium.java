@@ -1,6 +1,6 @@
 package playacem.allrondism.item;
 
-import playacem.allrondism.AllrondismMod;
+import playacem.allrondism.Allrondism;
 import playacem.allrondism.lib.Strings;
 
 /**
@@ -18,7 +18,7 @@ public class ItemGemAllrondium extends ItemAM {
 
         super(id);
         this.setUnlocalizedName(Strings.GEM_ALLRONDIUM);
-        this.setCreativeTab(AllrondismMod.tabsAM);
+        this.setCreativeTab(Allrondism.tabsAM);
         setMaxStackSize(64);
     }
 

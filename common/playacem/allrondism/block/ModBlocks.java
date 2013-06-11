@@ -48,7 +48,7 @@ public class ModBlocks {
     }
 
     private static void setupBlockHarvestLevel(){
-        
+        //0 == wood, 1 == stone, 2 == iron, 3 == diamond
         MinecraftForge.setBlockHarvestLevel(oreAllrondium, "pickaxe", 3);
     }
     private static void initBlockRecipes() {

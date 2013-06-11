@@ -12,9 +12,9 @@ package playacem.allrondism.lib;
 public class Reference {
 
     /* General Mod related constants */
-    public static final String MOD_ID = "allrondism";
+    public static final String MOD_ID = "Allrondism";
     public static final String MOD_NAME = "Allrondism";
-    // @VERSION@ will be replaced by an Apache Ant Build script
+    // @VERSION@ will be replaced by an Apache Ant Build script soon(tm)
     public static final String VERSION = "@VERSION@";
     public static final int SHIFTED_ID_RANGE_CORRECTION = 256;
 
