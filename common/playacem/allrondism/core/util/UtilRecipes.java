@@ -22,22 +22,21 @@ public class UtilRecipes {
 
     /**
      * Adds a vanilla crafing recipe
-     * @param type Shaped or Shapeless
-     * @param output ItemStack
-     * @param params
+     * @param type - Shaped or Shapeless
+     * @param output - ItemStack
+     * @param params - Object[]
      */
     public static void addVanillaRecipe(String type, ItemStack output, Object... params ) {
-        
-        if (type.toLowerCase() == "shaped") {
+        if (type.toLowerCase().contains("shaped")) {
             GameRegistry.addShapedRecipe(output, params);
             return;
         }
-        else if(type.toLowerCase() == "shapeless") {
+        else if(type.toLowerCase().contains("shapeless")) {
             GameRegistry.addShapelessRecipe(output, params);
             return;
         }
         else {
-            LogHelper.alert("The crafting recipe for "+ output.toString() +" was not properly registered");
+            LogHelper.alert("The crafting recipe for "+ output.toString() +" was not properly registered.");
         }
     }
     

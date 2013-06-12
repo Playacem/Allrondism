@@ -55,7 +55,7 @@ public class ModBlocks {
     private static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
-        UtilRecipes.addVanillaRecipe("Shaped",new ItemStack(oreAllrondium), 
+        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), 
                 new Object[] {"ddd", "dsd", "ddd", 
             Character.valueOf('d'),Block.blockDiamond, 
             Character.valueOf('s'), Block.stone });

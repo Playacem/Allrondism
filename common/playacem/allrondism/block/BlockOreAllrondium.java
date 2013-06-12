@@ -19,7 +19,7 @@ public class BlockOreAllrondium extends BlockAM {
 
     public BlockOreAllrondium(int id) {
         super(id, Material.rock);
-        this.setHardness(10F);
+        this.setHardness(5F);
         this.setUnlocalizedName(Strings.ORE_ALLRONDIUM_NAME);
     }
 
