@@ -1,5 +1,6 @@
 package playacem.allrondism.block;
 
+import playacem.allrondism.core.util.UtilRecipes;
 import playacem.allrondism.item.ModItems;
 import playacem.allrondism.lib.BlockIDs;
 import playacem.allrondism.lib.Strings;
@@ -54,26 +55,18 @@ public class ModBlocks {
     private static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
-        GameRegistry.addRecipe(new ItemStack(oreAllrondium), 
+        UtilRecipes.addVanillaRecipe("Shaped",new ItemStack(oreAllrondium), 
                 new Object[] {"ddd", "dsd", "ddd", 
             Character.valueOf('d'),Block.blockDiamond, 
             Character.valueOf('s'), Block.stone });
 
         // StorageBlock recipes
-        addStorageRecipe(new ItemStack(storageDirt), new ItemStack(Block.dirt));
-        addStorageRecipe(new ItemStack(storageCobble), new ItemStack(Block.cobblestone));
-        addStorageRecipe(new ItemStack(storageAllrondium), new ItemStack(ModItems.gemAllrondium));
+        UtilRecipes.addStorageRecipe(new ItemStack(storageDirt), new ItemStack(Block.dirt));
+        UtilRecipes.addStorageRecipe(new ItemStack(storageCobble), new ItemStack(Block.cobblestone));
+        UtilRecipes.addStorageRecipe(new ItemStack(storageAllrondium), new ItemStack(ModItems.gemAllrondium));
 
         // Smelting recipes
-        GameRegistry.addSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(ModItems.gemAllrondium, 3), 15.0F);
+        UtilRecipes.addVanillaSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(ModItems.gemAllrondium, 3), 15.0F);
     }
 
-    private static void addStorageRecipe(ItemStack storageBlock,ItemStack component) {
-        // addRecipe(output , firstLine, secondLine, thirdLine, [variable,
-        // ItemStack] (more possible))
-        GameRegistry.addRecipe(storageBlock, "xxx", "xxx", "xxx",Character.valueOf('x'), component);
-        // Shape is not necessary
-        ItemStack componentStack = new ItemStack(component.itemID, 9, 0);
-        GameRegistry.addShapelessRecipe(componentStack, storageBlock);
-    }
 }
