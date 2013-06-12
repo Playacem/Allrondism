@@ -17,7 +17,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class UtilRecipes {
 
     public UtilRecipes() {
-        return;
     }
 
     /**

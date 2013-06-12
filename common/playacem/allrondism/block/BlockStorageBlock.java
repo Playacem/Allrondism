@@ -26,7 +26,7 @@ public class BlockStorageBlock extends Block {
             
     public BlockStorageBlock(int id, Material material) {
         super(id, material);
-        setHardness(5.0F);
+        setHardness(0.5F);
         setResistance(11.0F);
         setStepSound(soundStoneFootstep);
         setUnlocalizedName("storage");
