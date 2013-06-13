@@ -1,8 +1,11 @@
 package playacem.allrondism.client.audio;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import playacem.allrondism.core.util.LogHelper;
+import playacem.allrondism.lib.BlockIDs;
 
 /**
  * Allrondism
@@ -16,15 +19,27 @@ import playacem.allrondism.core.util.LogHelper;
 public class SoundHandler {
 
     @ForgeSubscribe
-    public void soundPlayed(PlaySoundEvent event) {
-        LogHelper.info("Sound detected: " + event.source.soundName);
-
-        if (event.source.soundName.contains("step/stone")) {
-            LogHelper.info("Stone Sound!");
-            if (event.isCancelable()) {
-                LogHelper.info("You can cancel this stuff!");
+    public void onSoundPlay(PlaySoundEvent event) {
+        return;
+        /*
+        //TODO Get the World using DimensionManager.
+        //need a way to get the current dimension the client is in.
+        World world = Minecraft.getMinecraft().theWorld;
+        //World world = DimensionManager.getWorld(dimID);
+        int x = (int) event.x;
+        int y = (int) event.y;
+        int z = (int) event.z;
+        if (event.name.contains("step.stone")) {
+            if(world.getBlockId(x, y, z)== BlockIDs.STORAGE_BLOCKS ){
+                if(world.getBlockMetadata(x, y, z) == 0) {
+                    event.manager.pauseAllSounds();
+                    event.manager.playSound("step.gravel", event.x, event.y, event.z, 0.15F, 1.0F);
+                    event.manager.resumeAllSounds();
+                }
             }
         }
+        */
     }
 
+    
 }

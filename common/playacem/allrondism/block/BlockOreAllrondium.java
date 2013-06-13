@@ -20,6 +20,7 @@ public class BlockOreAllrondium extends BlockAM {
         super(id, Material.rock);
         this.setHardness(5F);
         this.setUnlocalizedName(Strings.ORE_ALLRONDIUM_NAME);
+        this.setStepSound(soundStoneFootstep);
     }
 
     @Override
