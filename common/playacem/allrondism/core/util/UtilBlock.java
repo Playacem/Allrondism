@@ -16,7 +16,6 @@ public class UtilBlock {
     }
 
     public static float getLightValueFromInt(int lightLevel) {
-        //improve calculation, some values are getting lower than expected
-        return (float)lightLevel / 15.0F;
+        return (float)(lightLevel / 15.0F);
     }
 }
