@@ -1,10 +1,10 @@
 package playacem.allrondism.block;
 
-import playacem.allrondism.Allrondism;
-import playacem.allrondism.lib.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import playacem.allrondism.Allrondism;
+import playacem.allrondism.lib.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,7 +28,8 @@ public class BlockAM extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconReg) {
-        blockIcon = iconReg.registerIcon(Reference.MOD_ID.toLowerCase()+ ":" + this.getUnlocalizedName2());
+        blockIcon = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":"
+                + this.getUnlocalizedName2());
     }
 
 }

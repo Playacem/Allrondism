@@ -1,12 +1,10 @@
 package playacem.allrondism.creativetab;
 
+import net.minecraft.creativetab.CreativeTabs;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Reference;
-import net.minecraft.creativetab.CreativeTabs;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 
 /**
  * Allrondism
@@ -33,10 +31,10 @@ public class CreativeTabAM extends CreativeTabs {
 
         return ItemIDs.GEM_ALLRONDIUM;
     }
-    
+
     @Override
     public String getTranslatedTabLabel() {
-        
+
         return Reference.MOD_NAME;// the ingame name for the Tab
     }
 }

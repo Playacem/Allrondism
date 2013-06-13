@@ -1,6 +1,5 @@
 package playacem.allrondism.core.proxy;
 
-
 /**
  * Allrondism
  * 
@@ -12,8 +11,11 @@ package playacem.allrondism.core.proxy;
  */
 public class CommonProxy {
 
-    // Client stuff
     public void registerRenderers() {
         // Nothing here as the server doesn't render graphics!
+    }
+
+    public void registerSoundHandler() {
+        // The Server doesn't manage sounds either.
     }
 }

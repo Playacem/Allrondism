@@ -2,10 +2,9 @@ package playacem.allrondism.block;
 
 import java.util.Random;
 
+import net.minecraft.block.material.Material;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Strings;
-
-import net.minecraft.block.material.Material;
 
 /**
  * Allrondism
@@ -28,5 +27,4 @@ public class BlockOreAllrondium extends BlockAM {
         return ItemIDs.GEM_ALLRONDIUM;
     }
 
-    
 }

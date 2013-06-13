@@ -1,19 +1,19 @@
 package playacem.allrondism.item;
 
-import playacem.allrondism.lib.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
+import playacem.allrondism.lib.Reference;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
-* Allrondism
-* 
-* ItemAM
-* 
-* @author Playacem
-* @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
-*/
+ * Allrondism
+ * 
+ * ItemAM
+ * 
+ * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ */
 public class ItemAM extends Item {
 
     public ItemAM(int id) {
@@ -26,6 +26,9 @@ public class ItemAM extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        itemIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName().substring( this.getUnlocalizedName().indexOf(".") + 1));
+        itemIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase()
+                + ":"
+                + this.getUnlocalizedName().substring(this.getUnlocalizedName()
+                        .indexOf(".") + 1));
     }
 }

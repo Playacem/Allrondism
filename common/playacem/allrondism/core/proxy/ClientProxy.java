@@ -1,5 +1,8 @@
 package playacem.allrondism.core.proxy;
 
+import net.minecraftforge.common.MinecraftForge;
+import playacem.allrondism.client.audio.SoundHandler;
+
 //import net.minecraftforge.client.MinecraftForgeClient;
 
 /**
@@ -20,5 +23,10 @@ public class ClientProxy extends CommonProxy {
         // Loading textures
         // MinecraftForgeClient.preloadTexture(ITEMS_PNG);
         // MinecraftForgeClient.preloadTexture(BLOCKS_PNG);
+    }
+
+    @Override
+    public void registerSoundHandler() {
+        MinecraftForge.EVENT_BUS.register(new SoundHandler());
     }
 }

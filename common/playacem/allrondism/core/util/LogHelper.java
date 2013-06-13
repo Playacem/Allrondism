@@ -4,7 +4,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import playacem.allrondism.lib.Reference;
-
 import cpw.mods.fml.common.FMLLog;
 
 /**
@@ -27,8 +26,9 @@ public class LogHelper {
 
     /**
      * Logs a message.
+     * 
      * @see info
-     * @see alert 
+     * @see alert
      * @param logLevel
      * @param message
      */
@@ -38,25 +38,22 @@ public class LogHelper {
     }
 
     /**
-     * Logs a message.
-     * Uses
-     * INFO level
+     * Logs a message. Uses INFO level
+     * 
      * @param message
      */
     public static void info(String message) {
-        
+
         amLogger.log(Level.INFO, message);
     }
 
     /**
-     * Logs a message
-     * Uses
-     * WARNING level
+     * Logs a message Uses WARNING level
+     * 
      * @param message
      */
     public static void alert(String message) {
-        
+
         amLogger.log(Level.WARNING, message);
     }
 }
-

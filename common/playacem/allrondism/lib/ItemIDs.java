@@ -10,8 +10,9 @@ package playacem.allrondism.lib;
  * 
  */
 public class ItemIDs {
-    
+
     public static int GEM_ALLRONDIUM_DEFAULT = 5001;
 
+    /* Current item ids */
     public static int GEM_ALLRONDIUM;
 }

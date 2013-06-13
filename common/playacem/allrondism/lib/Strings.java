@@ -18,7 +18,7 @@ public class Strings {
     public static final String STORAGE_COBBLE_NAME = "storageCobble";
     public static final String[] STORAGE_BLOCKS = { "Dirt", "Cobble", "Allrondium" };
     public static final String STORAGE_BLOCKS_NAME = "storageBlock";
-    
+
     // Ores
     public static final String ORE_ALLRONDIUM_NAME = "oreAllrondium";
 

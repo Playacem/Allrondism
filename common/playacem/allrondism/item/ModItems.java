@@ -1,9 +1,9 @@
 package playacem.allrondism.item;
 
 //import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Strings;
-import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 

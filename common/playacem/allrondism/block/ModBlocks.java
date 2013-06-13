@@ -1,12 +1,12 @@
 package playacem.allrondism.block;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import playacem.allrondism.core.util.UtilRecipes;
 import playacem.allrondism.item.ModItems;
 import playacem.allrondism.lib.BlockIDs;
 import playacem.allrondism.lib.Strings;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
@@ -23,48 +23,43 @@ public class ModBlocks {
 
     /* Mod block instances */
     public static Block oreAllrondium;
-    public static Block storageDirt;
-    public static Block storageCobble;
-    public static Block storageAllrondium;
+    public static Block storageBlock;
 
     public static void init() {
 
         oreAllrondium = new BlockOreAllrondium(BlockIDs.ORE_ALLRONDIUM);
-        storageDirt = new BlockStorageDirt(BlockIDs.STORAGE_DIRT);
-        storageCobble = new BlockStorageCobble(BlockIDs.STORAGE_COBBLE);
-        storageAllrondium = new BlockStorageAllrondium(BlockIDs.STORAGE_ALLRONDIUM);
+        storageBlock = new BlockStorageBlock(BlockIDs.STORAGE_BLOCKS);
 
         GameRegistry.registerBlock(oreAllrondium, Strings.ORE_ALLRONDIUM_NAME);
-        GameRegistry.registerBlock(storageDirt, Strings.STORAGE_DIRT_NAME);
-        GameRegistry.registerBlock(storageCobble, Strings.STORAGE_COBBLE_NAME);
-        GameRegistry.registerBlock(storageAllrondium,Strings.STORAGE_ALLRONDIUM_NAME);
+        GameRegistry.registerBlock(storageBlock, ItemBlockStorageBlock.class, storageBlock.getUnlocalizedName());
 
         LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
-        LanguageRegistry.addName(storageDirt, "Storage Dirt");
-        LanguageRegistry.addName(storageCobble, "Storage Cobble");
-        LanguageRegistry.addName(storageAllrondium, "Storage Allrondium");
-        
+
+        for (int i = 0; i < Strings.STORAGE_BLOCKS.length; i++) {
+            ItemStack storageBlockStack = new ItemStack(storageBlock, 1, i);
+            LanguageRegistry.addName(storageBlockStack, "Storage " + Strings.STORAGE_BLOCKS[storageBlockStack.getItemDamage()]);
+        }
+
         setupBlockHarvestLevel();
         initBlockRecipes();
     }
 
-    private static void setupBlockHarvestLevel(){
-        //0 == wood, 1 == stone, 2 == iron, 3 == diamond
+    private static void setupBlockHarvestLevel() {
+        // 0 == wood, 1 == stone, 2 == iron, 3 == diamond
         MinecraftForge.setBlockHarvestLevel(oreAllrondium, "pickaxe", 3);
     }
+
     private static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
-        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), 
-                new Object[] {"ddd", "dsd", "ddd", 
-            Character.valueOf('d'),Block.blockDiamond, 
-            Character.valueOf('s'), Block.stone });
+        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), new Object[] { "ddd", "dsd", "ddd",
+                Character.valueOf('d'), Block.blockDiamond, Character.valueOf('s'), Block.stone });
 
-        // StorageBlock recipes
-        UtilRecipes.addStorageRecipe(new ItemStack(storageDirt), new ItemStack(Block.dirt));
-        UtilRecipes.addStorageRecipe(new ItemStack(storageCobble), new ItemStack(Block.cobblestone));
-        UtilRecipes.addStorageRecipe(new ItemStack(storageAllrondium), new ItemStack(ModItems.gemAllrondium));
-
+        // Storage Block Recipes
+        UtilRecipes.addStorageRecipe(new ItemStack(storageBlock, 1, 0), new ItemStack(Block.dirt));
+        UtilRecipes.addStorageRecipe(new ItemStack(storageBlock, 1, 1), new ItemStack(Block.cobblestone));
+        UtilRecipes.addStorageRecipe(new ItemStack(storageBlock, 1, 2), new ItemStack(ModItems.gemAllrondium));
+        
         // Smelting recipes
         UtilRecipes.addVanillaSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(ModItems.gemAllrondium, 3), 15.0F);
     }
