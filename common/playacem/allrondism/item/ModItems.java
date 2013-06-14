@@ -1,13 +1,14 @@
 package playacem.allrondism.item;
 
-//import net.minecraft.block.Block;
+
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Strings;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import playacem.allrondism.core.util.UtilRecipes;
 
-//import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Allrondism
@@ -30,6 +31,13 @@ public class ModItems {
 
         GameRegistry.registerItem(gemAllrondium, Strings.GEM_ALLRONDIUM);
         LanguageRegistry.addName(gemAllrondium, "Allrondium");
+        
+        initItemRecipes();
     }
 
+    private static void initItemRecipes() {
+        //temporary Recipe
+        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 1), new Object[] { 
+            "III", "IAI", "III", Character.valueOf('I'), Item.ingotGold, Character.valueOf('A'), Item.appleRed });
+    }
 }
