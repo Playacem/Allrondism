@@ -2,7 +2,7 @@
 {
   "modid": "allrondism",
   "name": "Allrondism",
-  "description": "Store your stuff with style! Adds worldgen soon(TM).",
+  "description": "Store your stuff with style! Adds worldgen soon(TM) or not.",
   "version": "@VERSION@",
   "url": "http://www.playacem.has-no-homepage.net/",
   "updateUrl": "",

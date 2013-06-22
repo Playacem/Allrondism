@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class BlockAM extends Block {
+public abstract class BlockAM extends Block {
 
     public BlockAM(int id, Material material) {
 

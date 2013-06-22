@@ -28,6 +28,9 @@ public class UtilRecipes {
      *            - Object[]
      */
     public static void addVanillaRecipe(String type, ItemStack output, Object... params) {
+        for(int i = 0; i < params.length; i++) {
+                LogHelper.info("Recipe: "+ output.toString() +" Objectnr. " + i + ": " + params[i].toString());
+            }
         if (type.toLowerCase().contains("shaped")) {
             GameRegistry.addShapedRecipe(output, params);
             return;

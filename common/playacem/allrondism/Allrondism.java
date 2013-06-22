@@ -43,8 +43,7 @@ public class Allrondism {
     @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
     public static CommonProxy proxy;
 
-    public static CreativeTabs tabsAM = new CreativeTabAM(
-            CreativeTabs.getNextID(), Reference.MOD_ID);
+    public static CreativeTabs tabsAM = new CreativeTabAM(CreativeTabs.getNextID(), Reference.MOD_ID);
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
@@ -54,8 +53,8 @@ public class Allrondism {
         LogHelper.init();
 
         // Initialize the configuration
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath()+ File.separator
-                        + Reference.MOD_ID + ".cfg"));
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator
+                        + Reference.MOD_NAME  + ".cfg"));
 
         // Register the Sound Handler (Client only)
         proxy.registerSoundHandler();
@@ -74,7 +73,7 @@ public class Allrondism {
     }
 
     @PostInit
-    public void postInit(FMLPostInitializationEvent event) {
+    public void modsLoaded(FMLPostInitializationEvent event) {
         // Stub Method
     }
 

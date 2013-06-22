@@ -18,7 +18,7 @@ public class ItemGemAllrondium extends ItemAM {
         super(id);
         this.setUnlocalizedName(Strings.GEM_ALLRONDIUM);
         this.setCreativeTab(Allrondism.tabsAM);
-        setMaxStackSize(64);
+        this.setMaxStackSize(64);
     }
 
 }

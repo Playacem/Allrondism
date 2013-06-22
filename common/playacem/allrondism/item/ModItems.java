@@ -1,6 +1,7 @@
 package playacem.allrondism.item;
 
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import playacem.allrondism.lib.ItemIDs;
@@ -36,8 +37,11 @@ public class ModItems {
     }
 
     private static void initItemRecipes() {
-        //temporary Recipe
-        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 1), new Object[] { 
+        //temporary Recipe, doubled gold apples if gold ingots are used insted of gold nuggets
+        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 2), new Object[] { 
             "III", "IAI", "III", Character.valueOf('I'), Item.ingotGold, Character.valueOf('A'), Item.appleRed });
+        
+        UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.snowball, 4), new ItemStack(Block.blockSnow));
+        UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.brick, 4), new ItemStack(Block.brick));
     }
 }

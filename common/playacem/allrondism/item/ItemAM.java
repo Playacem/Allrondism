@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class ItemAM extends Item {
+public abstract class ItemAM extends Item {
 
     public ItemAM(int id) {
         super(id - Reference.SHIFTED_ID_RANGE_CORRECTION);
@@ -26,9 +26,7 @@ public class ItemAM extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister) {
-        itemIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase()
-                + ":"
-                + this.getUnlocalizedName().substring(this.getUnlocalizedName()
-                        .indexOf(".") + 1));
+        itemIcon = iconRegister.registerIcon(Reference.MOD_ID.toLowerCase() + ":"+ this.getUnlocalizedName()
+                .substring(this.getUnlocalizedName().indexOf(".") + 1));
     }
 }
