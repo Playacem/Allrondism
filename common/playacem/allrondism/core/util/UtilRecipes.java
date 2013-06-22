@@ -31,10 +31,10 @@ public class UtilRecipes {
         for(int i = 0; i < params.length; i++) {
                 LogHelper.info("Recipe: "+ output.toString() +" Objectnr. " + i + ": " + params[i].toString());
             }
-        if (type.toLowerCase().contains("shaped")) {
+        if (type.toUpperCase().contains("SHAPED")) {
             GameRegistry.addShapedRecipe(output, params);
             return;
-        } else if (type.toLowerCase().contains("shapeless")) {
+        } else if (type.toUpperCase().contains("SHAPELESS")) {
             GameRegistry.addShapelessRecipe(output, params);
             return;
         } else {
@@ -73,7 +73,7 @@ public class UtilRecipes {
         UtilRecipes.addVanillaRecipe("Shaped", storageBlock, "xxx", "xxx", "xxx",
                 Character.valueOf('x'), component);
         // Shape is not necessary
-        ItemStack componentStack = new ItemStack(component.itemID, 9, 0);
+        ItemStack componentStack = new ItemStack(component.itemID, 9, component.getItemDamage());
         UtilRecipes.addVanillaRecipe("Shapeless", componentStack, storageBlock);
     }
 }

@@ -41,7 +41,7 @@ public class ModItems {
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 2), new Object[] { 
             "III", "IAI", "III", Character.valueOf('I'), Item.ingotGold, Character.valueOf('A'), Item.appleRed });
         
-        UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.snowball, 4), new ItemStack(Block.blockSnow));
-        UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.brick, 4), new ItemStack(Block.brick));
+        UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.snowball, 4), new Object[] { Block.blockSnow});
+        UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.brick, 4), new Object[] { Block.brick });
     }
 }
