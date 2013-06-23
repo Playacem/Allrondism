@@ -33,7 +33,8 @@ public class ConfigurationHandler {
             /* Block configs */
             BlockIDs.ORE_ALLRONDIUM = config.getBlock(Strings.ORE_ALLRONDIUM_NAME, BlockIDs.ORE_ALLRONDIUM_DEFAULT).getInt(BlockIDs.ORE_ALLRONDIUM_DEFAULT);
             BlockIDs.STORAGE_BLOCKS = config.getBlock(Strings.STORAGE_BLOCKS_NAME, BlockIDs.STORAGE_BLOCKS_DEFAULT).getInt(BlockIDs.STORAGE_BLOCKS_DEFAULT);
-
+            BlockIDs.GLASS_SUN_BLOCKER = config.getBlock(Strings.GLASS_SUN_BLOCKER_NAME, BlockIDs.GLASS_SUN_BLOCKER_DEFAULT).getInt(BlockIDs.GLASS_SUN_BLOCKER_DEFAULT);
+            
             /* Item configs */
             ItemIDs.GEM_ALLRONDIUM = config.getItem(Strings.GEM_ALLRONDIUM, ItemIDs.GEM_ALLRONDIUM_DEFAULT).getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);
         } catch (Exception e) {

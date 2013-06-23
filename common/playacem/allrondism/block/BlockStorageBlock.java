@@ -29,7 +29,7 @@ public class BlockStorageBlock extends Block {
         setHardness(0.5F);
         setResistance(10.0F);
         setStepSound(soundMetalFootstep);
-        setUnlocalizedName("storage");
+        setUnlocalizedName(Strings.STORAGE_BLOCKS_NAME);
         setCreativeTab(Allrondism.tabsAM);
     }
 
