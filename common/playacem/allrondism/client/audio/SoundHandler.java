@@ -21,7 +21,7 @@ public class SoundHandler {
         LogHelper.info("Event: " + event.name);
         if (event.name.contains("step.stone")) {
             LogHelper.info("Stone Event!");
-            //event.result = event.manager.soundPoolSounds.getRandomSoundFromSoundPool("step.gravel");
+            // event.result = event.manager.soundPoolSounds.getRandomSoundFromSoundPool("step.gravel");
             // TODO add check for specific block 
         }
         

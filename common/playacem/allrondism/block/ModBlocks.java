@@ -43,7 +43,7 @@ public class ModBlocks {
             LanguageRegistry.addName(storageBlockStack, "Storage " + Strings.STORAGE_BLOCKS[storageBlockStack.getItemDamage()]);
         }
         LanguageRegistry.addName(glassSunBlocker, "Sunblocking Glass");
-        
+
         setupBlockHarvestLevel();
         initBlockRecipes();
     }
@@ -64,11 +64,11 @@ public class ModBlocks {
         UtilRecipes.addStorageRecipe(new ItemStack(storageBlock, 1, 0), new ItemStack(Block.dirt));
         UtilRecipes.addStorageRecipe(new ItemStack(storageBlock, 1, 1), new ItemStack(Block.cobblestone));
         UtilRecipes.addStorageRecipe(new ItemStack(storageBlock, 1, 2), new ItemStack(ModItems.gemAllrondium));
-        
+
         // Recipe Sunblocking Glass
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(glassSunBlocker, 4), new Object[] { "dgd", "gig", "dgd",
-                Character.valueOf('d'), "dyeBlack", Character.valueOf('g'), Block.glass, Character.valueOf('i'), Item.ingotIron});
-        
+                Character.valueOf('d'), "dyeBlack", Character.valueOf('g'), Block.glass, Character.valueOf('i'), Item.ingotIron });
+
         // Smelting recipes
         UtilRecipes.addVanillaSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(ModItems.gemAllrondium, 3), 15.0F);
     }

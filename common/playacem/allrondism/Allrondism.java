@@ -54,7 +54,7 @@ public class Allrondism {
 
         // Initialize the configuration
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator
-                        + Reference.MOD_NAME  + ".cfg"));
+                + Reference.MOD_NAME + ".cfg"));
 
         // Register the Sound Handler (Client only)
         proxy.registerSoundHandler();

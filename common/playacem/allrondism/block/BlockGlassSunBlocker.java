@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockGlassSunBlocker extends BlockAM {
 
     private boolean localFlag = false;
-    
+
     public BlockGlassSunBlocker(int id) {
         super(id, Material.glass);
         this.setLightOpacity(100);
@@ -43,7 +43,8 @@ public class BlockGlassSunBlocker extends BlockAM {
     public boolean renderAsNormalBlock() {
         return false;
     }
-    
+
+    @Override
     @SideOnly(Side.CLIENT)
     /**
      * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
@@ -52,7 +53,7 @@ public class BlockGlassSunBlocker extends BlockAM {
     public boolean shouldSideBeRendered(IBlockAccess IBlockAccess, int x, int y, int z, int side)
     {
         int i1 = IBlockAccess.getBlockId(x, y, z);
-        return !this.localFlag && i1 == this.blockID ? false : super.shouldSideBeRendered(IBlockAccess, x, y, z, side);
+        return !localFlag && i1 == blockID ? false : super.shouldSideBeRendered(IBlockAccess, x, y, z, side);
     }
 
 }
