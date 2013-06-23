@@ -67,7 +67,7 @@ public class ModBlocks {
         
         // Recipe Sunblocking Glass
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(glassSunBlocker, 4), new Object[] { "dgd", "gig", "dgd",
-                Character.valueOf('d'), new ItemStack(Item.dyePowder, 1, 0), Character.valueOf('g'), Block.glass, Character.valueOf('i'), Item.ingotIron});
+                Character.valueOf('d'), "dyeBlack", Character.valueOf('g'), Block.glass, Character.valueOf('i'), Item.ingotIron});
         
         // Smelting recipes
         UtilRecipes.addVanillaSmelting(BlockIDs.ORE_ALLRONDIUM, new ItemStack(ModItems.gemAllrondium, 3), 15.0F);

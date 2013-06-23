@@ -2,6 +2,8 @@ package playacem.allrondism.core.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
@@ -27,36 +29,32 @@ public class UtilRecipes {
      * @param params
      *            - Object[]
      */
-    public static void addVanillaRecipe(String type, ItemStack output, Object... params) {
+    public static void addVanillaRecipe(String type, boolean useOreDict, ItemStack output, Object... params ) {
         for(int i = 0; i < params.length; i++) {
                 LogHelper.info("Recipe: "+ output.toString() +" Objectnr. " + i + ": " + params[i].toString());
             }
         if (type.toUpperCase().contains("SHAPED")) {
-            GameRegistry.addShapedRecipe(output, params);
-            return;
+            if(useOreDict) {GameRegistry.addRecipe(new ShapedOreRecipe(output, params));}
+            else {GameRegistry.addShapedRecipe(output, params);}
         } else if (type.toUpperCase().contains("SHAPELESS")) {
-            GameRegistry.addShapelessRecipe(output, params);
-            return;
+            if(useOreDict) {GameRegistry.addRecipe(new ShapelessOreRecipe(output, params));}
+            else {GameRegistry.addShapelessRecipe(output, params);}
         } else {
             LogHelper.alert("The crafting recipe for " + output.toString() + " was not properly registered.");
         }
     }
 
-    /**
-     * Adds a vanilla smelting recipe
-     * 
-     * @param input
-     *            BlockID
-     * @param output
-     *            ItemStack
-     * @param xp
-     */
+    public static void addVanillaRecipe(String type, ItemStack output, Object... params ) {
+        addVanillaRecipe(type, true, output, params);
+    }
+
     public static void addVanillaSmelting(int input, ItemStack output, float xp) {
-        GameRegistry.addSmelting(input, output, xp);
+        addVanillaSmelting(input, 0,output, xp);
     }
 
     /**
-     * Metadata sensitive version
+     * Adds a Vanilla Smelting recipe
+     * Metadata compatible
      * 
      */
     public static void addVanillaSmelting(int id, int metadata, ItemStack output, float xp) {
