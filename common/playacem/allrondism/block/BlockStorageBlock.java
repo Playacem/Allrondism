@@ -26,11 +26,12 @@ public class BlockStorageBlock extends Block {
 
     public BlockStorageBlock(int id) {
         super(id, Material.iron);
-        setHardness(0.5F);
+        setHardness(4.0F);
         setResistance(10.0F);
         setStepSound(soundMetalFootstep);
         setUnlocalizedName(Strings.STORAGE_BLOCKS_NAME);
         setCreativeTab(Allrondism.tabsAM);
+        setLightValue(0F);
     }
 
     @Override
@@ -38,6 +39,7 @@ public class BlockStorageBlock extends Block {
         return meta;
     }
 
+    
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconReg) {

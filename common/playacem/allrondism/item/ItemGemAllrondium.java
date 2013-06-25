@@ -1,6 +1,8 @@
 package playacem.allrondism.item;
 
+import net.minecraft.item.ItemStack;
 import playacem.allrondism.Allrondism;
+import playacem.allrondism.lib.Colors;
 import playacem.allrondism.lib.Strings;
 
 /**
@@ -21,4 +23,8 @@ public class ItemGemAllrondium extends ItemAM {
         this.setMaxStackSize(64);
     }
 
+    @Override
+    public String getItemDisplayName(ItemStack stack) {
+        return Colors.TEXT_COLOR_PURPLE + super.getItemDisplayName(stack);
+    }
 }

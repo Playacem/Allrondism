@@ -94,7 +94,7 @@ public class UtilRecipes {
 
     /**
      * Adds a 3x3 crafting recipe for the specified block and the matching
-     * uncrafting recipe oreDictionary compatible version
+     * uncrafting recipe, oreDictionary compatible version
      * 
      * @param storageBlock
      * @param oreDictObj

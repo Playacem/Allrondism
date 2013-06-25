@@ -1,5 +1,7 @@
 package playacem.allrondism.block;
 
+import java.util.Random;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
 import playacem.allrondism.Allrondism;
@@ -21,13 +23,19 @@ public class BlockGlassSunBlocker extends BlockAM {
     private boolean localFlag = false;
 
     public BlockGlassSunBlocker(int id) {
-        super(id, Material.glass);
+        super(id, Material.rock);
         this.setLightOpacity(100);
         this.setCreativeTab(Allrondism.tabsAM);
-        this.setHardness(0.2F);
+        this.setHardness(0.25F);
         this.setUnlocalizedName(Strings.GLASS_SUN_BLOCKER_NAME);
+        this.setStepSound(soundGlassFootstep);
     }
 
+    @Override
+    public int quantityDropped(Random random) {
+        return 1;
+    }
+    
     @Override
     public boolean isOpaqueCube() {
         return false;
@@ -41,7 +49,7 @@ public class BlockGlassSunBlocker extends BlockAM {
 
     @Override
     public boolean renderAsNormalBlock() {
-        return false;
+        return true;
     }
 
     @Override

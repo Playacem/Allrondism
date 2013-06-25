@@ -37,7 +37,7 @@ public class ModItems {
     private static void initItemRecipes() {
         // temporary Recipe, doubled gold apples if gold ingots are used insted
         // of gold nuggets
-        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 2), new Object[] {
+        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 3), new Object[] {
                 "III", "IAI", "III", Character.valueOf('I'), Item.ingotGold, Character.valueOf('A'), Item.appleRed });
 
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.snowball, 4), new Object[] { Block.blockSnow });
