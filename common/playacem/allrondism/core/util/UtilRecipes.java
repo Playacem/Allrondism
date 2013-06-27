@@ -53,9 +53,9 @@ public class UtilRecipes {
     }
 
     /**
-     * Adds a vanilla crafting recipe supports OreDictionary
+     * Adds a vanilla crafting recipe, supports OreDictionary
      * 
-     * @param type
+     * @param type - Shaped or Shapeless
      * @param output
      * @param params
      */
