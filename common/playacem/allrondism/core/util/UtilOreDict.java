@@ -23,15 +23,32 @@ public class UtilOreDict {
         return instance;
     }
 
-    public ItemStack getItemStack(String oreDictObject) {
-        
-        return getItemStack(oreDictObject, 1);
-    }
-
-    public ItemStack getItemStack(String oreDictObject, int stackSize) {
+    // They all fall down to getItemStack(String, int , int)
+    // Object based
+    public ItemStack getItemStack(Object oreDictObject) { return getItemStack((String) oreDictObject); }
+    public ItemStack getItemStack(Object oreDictObject, int stackSize) { return getItemStack((String) oreDictObject, stackSize); }
+    public ItemStack getItemStack(Object oreDictObject, int stackSize, int position) { return getItemStack((String) oreDictObject, stackSize, position); }
+    
+    // String based
+    public ItemStack getItemStack(String oreDictObject) { return getItemStack(oreDictObject, 1); }
+    public ItemStack getItemStack(String oreDictObject, int stackSize) { return getItemStack(oreDictObject, stackSize, 0); }
+ 
+    // OreID based
+    public ItemStack getItemStack(int oreID) { return getItemStack(oreID, 1); }
+    public ItemStack getItemStack(int oreID, int stackSize) { return getItemStack(oreID, stackSize, 0); }
+    public ItemStack getItemStack(int oreID, int stackSize, int position) { return getItemStack(OreDictionary.getOreName(oreID), stackSize, position); }
+    
+    public ItemStack getItemStack(String oreDictObject,int stackSize, int position) {
         
         ArrayList<ItemStack> ores = OreDictionary.getOres(oreDictObject);
-        ItemStack itemStack = ores.get(0); // gets the first Ore
+        if(position >= ores.size()) {
+            if(position == ores.size()) { position--; }
+            else{
+                LogHelper.alert("Position: " + position + "is bigger than Array Size: " + ores.size());
+                position = 0;
+            }
+        }
+        ItemStack itemStack = ores.get(position);
         itemStack.stackSize = stackSize;
         return itemStack;
     }
@@ -50,13 +67,4 @@ public class UtilOreDict {
         return itemStackArray;
     }
 
-    public ItemStack getItemStack(int oreID) {
-        
-        return getItemStack(oreID, 1);
-    }
-
-    public ItemStack getItemStack(int oreID, int stackSize) {
-        
-        return getItemStack(OreDictionary.getOreName(oreID), stackSize);
-    }
 }

@@ -19,16 +19,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class UtilRecipes {
 
-    /**
-     * Adds a vanilla crafing recipe
-     * 
-     * @param type
-     *            - Shaped or Shapeless
-     * @param output
-     *            - ItemStack
-     * @param params
-     *            - Object[]
-     */
+
     public static void addVanillaRecipe(String type, boolean useOreDict, ItemStack output, Object... params) {
         for (int i = 0; i < params.length; i++) {
             LogHelper.info("Recipe: " + output.toString() + " Objectnr. " + i + ": " + params[i].toString());
@@ -82,28 +73,25 @@ public class UtilRecipes {
      * @param storageBlock
      *            - result
      * @param component
-     *            - input
+     *            - a String or an ItemStack
      */
-    public static void addStorageRecipe(ItemStack storageBlock, ItemStack component) {
+    public static void addStorageRecipe(ItemStack storageBlock, Object component) {
+        if(!(component instanceof String || component instanceof ItemStack)) {
+            LogHelper.alert("Component is not valid! Block: " + storageBlock.getDisplayName());
+            LogHelper.alert("The Recipe was not added.");
+            return;
+        }
         UtilRecipes.addVanillaRecipe("Shaped", storageBlock, "xxx", "xxx", "xxx",
                 Character.valueOf('x'), component);
-        // Shape is not necessary
-        ItemStack componentStack = new ItemStack(component.itemID, 9, component.getItemDamage());
+        
+        ItemStack componentStack = null;
+        if(component instanceof ItemStack) {
+            componentStack = (ItemStack) component;
+        }else{
+            componentStack = UtilOreDict.instance().getItemStack(component, 9);
+        }
+        
         UtilRecipes.addVanillaRecipe("Shapeless", componentStack, storageBlock);
     }
 
-    /**
-     * Adds a 3x3 crafting recipe for the specified block and the matching
-     * uncrafting recipe, oreDictionary compatible version
-     * 
-     * @param storageBlock
-     * @param oreDictObj
-     */
-    public static void addStorageRecipe(ItemStack storageBlock, String oreDictObj) {
-        UtilRecipes.addVanillaRecipe("Shaped", storageBlock, "xxx", "xxx", "xxx",
-                Character.valueOf('x'), oreDictObj);
-        ItemStack componentStack = UtilOreDict.instance().getItemStack(oreDictObj, 9);
-        UtilRecipes.addVanillaRecipe("Shapeless", componentStack, storageBlock);
-
-    }
 }
