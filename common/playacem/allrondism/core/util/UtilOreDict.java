@@ -17,30 +17,46 @@ public class UtilOreDict {
 
     private static final UtilOreDict instance = new UtilOreDict();
 
-    private UtilOreDict() {
-    }
+    private UtilOreDict() {}
 
     public static UtilOreDict instance() {
         return instance;
     }
 
     public ItemStack getItemStack(String oreDictObject) {
+        
         return getItemStack(oreDictObject, 1);
     }
 
     public ItemStack getItemStack(String oreDictObject, int stackSize) {
+        
         ArrayList<ItemStack> ores = OreDictionary.getOres(oreDictObject);
-        ItemStack iS = ores.get(0); // gets the first Ore
-        iS.stackSize = stackSize;
-        return iS;
+        ItemStack itemStack = ores.get(0); // gets the first Ore
+        itemStack.stackSize = stackSize;
+        return itemStack;
+    }
+    
+    public ArrayList<ItemStack> getItemStackArray(String oreDictObject, int stackSize) {
+        
+        ArrayList<ItemStack> ores = OreDictionary.getOres(oreDictObject);
+        ArrayList<ItemStack> itemStackArray = new ArrayList<ItemStack>();
+        if(ores.isEmpty()) { return null; }
+        
+        for(int i = 0; i < ores.size(); i++) {
+            ItemStack itemStack = ores.get(i);
+            itemStack.stackSize = stackSize;
+            itemStackArray.add(i, itemStack);
+        }
+        return itemStackArray;
     }
 
     public ItemStack getItemStack(int oreID) {
+        
         return getItemStack(oreID, 1);
-
     }
 
     public ItemStack getItemStack(int oreID, int stackSize) {
+        
         return getItemStack(OreDictionary.getOreName(oreID), stackSize);
     }
 }
