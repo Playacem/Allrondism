@@ -21,8 +21,8 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class BlockStorageBlock extends Block {
 
-    private String[] _names = Strings.STORAGE_BLOCKS;
-    private Icon[] _icons = new Icon[_names.length];
+    private String[] names = Strings.STORAGE_BLOCKS;
+    private Icon[] icons = new Icon[names.length];
 
     public BlockStorageBlock(int id) {
         super(id, Material.iron);
@@ -43,16 +43,16 @@ public class BlockStorageBlock extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconReg) {
-        for (int i = 0; i < _icons.length; i++) {
-            _icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase()
-                    + ":" + getUnlocalizedName2() + _names[i]);
+        for (int i = 0; i < icons.length; i++) {
+            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase()
+                    + ":" + getUnlocalizedName2() + names[i]);
         }
     }
 
     @Override
     public Icon getIcon(int side, int meta) {
 
-        return _icons[Math.min(meta, _icons.length)];
+        return icons[Math.min(meta, icons.length)];
     }
 
 }
