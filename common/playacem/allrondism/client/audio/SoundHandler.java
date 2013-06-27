@@ -18,9 +18,9 @@ public class SoundHandler {
     @ForgeSubscribe
     public void onSoundPlay(PlaySoundEvent event) {
 
-        LogHelper.info("Event: " + event.name);
+        LogHelper.debug("Event: " + event.name);
         if (event.name.contains("step.stone")) {
-            LogHelper.info("Stone Event!");
+            LogHelper.debug("Stone Event!");
             // event.result = event.manager.soundPoolSounds.getRandomSoundFromSoundPool("step.gravel");
             // TODO add check for specific block 
         }

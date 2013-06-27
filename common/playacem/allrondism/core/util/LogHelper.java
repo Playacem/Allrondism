@@ -24,57 +24,55 @@ public class LogHelper {
         amLogger.setParent(FMLLog.getLogger());
     }
 
-
     public static void log(Level logLevel, String message) {
 
         amLogger.log(logLevel, message);
     }
-
     
     public static void info(String message) {
 
-        amLogger.log(Level.INFO, message);
+        log(Level.INFO, message);
     }
 
-    /**
-     * Uses WARNING level.
-     */
+    /** Uses WARNING level. */
     public static void alert(String message) {
 
-        amLogger.log(Level.WARNING, message);
+        log(Level.WARNING, message);
     }
-    
+
+    public static void debug(String message) {
+        
+        log(Level.WARNING, "[DEBUG] " + message);
+    }
     public static void severe(String message) {
         
-        amLogger.log(Level.SEVERE, message);
+        log(Level.SEVERE, message);
     }
     
     public static void config(String message) {
         
-        amLogger.log(Level.CONFIG, message);
+        log(Level.CONFIG, message);
     }
     
     public static void fine(String message) {
         
-        amLogger.log(Level.FINE, message);
+        log(Level.FINE, message);
     }
     
     public static void finer(String message) {
         
-        amLogger.log(Level.FINER, message);
+        log(Level.FINER, message);
     }
     
     public static void finest(String message) {
         
-        amLogger.log(Level.FINEST, message);
+        log(Level.FINEST, message);
     }
     
-    /**
-     * Use {@link playacem.allrondism.core.util.LogHelper#alert(String) alert} instead
-     */
+    /** Use {@link playacem.allrondism.core.util.LogHelper#alert(String) alert} instead */
     public static void warning(String message) {
         
-        amLogger.log(Level.WARNING, message);
+        log(Level.WARNING, message);
     }
     
 }
