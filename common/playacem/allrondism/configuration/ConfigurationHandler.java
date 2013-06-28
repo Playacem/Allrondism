@@ -36,22 +36,24 @@ public class ConfigurationHandler {
             BlockIDs.GLASS_SUN_BLOCKER = config.getBlock(Strings.GLASS_SUN_BLOCKER_NAME, BlockIDs.GLASS_SUN_BLOCKER_DEFAULT).getInt(BlockIDs.GLASS_SUN_BLOCKER_DEFAULT);
 
             /* Item configs */
-            ItemIDs.GEM_ALLRONDIUM = config.getItem(Strings.GEM_ALLRONDIUM, ItemIDs.GEM_ALLRONDIUM_DEFAULT).getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);
+            ItemIDs.GEM_ALLRONDIUM = config.getItem(Strings.GEM_ALLRONDIUM_NAME, ItemIDs.GEM_ALLRONDIUM_DEFAULT).getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);
+            ItemIDs.APPLE_GOLD_ZOMBIE = config.getItem(Strings.APPLE_GOLD_ZOMBIE_NAME, ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT).getInt(ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");
         } finally {
             config.save();
         }
     }
-    /*
-     * WORK IN PROGESS
-     * 
-     * public static void set(String categoryName, String propertyName, String
-     * newValue) {
-     * 
-     * config.load(); if (config.hasCategory(categoryName)) { if
-     * (config.getCategory(categoryName).containsKey(propertyName)) { config
-     * .getCategory(categoryName).get(propertyName).setName(newValue); } }
-     * config.save(); }
-     */
+
+    public static void set(String categoryName, String propertyName, String newValue) {
+
+        config.load();
+        if (config.getCategoryNames().contains(categoryName)) {
+            if (config.getCategory(categoryName).containsKey(propertyName)) {
+                config.getCategory(categoryName).get(propertyName).set(categoryName);
+            }
+        }
+        config.save();
+    }
+
 }

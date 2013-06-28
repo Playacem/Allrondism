@@ -23,5 +23,6 @@ public class Strings {
     public static final String GLASS_SUN_BLOCKER_NAME = "glassSunBlocker";
 
     /* Item name constants */
-    public static final String GEM_ALLRONDIUM = "gemAllrondium";
+    public static final String GEM_ALLRONDIUM_NAME = "gemAllrondium";
+    public static final String APPLE_GOLD_ZOMBIE_NAME = "appleGoldZombie";
 }

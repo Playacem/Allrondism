@@ -22,14 +22,19 @@ public class ModItems {
 
     /* Mod item instances */
     public static Item gemAllrondium;
+    public static Item appleGoldZombie;
 
     public static void init() {
 
         /* Initialize each mod item individually */
         gemAllrondium = new ItemGemAllrondium(ItemIDs.GEM_ALLRONDIUM);
+        appleGoldZombie = new ItemAppleGoldZombie(ItemIDs.APPLE_GOLD_ZOMBIE);
 
-        GameRegistry.registerItem(gemAllrondium, Strings.GEM_ALLRONDIUM);
+        GameRegistry.registerItem(gemAllrondium, Strings.GEM_ALLRONDIUM_NAME);
+        GameRegistry.registerItem(appleGoldZombie, Strings.APPLE_GOLD_ZOMBIE_NAME);
+
         LanguageRegistry.addName(gemAllrondium, "Allrondium");
+        LanguageRegistry.addName(appleGoldZombie, "Golden Apple");
 
         initItemRecipes();
     }
@@ -40,7 +45,7 @@ public class ModItems {
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 3), new Object[] {
                 "III", "IAI", "III", Character.valueOf('I'), Item.ingotGold, Character.valueOf('A'), Item.appleRed });
 
-        //Vanilla Blocks uncrafting recipes
+        // Vanilla Blocks uncrafting recipes
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.snowball, 4), new Object[] { Block.blockSnow });
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.brick, 4), new Object[] { Block.brick });
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.netherrackBrick, 4), new Object[] { Block.netherBrick });

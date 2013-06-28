@@ -1,9 +1,13 @@
 package playacem.allrondism.item;
 
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import playacem.allrondism.Allrondism;
 import playacem.allrondism.lib.Colors;
 import playacem.allrondism.lib.Strings;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Allrondism
@@ -18,13 +22,20 @@ public class ItemGemAllrondium extends ItemAM {
     public ItemGemAllrondium(int id) {
 
         super(id);
-        this.setUnlocalizedName(Strings.GEM_ALLRONDIUM);
-        this.setCreativeTab(Allrondism.tabsAM);
+        this.setUnlocalizedName(Strings.GEM_ALLRONDIUM_NAME);
         this.setMaxStackSize(64);
     }
 
     @Override
     public String getItemDisplayName(ItemStack stack) {
         return Colors.TEXT_COLOR_PURPLE + super.getItemDisplayName(stack);
+    }
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
+        infoList.add("This material is impossible to obtain");
+        infoList.add("without using " + Colors.TEXT_COLOR_LIGHT_GREEN + "Diamonds");
     }
 }

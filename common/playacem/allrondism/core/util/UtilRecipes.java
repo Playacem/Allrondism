@@ -19,7 +19,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class UtilRecipes {
 
-
     public static void addVanillaRecipe(String type, boolean useOreDict, ItemStack output, Object... params) {
         for (int i = 0; i < params.length; i++) {
             LogHelper.info("Recipe: " + output.toString() + " Objectnr. " + i + ": " + params[i].toString());
@@ -46,7 +45,8 @@ public class UtilRecipes {
     /**
      * Adds a vanilla crafting recipe, supports OreDictionary
      * 
-     * @param type - Shaped or Shapeless
+     * @param type
+     *            - Shaped or Shapeless
      * @param output
      * @param params
      */
@@ -76,21 +76,21 @@ public class UtilRecipes {
      *            - a String or an ItemStack
      */
     public static void addStorageRecipe(ItemStack storageBlock, Object component) {
-        if(!(component instanceof String || component instanceof ItemStack)) {
+        if (!(component instanceof String || component instanceof ItemStack)) {
             LogHelper.alert("Component is not valid! Block: " + storageBlock.getDisplayName());
             LogHelper.alert("The Recipe was not added.");
             return;
         }
         UtilRecipes.addVanillaRecipe("Shaped", storageBlock, "xxx", "xxx", "xxx",
                 Character.valueOf('x'), component);
-        
+
         ItemStack componentStack = null;
-        if(component instanceof ItemStack) {
+        if (component instanceof ItemStack) {
             componentStack = (ItemStack) component;
-        }else{
+        } else {
             componentStack = UtilOreDict.instance().getItemStack(component, 9);
         }
-        
+
         UtilRecipes.addVanillaRecipe("Shapeless", componentStack, storageBlock);
     }
 

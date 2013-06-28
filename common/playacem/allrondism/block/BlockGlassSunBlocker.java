@@ -4,7 +4,6 @@ import java.util.Random;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
-import playacem.allrondism.Allrondism;
 import playacem.allrondism.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,7 +24,6 @@ public class BlockGlassSunBlocker extends BlockAM {
     public BlockGlassSunBlocker(int id) {
         super(id, Material.rock);
         this.setLightOpacity(100);
-        this.setCreativeTab(Allrondism.tabsAM);
         this.setHardness(0.25F);
         this.setUnlocalizedName(Strings.GLASS_SUN_BLOCKER_NAME);
         this.setStepSound(soundGlassFootstep);
@@ -35,7 +33,7 @@ public class BlockGlassSunBlocker extends BlockAM {
     public int quantityDropped(Random random) {
         return 1;
     }
-    
+
     @Override
     public boolean isOpaqueCube() {
         return false;

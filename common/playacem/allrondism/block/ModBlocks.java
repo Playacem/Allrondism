@@ -54,18 +54,17 @@ public class ModBlocks {
         MinecraftForge.setBlockHarvestLevel(storageBlock, "pickaxe", 0);
         MinecraftForge.setBlockHarvestLevel(storageBlock, "shovel", 0);
         MinecraftForge.setBlockHarvestLevel(glassSunBlocker, "pickaxe", 0);
-        
     }
 
     private static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), new Object[] { "bdw", "dsd", "wdb",
-                Character.valueOf('d'), Item.diamond, Character.valueOf('s'), Block.stone, 
+                Character.valueOf('d'), Item.diamond, Character.valueOf('s'), Block.stone,
                 Character.valueOf('b'), "dyeBlack", Character.valueOf('w'), "dyeWhite" });
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), new Object[] { "wdb", "dsd", "bdw",
-            Character.valueOf('d'), Item.diamond, Character.valueOf('s'), Block.stone, 
-            Character.valueOf('b'), "dyeBlack", Character.valueOf('w'), "dyeWhite" });
+                Character.valueOf('d'), Item.diamond, Character.valueOf('s'), Block.stone,
+                Character.valueOf('b'), "dyeBlack", Character.valueOf('w'), "dyeWhite" });
 
         // Storage Block Recipes
         UtilRecipes.addStorageRecipe(new ItemStack(storageBlock, 1, 0), new ItemStack(Block.dirt));
