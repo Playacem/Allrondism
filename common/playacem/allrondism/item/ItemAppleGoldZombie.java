@@ -3,8 +3,11 @@ package playacem.allrondism.item;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import playacem.allrondism.lib.Colors;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
@@ -18,6 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * @credit powercrystals
  */
 public class ItemAppleGoldZombie extends ItemAM {
 
@@ -40,5 +44,25 @@ public class ItemAppleGoldZombie extends ItemAM {
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
         infoList.add("This golden Apple is good enough");
         infoList.add("for Zombies, especially " + Colors.TEXT_COLOR_LIGHT_RED + "Villager Zombies");
+    }
+    
+    @Override
+    public boolean itemInteractionForEntity(ItemStack s, EntityLiving e) {
+        if(!e.worldObj.isRemote && canBeUsed(e.worldObj, e, s)) {
+            if(use(e.worldObj, e, s)) {
+                s.stackSize--;
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean canBeUsed(World world, EntityLiving entity, ItemStack stack) {
+        return (entity instanceof EntityZombie && ((EntityZombie) entity).isVillager()); 
+    }
+    
+    private boolean use(World world, EntityLiving entity, ItemStack stack) {
+        //((EntityZombie)entity).startConversion(300);
+        return false;
     }
 }
