@@ -25,11 +25,11 @@ public class BlockStorageBlock extends Block {
 
     public BlockStorageBlock(int id) {
         super(id, Material.iron);
-        this.setHardness(4.0F);
-        this.setResistance(10.0F);
-        this.setStepSound(soundMetalFootstep);
-        this.setUnlocalizedName(Strings.STORAGE_BLOCKS_NAME);
-        this.setLightValue(0F);
+        setHardness(4.0F);
+        setResistance(10.0F);
+        setStepSound(soundMetalFootstep);
+        setUnlocalizedName(Strings.STORAGE_BLOCKS_NAME);
+        setLightValue(0F);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class ItemAppleGoldZombie extends ItemAM {
     public ItemAppleGoldZombie(int id) {
         super(id);
         this.setUnlocalizedName(Strings.APPLE_GOLD_ZOMBIE_NAME);
-        this.setMaxStackSize(128);
+        this.setMaxStackSize(64);
     }
 
     @Override

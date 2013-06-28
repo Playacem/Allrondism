@@ -35,7 +35,7 @@ public class ItemGemAllrondium extends ItemAM {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
-        infoList.add("This material is impossible to obtain");
-        infoList.add("without using " + Colors.TEXT_COLOR_LIGHT_GREEN + "Diamonds");
+        infoList.add("This material is impossible to ");
+        infoList.add("obtain without using " + Colors.TEXT_COLOR_LIGHT_GREEN + "Diamonds");
     }
 }
