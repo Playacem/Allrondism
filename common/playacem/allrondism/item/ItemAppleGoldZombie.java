@@ -1,5 +1,7 @@
 package playacem.allrondism.item;
 
+
+import java.lang.reflect.Method;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -8,6 +10,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.lib.Colors;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
@@ -62,7 +65,21 @@ public class ItemAppleGoldZombie extends ItemAM {
     }
     
     private boolean use(World world, EntityLiving entity, ItemStack stack) {
+        Method startConversion;
+        try {
+            startConversion = EntityZombie.class.getDeclaredMethod("startConversion", int.class);
+            startConversion.setAccessible(true);
+            startConversion.invoke((EntityZombie)entity, 300);
+        } catch (Exception e) {
+            try {
+                startConversion = EntityZombie.class.getDeclaredMethod("sj.a", int.class);
+            } catch (Exception e1) {
+                LogHelper.severe("Reflection was not working.");
+                e1.printStackTrace();
+                return false;
+            }
+        }
         //((EntityZombie)entity).startConversion(300);
-        return false;
+        return true;
     }
 }
