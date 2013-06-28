@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
+import playacem.allrondism.Allrondism;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
@@ -29,6 +30,7 @@ public class BlockStorageBlock extends Block {
         setResistance(10.0F);
         setStepSound(soundMetalFootstep);
         setUnlocalizedName(Strings.STORAGE_BLOCKS_NAME);
+        setCreativeTab(Allrondism.tabsAM);
         setLightValue(0F);
     }
 
