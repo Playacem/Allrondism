@@ -40,9 +40,8 @@ public class ModItems {
     }
 
     private static void initItemRecipes() {
-        // temporary Recipe, tripled gold apples if gold ingots are used insted
-        // of gold nuggets
-        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(Item.appleGold, 3), new Object[] {
+        // temporary Recipe, will use gold nuggets in 1.6
+        UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(ModItems.appleGoldZombie, 16), new Object[] {
                 "III", "IAI", "III", Character.valueOf('I'), Item.ingotGold, Character.valueOf('A'), Item.appleRed });
 
         // Vanilla Blocks uncrafting recipes
