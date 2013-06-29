@@ -20,9 +20,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class UtilRecipes {
 
     public static void addVanillaRecipe(String type, boolean useOreDict, ItemStack output, Object... params) {
-        for (int i = 0; i < params.length; i++) {
-            LogHelper.info("Recipe: " + output.toString() + " Objectnr. " + i + ": " + params[i].toString());
-        }
         if (type.toUpperCase().contains("SHAPED")) {
             if (useOreDict) {
                 GameRegistry.addRecipe(new ShapedOreRecipe(output, params));
@@ -38,7 +35,9 @@ public class UtilRecipes {
                 GameRegistry.addShapelessRecipe(output, params);
             }
         } else {
-            LogHelper.alert("The crafting recipe for " + output.getDisplayName() + " was not properly registered.");
+            StringBuilder sB = new StringBuilder();
+            sB.append(String.format("The crafting recipe for %s (%d) was not properly registered.", output.toString(), output.getDisplayName()));
+            LogHelper.alert(sB.toString());
         }
     }
 
@@ -77,7 +76,9 @@ public class UtilRecipes {
      */
     public static void addStorageRecipe(ItemStack storageBlock, Object component) {
         if (!(component instanceof String || component instanceof ItemStack)) {
-            LogHelper.alert("Component is not valid! Block: " + storageBlock.getDisplayName());
+            StringBuilder sB = new StringBuilder();
+            sB.append(String.format("Component is not valid! Block: %b Component: %c", storageBlock.getDisplayName(), component.toString()));
+            LogHelper.alert(sB.toString());
             LogHelper.alert("The Recipe was not added.");
             return;
         }
