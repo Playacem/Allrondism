@@ -49,4 +49,8 @@ public class ModItems {
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.brick, 4), new Object[] { Block.brick });
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.netherrackBrick, 4), new Object[] { Block.netherBrick });
     }
+    
+    public static void postInit() {
+        // TODO Add recipes for ingot doubleing.
+    }
 }
