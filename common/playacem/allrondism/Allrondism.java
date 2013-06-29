@@ -24,8 +24,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
 /**
  * Allrondism
  * 
@@ -35,6 +33,8 @@ import cpw.mods.fml.common.network.NetworkMod;
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class Allrondism {
 
     @Instance(Reference.MOD_ID)
@@ -74,7 +74,7 @@ public class Allrondism {
 
     @PostInit
     public void modsLoaded(FMLPostInitializationEvent event) {
-        // Stub Method
+        ModItems.postInit();
     }
 
 }
