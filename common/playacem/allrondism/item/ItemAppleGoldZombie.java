@@ -65,11 +65,9 @@ public class ItemAppleGoldZombie extends ItemAM {
     }
     
     private boolean use(World world, EntityLiving entity, ItemStack stack) {
-        Method startConversion;
+        Method startConversion = null;
         try {
             startConversion = EntityZombie.class.getDeclaredMethod("startConversion", int.class);
-            startConversion.setAccessible(true);
-            startConversion.invoke((EntityZombie)entity, 300);
         } catch (Exception e) {
             try {
                 startConversion = EntityZombie.class.getDeclaredMethod("sj.a", int.class);
@@ -78,6 +76,15 @@ public class ItemAppleGoldZombie extends ItemAM {
                 e1.printStackTrace();
                 return false;
             }
+        }finally {
+            startConversion.setAccessible(true);
+            try {
+                startConversion.invoke((EntityZombie)entity, 300);
+            } catch (Exception e) {
+                //should never happen
+                LogHelper.severe("You shall not see this message.");
+                e.printStackTrace();
+            } 
         }
         //((EntityZombie)entity).startConversion(300);
         return true;
