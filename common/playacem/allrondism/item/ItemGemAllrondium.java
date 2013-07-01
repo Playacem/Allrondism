@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import playacem.allrondism.lib.Colors;
+import playacem.allrondism.lib.Text;
 import playacem.allrondism.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -28,7 +28,7 @@ public class ItemGemAllrondium extends ItemAM {
 
     @Override
     public String getItemDisplayName(ItemStack stack) {
-        return Colors.TEXT_COLOR_PURPLE + super.getItemDisplayName(stack);
+        return Text.COLOR_PURPLE + super.getItemDisplayName(stack);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
@@ -36,6 +36,6 @@ public class ItemGemAllrondium extends ItemAM {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
         infoList.add("This material is impossible to ");
-        infoList.add("obtain without using " + Colors.TEXT_COLOR_LIGHT_GREEN + "Diamonds");
+        infoList.add("obtain without using " + Text.add("Diamonds", Text.COLOR_LIGHT_GREEN));
     }
 }

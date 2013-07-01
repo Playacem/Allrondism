@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import playacem.allrondism.core.util.LogHelper;
-import playacem.allrondism.lib.Colors;
+import playacem.allrondism.lib.Text;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
@@ -46,7 +46,7 @@ public class ItemAppleGoldZombie extends ItemAM {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
         infoList.add("This golden Apple is good enough");
-        infoList.add("for Zombies, especially " + Colors.TEXT_COLOR_LIGHT_RED + "Villager Zombies");
+        infoList.add("for Zombies, especially " + Text.COLOR_LIGHT_RED + "Villager Zombies");
     }
     
     @Override
