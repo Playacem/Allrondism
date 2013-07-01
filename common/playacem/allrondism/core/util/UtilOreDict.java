@@ -17,12 +17,15 @@ import net.minecraftforge.oredict.OreDictionary;
  */
 public class UtilOreDict {
 
-    private static final UtilOreDict instance = new UtilOreDict();
+    private static UtilOreDict instance = null;
 
     private UtilOreDict() {
     }
 
     public static UtilOreDict instance() {
+        if(instance == null) {
+            instance = new UtilOreDict();
+        }
         return instance;
     }
 
