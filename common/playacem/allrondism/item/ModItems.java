@@ -1,8 +1,12 @@
 package playacem.allrondism.item;
 
+import java.util.ArrayList;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import playacem.allrondism.core.util.LogHelper;
+import playacem.allrondism.core.util.UtilOreDict;
 import playacem.allrondism.core.util.UtilRecipes;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Strings;
@@ -35,6 +39,7 @@ public class ModItems {
 
         LanguageRegistry.addName(gemAllrondium, "Allrondium");
         LanguageRegistry.addName(appleGoldZombie, "Golden Apple");
+        
 
         initItemRecipes();
     }
@@ -51,6 +56,17 @@ public class ModItems {
     }
     
     public static void postInit() {
-        // TODO Add recipes for ingot doubleing.
+        // TODO Add more doubling recipes
+        
+        // Copper
+        ArrayList<ItemStack> ingots = UtilOreDict.instance().getItemStackArray("ingotCopper", 2);
+        if(!(ingots == null)) {
+            for(int i = 0; i < ingots.size(); i++) {
+                UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] {" A ", "AOC", " A ",
+                    Character.valueOf('A'), Item.appleRed, Character.valueOf('O'), "oreIron", 
+                    Character.valueOf('C'), ingots.get(i)});
+            }   
+        }else { LogHelper.debug("No Copper found! Cannot add Copper Doubling Recipes."); }
+        
     }
 }
