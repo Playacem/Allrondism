@@ -48,7 +48,7 @@ public class ModItems {
     private static void initOreDictItems() {
         OreDictionary.registerOre("ingotGold", Item.ingotGold);
         
-        OreDictionary.registerOre("seedsAll", Item.seeds);
+        //OreDictionary.registerOre("seedsAll", Item.seeds);
         OreDictionary.registerOre("seedsAll", Item.melonSeeds);
         OreDictionary.registerOre("seedsAll", Item.pumpkinSeeds);
         OreDictionary.registerOre("seedsAll", Item.carrot);
@@ -137,7 +137,7 @@ public class ModItems {
                             Character.valueOf('M'), ingots.get(i)});
                     }; break;
                 default: break;
-            } // Switch
+            }
         }else { LogHelper.info(getError(metal)); }
     }
     
