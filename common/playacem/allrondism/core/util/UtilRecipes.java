@@ -36,7 +36,7 @@ public class UtilRecipes {
             }
         } else {
             StringBuilder sB = new StringBuilder();
-            sB.append(String.format("The crafting recipe for %s (%d) was not properly registered.", output.toString(), output.getDisplayName()));
+            sB.append(String.format("The crafting recipe for %s (%s) was not properly registered.", output.toString(), output.getDisplayName()));
             LogHelper.alert(sB.toString());
         }
     }
@@ -77,7 +77,7 @@ public class UtilRecipes {
     public static void addStorageRecipe(ItemStack storageBlock, Object component) {
         if (!(component instanceof String || component instanceof ItemStack)) {
             StringBuilder sB = new StringBuilder();
-            sB.append(String.format("Component is not valid! Block: %b Component: %c", storageBlock.getDisplayName(), component.toString()));
+            sB.append(String.format("Component is not valid! Block: %s Component: %s", storageBlock.getDisplayName(), component.toString()));
             LogHelper.alert(sB.toString());
             LogHelper.alert("The Recipe was not added.");
             return;
