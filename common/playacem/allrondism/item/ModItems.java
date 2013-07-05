@@ -46,6 +46,7 @@ public class ModItems {
     }
 
     private static void initOreDictItems() {
+        OreDictionary.registerOre("gemAllrondium", gemAllrondium);
         OreDictionary.registerOre("ingotGold", Item.ingotGold);
         
         //OreDictionary.registerOre("seedsAll", Item.seeds);
@@ -70,29 +71,34 @@ public class ModItems {
         // TODO Add more doubling recipes
         
         // Copper
-        add2MetalRecipe("Copper", Item.appleRed, 3);
+        addDoubleMetalRecipe("Copper", Item.appleRed, 3);
         // Gold
-        add2MetalRecipe("Gold", Block.sandStone, 5);
+        addDoubleMetalRecipe("Gold", Block.sandStone, 5);
         // Lead
-        add2MetalRecipe("Lead", Block.chest , 2);
+        addDoubleMetalRecipe("Lead", Block.chest , 2);
         // Silver
-        add2MetalRecipe("Silver", Item.egg, 2);
-        add2MetalRecipe("Silver", "seedsAll" , 7);
+        if(addDoubleMetalRecipe("Silver", Item.egg, 2)) {
+           addDoubleMetalRecipe("Silver", "seedsAll" , 7); 
+        }
         // Tin
-        add2MetalRecipe("Tin", Block.thinGlass, 3);
-        
+        addDoubleMetalRecipe("Tin", Block.thinGlass, 3);
+        // Steel
+        addDoubleMetalRecipe("Steel", new ItemStack(Item.coal, 1, 0), 7);
         
     }
     
-    private static void add2MetalRecipe(String metal, Object usedMat, int amount) {
-        ArrayList<ItemStack> ingots = UtilOreDict.instance().getItemStackArray("ingot"+ metal, 2);
+    private static boolean addDoubleMetalRecipe(String metal, Object usedMat, int amount) {
+        ArrayList<ItemStack> ingots = UtilOreDict.instance().getItemStackArray("ingot" + metal, 2);
         boolean isValidObj = false;
+        
         if(ingots != null) {
+            
             if(usedMat instanceof Block){ isValidObj = true; }
             if(usedMat instanceof Item) { isValidObj = true; }
             if(usedMat instanceof String) { isValidObj = true; }
             if(usedMat instanceof ItemStack) { isValidObj = true; }
-            if(isValidObj == false) { LogHelper.alert("The given Object is not valid. Metal: " + metal); return;  }
+            if(isValidObj == false) { LogHelper.alert("The given Object is not valid. Metal: " + metal); return false; }
+            
             switch(amount) {
                 case 1:
                     for(int i = 0; i < ingots.size(); i++) {
@@ -138,7 +144,9 @@ public class ModItems {
                     }; break;
                 default: break;
             }
-        }else { LogHelper.info(getError(metal)); }
+        }else { LogHelper.info(getError(metal)); return false; }
+        
+        return true;
     }
     
     private static String getError(String metal) {
