@@ -21,6 +21,9 @@ public class Strings {
 
     // Other Blocks
     public static final String GLASS_SUN_BLOCKER_NAME = "glassSunBlocker";
+    
+    public static final String[] PLANT_ROSES = { "Black", "White" };
+    public static final String PLANT_ROSE_NAME = "plantRose";
 
     /* Item name constants */
     public static final String GEM_ALLRONDIUM_NAME = "gemAllrondium";

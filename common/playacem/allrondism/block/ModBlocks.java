@@ -26,16 +26,19 @@ public class ModBlocks {
     public static Block oreAllrondium;
     public static Block storageBlock;
     public static Block glassSunBlocker;
+    public static Block plantRose;
 
     public static void init() {
 
         oreAllrondium = new BlockOreAllrondium(BlockIDs.ORE_ALLRONDIUM);
         storageBlock = new BlockStorageBlock(BlockIDs.STORAGE_BLOCKS);
         glassSunBlocker = new BlockGlassSunBlocker(BlockIDs.GLASS_SUN_BLOCKER);
+        plantRose = new BlockPlantRose(BlockIDs.PLANT_ROSE);
 
         GameRegistry.registerBlock(oreAllrondium, Strings.ORE_ALLRONDIUM_NAME);
         GameRegistry.registerBlock(storageBlock, ItemBlockStorageBlock.class, storageBlock.getUnlocalizedName());
         GameRegistry.registerBlock(glassSunBlocker, Strings.GLASS_SUN_BLOCKER_NAME);
+        GameRegistry.registerBlock(plantRose, ItemBlockPlantRose.class, plantRose.getUnlocalizedName());
 
         LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
         for (int i = 0; i < Strings.STORAGE_BLOCKS.length; i++) {
@@ -43,12 +46,16 @@ public class ModBlocks {
             LanguageRegistry.addName(storageBlockStack, "Storage " + Strings.STORAGE_BLOCKS[storageBlockStack.getItemDamage()]);
         }
         LanguageRegistry.addName(glassSunBlocker, "Sunblocking Glass");
-
-        setupBlockHarvestLevel();
+        for (int i = 0; i < Strings.PLANT_ROSES.length; i++) {
+            ItemStack plantRoseStack = new ItemStack(plantRose, 1, i);
+            LanguageRegistry.addName(plantRoseStack, Strings.PLANT_ROSES[plantRoseStack.getItemDamage()] + " Rose");
+        }
+        
+        setupBlockHarvestLevels();
         initBlockRecipes();
     }
 
-    private static void setupBlockHarvestLevel() {
+    private static void setupBlockHarvestLevels() {
         // 0 == wood, 1 == stone, 2 == iron, 3 == diamond
         MinecraftForge.setBlockHarvestLevel(oreAllrondium, "pickaxe", 3);
         MinecraftForge.setBlockHarvestLevel(storageBlock, "pickaxe", 0);

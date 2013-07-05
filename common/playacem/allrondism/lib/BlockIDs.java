@@ -14,10 +14,12 @@ public class BlockIDs {
     public static int ORE_ALLRONDIUM_DEFAULT = 500;
     public static int STORAGE_BLOCKS_DEFAULT = 501;
     public static int GLASS_SUN_BLOCKER_DEFAULT = 502;
+    public static int PLANT_ROSE_DEFAULT = 503;
 
     /* Current block ids */
     public static int STORAGE_BLOCKS;
     public static int ORE_ALLRONDIUM;
     public static int GLASS_SUN_BLOCKER;
+    public static int PLANT_ROSE;
 
 }
