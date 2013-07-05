@@ -16,7 +16,7 @@ import static net.minecraftforge.common.EnumPlantType.*;
 /**
  * Allrondism
  * 
- * BlockRose
+ * BlockPlantRose
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)

@@ -13,7 +13,7 @@ import playacem.allrondism.lib.Text;
 /**
  * Allrondism
  * 
- * ItemBlockRose
+ * ItemBlockPlantRose
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
