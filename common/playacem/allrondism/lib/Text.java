@@ -32,32 +32,32 @@ public class Text {
     
     /** Adds a given color to the given text */
     public static String add(String text, String color) {
-        return color + text + RESET;
+        return color + text + COLOR_LIGHT_GREY;
     }
     
     /** Writes the given String <b>bold</b> */
     public static String bold(String text) {
-        return BOLD + text + RESET;
+        return BOLD + text + COLOR_LIGHT_GREY;
     }
     
     /** Writes the given String <i>italic</i> */
     public static String italic(String text) {
-        return ITALIC + text + RESET;
+        return ITALIC + text + COLOR_LIGHT_GREY;
     }
     
     /** Writes the given String <u>underlined</u> */
     public static String underline(String text) {
-        return UNDERLINE + text + RESET;
+        return UNDERLINE + text + COLOR_LIGHT_GREY;
     }
     
     /** Writes the given String <s>striked</s> */
     public static String strike(String text) {
-        return STRIKETHROUGH + text + RESET;
+        return STRIKETHROUGH + text + COLOR_LIGHT_GREY;
     }
     
     /** Writes the given String obfuscated */
-    public static String obfuscated(String text) {
-        return OBFUSCATED + text + RESET;
+    public static String obfuscate(String text) {
+        return OBFUSCATED + text + COLOR_LIGHT_GREY;
     }
     
     /** Writes the given String <b>bold</b> */
@@ -73,6 +73,6 @@ public class Text {
     public static String s(String s) { return strike(s); }
     
     /** Writes the given String obfuscated */
-    public static String o(String s) { return obfuscated(s); }
+    public static String o(String s) { return obfuscate(s); }
     
 }
