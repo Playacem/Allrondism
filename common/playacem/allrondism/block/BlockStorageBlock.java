@@ -22,6 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockStorageBlock extends Block {
 
     private String[] names = Strings.STORAGE_BLOCKS;
+    @SideOnly(Side.CLIENT)
     private Icon[] icons = new Icon[names.length];
 
     public BlockStorageBlock(int id) {

@@ -58,13 +58,16 @@ public class Allrondism {
 
         // Register the Sound Handler (Client only)
         proxy.registerSoundHandler();
-
-        // Initialize mod items
-        ModItems.init();
-
+        
         // Initialize mod blocks
         ModBlocks.init();
-
+        // Initialize mod items
+        ModItems.init();
+       
+        // Initialize mod block recipes
+        ModBlocks.initBlockRecipes();
+        // Initialize mod item recipes
+        ModItems.initItemRecipes();
     }
 
     @Init
@@ -74,6 +77,7 @@ public class Allrondism {
 
     @PostInit
     public void modsLoaded(FMLPostInitializationEvent event) {
+        // Adding cross-mod recipes
         ModItems.postInit();
     }
 

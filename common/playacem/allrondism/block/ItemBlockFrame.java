@@ -21,14 +21,14 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class ItemBlockFrame extends ItemBlock {
 
-    protected String[] _names;
+    protected String[] names;
 
     public ItemBlockFrame(int id) {
         super(id);
     }
 
-    protected void setNames(String[] names) {
-        _names = names;
+    protected void setNames(String... strings) {
+        names = strings;
     }
 
     @SideOnly(Side.CLIENT)
@@ -44,14 +44,14 @@ public class ItemBlockFrame extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getUnlocalizedName() + "."
-                + _names[Math.min(stack.getItemDamage(), _names.length - 1)];
+        return this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1)
+                + names[Math.min(stack.getItemDamage(), names.length - 1)];
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes) {
-        for (int i = 0; i < _names.length; i++) {
+        for (int i = 0; i < names.length; i++) {
             subTypes.add(new ItemStack(itemId, 1, i));
         }
     }
