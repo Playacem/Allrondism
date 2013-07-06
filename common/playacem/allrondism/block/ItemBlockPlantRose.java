@@ -25,7 +25,7 @@ public class ItemBlockPlantRose extends ItemBlockFrame {
         super(id);
         setMaxDamage(0);
         setHasSubtypes(true);
-        setNames(Strings.PLANT_ROSES);
+        setNames(Strings.ROSES);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })

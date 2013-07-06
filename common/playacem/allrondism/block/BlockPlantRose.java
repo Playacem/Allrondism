@@ -29,7 +29,7 @@ import static net.minecraftforge.common.EnumPlantType.*;
  */
 public class BlockPlantRose extends BlockAM implements IPlantable {
 
-    private String[] names = Strings.PLANT_ROSES;
+    private String[] names = Strings.ROSES;
     private Icon[] icons = new Icon[names.length];
     
     public BlockPlantRose(int id) {
