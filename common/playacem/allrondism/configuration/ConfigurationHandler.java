@@ -39,6 +39,7 @@ public class ConfigurationHandler {
             /* Item configs */
             ItemIDs.GEM_ALLRONDIUM = config.getItem(Strings.GEM_ALLRONDIUM_NAME, ItemIDs.GEM_ALLRONDIUM_DEFAULT).getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);
             ItemIDs.APPLE_GOLD_ZOMBIE = config.getItem(Strings.APPLE_GOLD_ZOMBIE_NAME, ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT).getInt(ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT);
+            ItemIDs.DYE_ROSE = config.getItem(Strings.DYE_ROSE_NAME, ItemIDs.DYE_ROSE_DEFAULT).getInt(ItemIDs.DYE_ROSE_DEFAULT);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");
         } finally {

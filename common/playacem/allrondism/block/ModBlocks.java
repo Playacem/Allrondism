@@ -43,16 +43,15 @@ public class ModBlocks {
         LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
         for (int i = 0; i < Strings.STORAGE_BLOCKS.length; i++) {
             ItemStack storageBlockStack = new ItemStack(storageBlock, 1, i);
-            LanguageRegistry.addName(storageBlockStack, "Storage " + Strings.STORAGE_BLOCKS[storageBlockStack.getItemDamage()]);
+            LanguageRegistry.addName(storageBlockStack, "Storage " + Strings.STORAGE_BLOCKS[i]);
         }
         LanguageRegistry.addName(glassSunBlocker, "Sunblocking Glass");
-        for (int i = 0; i < Strings.PLANT_ROSES.length; i++) {
+        for (int i = 0; i < Strings.ROSES.length; i++) {
             ItemStack plantRoseStack = new ItemStack(plantRose, 1, i);
-            LanguageRegistry.addName(plantRoseStack, Strings.PLANT_ROSES[plantRoseStack.getItemDamage()] + " Rose");
+            LanguageRegistry.addName(plantRoseStack, Strings.ROSES[i] + " Rose");
         }
         
         setupBlockHarvestLevels();
-        initBlockRecipes();
     }
 
     private static void setupBlockHarvestLevels() {
@@ -63,7 +62,7 @@ public class ModBlocks {
         MinecraftForge.setBlockHarvestLevel(glassSunBlocker, "pickaxe", 0);
     }
 
-    private static void initBlockRecipes() {
+    public static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), new Object[] { "bdw", "dsd", "wdb",
