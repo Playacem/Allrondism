@@ -11,7 +11,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * 
  * UtilRecipes
  * 
- * provides alternate ways for adding recipes
+ * provides alternate ways for adding recipes.
+ * The idea behind this is a central location for all the recipe needs
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
