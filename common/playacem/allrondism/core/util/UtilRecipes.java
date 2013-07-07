@@ -89,6 +89,7 @@ public class UtilRecipes {
         ItemStack componentStack = null;
         if (component instanceof ItemStack) {
             componentStack = (ItemStack) component;
+            componentStack.stackSize = 9;
         } else {
             componentStack = UtilOreDict.instance().getItemStack(component, 9);
         }
