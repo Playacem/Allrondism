@@ -55,12 +55,11 @@ public class BlockPlantRose extends BlockAM implements IPlantable {
     
     public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant) {
         int id = world.getBlockId(x, y, z);
-        int meta = world.getBlockMetadata(x, y, z);
-        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || (id == ModBlocks.storageBlock.blockID && meta == 0);
+        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID;
     }
     
     public boolean canThisPlantGrowOnThisBlockID(int id) {
-        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || (id == ModBlocks.storageBlock.blockID && ModBlocks.storageBlock.getUnlocalizedName() == "storageDirt");
+        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID;
     }
     
     /* GameUpdate relevant stuff */
@@ -81,15 +80,15 @@ public class BlockPlantRose extends BlockAM implements IPlantable {
         this.checkRoseChange(world, x, y, z);
     }
     
-    protected final void checkRoseChange(World world, int x, int y, int z) {
-        int lightVal = world.getFullBlockLightValue(x, y, z);
+    protected void checkRoseChange(World world, int x, int y, int z) {
+        int lightVal = world.getBlockLightValue(x, y, z);
         int newMetadata = 0;
         
         if (!this.canBlockStay(world, x, y, z)) {
             this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
             world.setBlockToAir(x, y, z);
         }else {
-            if(lightVal > 10) { newMetadata = 1; }
+            if(lightVal > 7) { newMetadata = 1; }
             /** Flag 1 will cause a block update. 
              *  Flag 2 will send the change to clients (you almost always want this). 
              *  Flag 4 prevents the block from being re-rendered, if this is a client world. 
