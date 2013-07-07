@@ -52,6 +52,7 @@ public class ModBlocks {
         }
         
         setupBlockHarvestLevels();
+        setupGrassEntries();
     }
 
     private static void setupBlockHarvestLevels() {
@@ -61,7 +62,14 @@ public class ModBlocks {
         MinecraftForge.setBlockHarvestLevel(storageBlock, "shovel", 0);
         MinecraftForge.setBlockHarvestLevel(glassSunBlocker, "pickaxe", 0);
     }
-
+    
+    private static void setupGrassEntries() {
+        // weight of plants:
+        // red: 10, yellow: 20
+        MinecraftForge.addGrassPlant(plantRose, 0, 10);
+        MinecraftForge.addGrassPlant(plantRose, 1, 10);
+    }
+    
     public static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
