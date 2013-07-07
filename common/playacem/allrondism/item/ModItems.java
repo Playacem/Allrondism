@@ -72,14 +72,21 @@ public class ModItems {
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(ModItems.appleGoldZombie, 16), new Object[] {
                 "III", "IAI", "III", Character.valueOf('I'), Item.ingotGold, Character.valueOf('A'), Item.appleRed });
 
-        // Dye Recipes
+        /* Rose --> Dye Recipes */
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(ModItems.dyeRose, 2, 0), new Object[] { new ItemStack(ModBlocks.plantRose, 1, 0) });
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(ModItems.dyeRose, 2, 1), new Object[] { new ItemStack(ModBlocks.plantRose, 1, 1) });
         
-        // Vanilla Blocks uncrafting recipes
+        /* Vanilla Blocks uncrafting recipes */
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.snowball, 4), new Object[] { Block.blockSnow });
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.brick, 4), new Object[] { Block.brick });
         UtilRecipes.addVanillaRecipe("Shapeless", new ItemStack(Item.netherrackBrick, 4), new Object[] { Block.netherBrick });
+        
+        /* Item Smelting recipes */
+        
+        // Black Rose --> 1 White Dye
+        UtilRecipes.addVanillaSmelting(ModBlocks.plantRose.blockID, 0, new ItemStack(ModItems.dyeRose, 1, 1), 0.0F);
+        // White Rose --> 1 Black Dye
+        UtilRecipes.addVanillaSmelting(ModBlocks.plantRose.blockID, 1, new ItemStack(ModItems.dyeRose, 1, 0), 0.0F);
     }
     
     public static void postInit() {
