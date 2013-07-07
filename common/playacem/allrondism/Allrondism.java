@@ -27,7 +27,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 /**
  * Allrondism
  * 
- * AllrondismMod
+ * Allrondism
  * 
  * Main class for the Minecraft mod "Allrondism"
  * @author Playacem
