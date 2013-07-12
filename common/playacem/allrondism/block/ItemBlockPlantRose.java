@@ -19,7 +19,7 @@ import playacem.allrondism.lib.Text;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
  */
-public class ItemBlockPlantRose extends ItemBlockFrame {
+public class ItemBlockPlantRose extends ItemBlockExtended {
 
     public ItemBlockPlantRose(int id) {
         super(id);

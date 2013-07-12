@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
  */
-public class ItemBlockStorageBlock extends ItemBlockFrame {
+public class ItemBlockStorageBlock extends ItemBlockExtended {
 
     public ItemBlockStorageBlock(int id) {
         super(id);

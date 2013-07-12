@@ -13,17 +13,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 /**
  * Allrondism
  * 
- * ItemBlockFrame
+ * ItemBlockExtended
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * @credit powercrystals
  */
-public class ItemBlockFrame extends ItemBlock {
+public class ItemBlockExtended extends ItemBlock {
 
     protected String[] names;
 
-    public ItemBlockFrame(int id) {
+    public ItemBlockExtended(int id) {
         super(id);
     }
 
