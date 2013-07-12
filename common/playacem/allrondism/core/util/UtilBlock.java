@@ -22,10 +22,7 @@ public class UtilBlock {
     
     /**
      * Compares coordinates of a block with the given block(id + metadata)
-     * @param w
-     * @param x
-     * @param y
-     * @param z
+     * @param w - world
      * @param blockID - id of the given Block
      * @param meta - metadata of the given block
      * @return true - if the blocks are identical
