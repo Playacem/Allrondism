@@ -48,11 +48,11 @@ public abstract class ItemAM extends Item {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
         // advanced ToolTips are only shown if in F3 + H mode.
-        // This message is overwritten by other Items.
         if(advancedToolTips) {
             infoList.add("You are in a Debug mode!");
             infoList.add("Press F3 + H to disable it");
         }
+        super.addInformation(stack, player, infoList, advancedToolTips);
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })

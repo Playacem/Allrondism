@@ -34,6 +34,7 @@ public class ItemDyeRose extends ItemMulti {
         int metadata = stack.getItemDamage();
         infoList.add("Do not waste your " + Text.add(getItemNameByMetadata(metadata), Text.COLOR_LIGHT_GREEN) +" as " + Text.add(getColorByMetadata(metadata) + " Dye" , Text.COLOR_ORANGE) + "!");
         infoList.add("Use this renewable " + Text.add(getColorByMetadata(metadata) + " Dye", Text.COLOR_LIGHT_GREEN) + " instead!");
+        super.addInformation(stack, player, infoList, advancedToolTips);
     }
     
     private String getColorByMetadata(int meta) {

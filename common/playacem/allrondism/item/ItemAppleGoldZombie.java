@@ -47,6 +47,7 @@ public class ItemAppleGoldZombie extends ItemAM {
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
         infoList.add("This golden Apple is good enough");
         infoList.add("for Zombies, especially " + Text.COLOR_LIGHT_RED + "Villager Zombies");
+        super.addInformation(stack, player, infoList, advancedToolTips);
     }
     
     @Override

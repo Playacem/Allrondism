@@ -37,5 +37,6 @@ public class ItemGemAllrondium extends ItemAM {
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
         infoList.add("This gem is impossible to ");
         infoList.add("obtain without using " + Text.add("Diamonds", Text.COLOR_LIGHT_GREEN));
+        super.addInformation(stack, player, infoList, advancedToolTips);
     }
 }
