@@ -1,5 +1,8 @@
 package playacem.allrondism.core.proxy;
 
+import playacem.allrondism.core.handlers.SpawnHandler;
+import net.minecraftforge.common.MinecraftForge;
+
 /**
  * Allrondism
  * 
@@ -17,5 +20,9 @@ public class CommonProxy {
 
     public void registerSoundHandler() {
         // The Server doesn't manage sounds either.
+    }
+    
+    public void registerSpawnHandler() {
+        MinecraftForge.EVENT_BUS.register(new SpawnHandler());
     }
 }
