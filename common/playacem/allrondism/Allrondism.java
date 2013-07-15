@@ -8,6 +8,7 @@ import java.io.File;
 import net.minecraft.creativetab.CreativeTabs;
 import playacem.allrondism.block.ModBlocks;
 import playacem.allrondism.configuration.ConfigurationHandler;
+import playacem.allrondism.core.handlers.FuelHandler;
 import playacem.allrondism.core.proxy.CommonProxy;
 import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.creativetab.CreativeTabAM;
@@ -23,6 +24,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
  * Allrondism
@@ -73,6 +75,9 @@ public class Allrondism {
     @Init
     public void load(FMLInitializationEvent event) {
         proxy.registerRenderers();
+        
+        // Register the FuelHandler
+        GameRegistry.registerFuelHandler(new FuelHandler());
     }
 
     @PostInit
