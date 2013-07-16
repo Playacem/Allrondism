@@ -27,6 +27,7 @@ public class ModBlocks {
     public static Block storageBlock;
     public static Block glassSunBlocker;
     public static Block plantRose;
+    public static Block multiFurnaceBlock;
 
     public static void init() {
 
@@ -34,12 +35,14 @@ public class ModBlocks {
         storageBlock = new BlockStorageBlock(BlockIDs.STORAGE_BLOCKS);
         glassSunBlocker = new BlockGlassSunBlocker(BlockIDs.GLASS_SUN_BLOCKER);
         plantRose = new BlockPlantRose(BlockIDs.PLANT_ROSE);
+        multiFurnaceBlock = new BlockMultiFurnace(BlockIDs.MULTI_FURNACE);
 
         GameRegistry.registerBlock(oreAllrondium, ItemBlockBasic.class, Strings.ORE_ALLRONDIUM_NAME);
         GameRegistry.registerBlock(storageBlock, ItemBlockStorageBlock.class, storageBlock.getUnlocalizedName());
         GameRegistry.registerBlock(glassSunBlocker, ItemBlockBasic.class, Strings.GLASS_SUN_BLOCKER_NAME);
         GameRegistry.registerBlock(plantRose, ItemBlockPlantRose.class, plantRose.getUnlocalizedName());
-
+        //GameRegistry.registerBlock(multiFurnaceBlock, ItemBlockMultiFurnace.class, multiFurnaceBlock.getUnlocalizedName());
+        
         LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
         for (int i = 0; i < Strings.STORAGE_BLOCKS.length; i++) {
             ItemStack storageBlockStack = new ItemStack(storageBlock, 1, i);

@@ -35,6 +35,7 @@ public class ConfigurationHandler {
             BlockIDs.STORAGE_BLOCKS = config.getBlock(Strings.STORAGE_BLOCKS_NAME, BlockIDs.STORAGE_BLOCKS_DEFAULT).getInt(BlockIDs.STORAGE_BLOCKS_DEFAULT);
             BlockIDs.GLASS_SUN_BLOCKER = config.getBlock(Strings.GLASS_SUN_BLOCKER_NAME, BlockIDs.GLASS_SUN_BLOCKER_DEFAULT).getInt(BlockIDs.GLASS_SUN_BLOCKER_DEFAULT);
             BlockIDs.PLANT_ROSE = config.getBlock(Strings.PLANT_ROSE_NAME, BlockIDs.PLANT_ROSE_DEFAULT).getInt(BlockIDs.PLANT_ROSE_DEFAULT);
+            BlockIDs.MULTI_FURNACE = config.getBlock(Strings.MULTI_FURNACE_NAME, BlockIDs.MULTI_FURNACE_DEFAULT).getInt(BlockIDs.MULTI_FURNACE_DEFAULT);
             
             /* Item configs */
             ItemIDs.GEM_ALLRONDIUM = config.getItem(Strings.GEM_ALLRONDIUM_NAME, ItemIDs.GEM_ALLRONDIUM_DEFAULT).getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);

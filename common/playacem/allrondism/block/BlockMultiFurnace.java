@@ -1,41 +1,41 @@
 package playacem.allrondism.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
-import playacem.allrondism.Allrondism;
-import playacem.allrondism.lib.Reference;
-import playacem.allrondism.lib.Strings;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import playacem.allrondism.lib.Reference;
+import playacem.allrondism.lib.Strings;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
 /**
  * Allrondism
  * 
- * BlockStorageBlock
+ * BlockMultiFurnace
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
  */
-public class BlockStorageBlock extends Block {
+public class BlockMultiFurnace extends BlockContainerAM {
 
-    private String[] names = Strings.STORAGE_BLOCKS;
+    private String[] names = Strings.MULTI_FURNACE_BLOCKS;
     @SideOnly(Side.CLIENT)
     private Icon[] icons = new Icon[names.length];
-
-    public BlockStorageBlock(int id) {
-        super(id, Material.iron);
-        setHardness(4.0F);
+    
+    public BlockMultiFurnace(int id) {
+        super(id, Material.rock);
+        setHardness(3.0F);
         setResistance(10.0F);
         setStepSound(soundStoneFootstep);
-        setUnlocalizedName(Strings.STORAGE_BLOCKS_NAME);
-        setCreativeTab(Allrondism.tabsAM);
+        setUnlocalizedName(Strings.MULTI_FURNACE_NAME);
     }
 
     @Override
     public int damageDropped(int meta) {
+        if(meta == 1) return 0;
         return meta;
     }
 
@@ -43,8 +43,7 @@ public class BlockStorageBlock extends Block {
     @Override
     public void registerIcons(IconRegister iconReg) {
         for (int i = 0; i < icons.length; i++) {
-            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase()
-                    + ":" + getUnlocalizedName2() + names[i]);
+            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + getUnlocalizedName2() + names[i]);
         }
     }
 
@@ -52,6 +51,12 @@ public class BlockStorageBlock extends Block {
     public Icon getIcon(int side, int meta) {
 
         return icons[Math.min(meta, icons.length)];
+    }
+    
+    @Override
+    public TileEntity createNewTileEntity(World world) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
