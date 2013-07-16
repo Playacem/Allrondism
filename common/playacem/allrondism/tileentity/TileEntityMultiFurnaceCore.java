@@ -1,5 +1,7 @@
 package playacem.allrondism.tileentity;
 
+import playacem.allrondism.block.BlockMultiFurnace;
+import playacem.allrondism.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -14,10 +16,44 @@ import net.minecraft.item.ItemStack;
  */
 public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventory {
 
+    public int furnaceBurnTime = 0;
+    public int currentItemBurnTime = 0;
+    public int furnaceCookTime = 0;
+    
+    private boolean isValidMultiblock = false;
+    
     public TileEntityMultiFurnaceCore() {
-        // TODO Auto-generated constructor stub
     }
 
+    public boolean getIsValid() {
+        return isValidMultiblock;
+    }
+    
+    public void invalidateMultiBlock() {
+        isValidMultiblock = false;
+        
+        int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
+        
+        furnaceBurnTime = 0;
+        currentItemBurnTime = 0;
+        furnaceCookTime = 0;
+        
+        revertDummies();
+    }
+    
+    public boolean checkIfProperlyFormed() {
+        return false;
+    }
+    
+    public void convertDummies() {
+        
+    }
+    
+    private void revertDummies() {
+        
+    }
+    
     @Override
     public int getSizeInventory() {
         // TODO Auto-generated method stub
@@ -50,20 +86,19 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public String getInvName() {
-        // TODO Auto-generated method stub
-        return null;
+
+        return this.hasCustomName() ? this.getCustomName() : Strings.CONTAINER_MULTI_FURNACE_NAME;
     }
 
     @Override
     public boolean isInvNameLocalized() {
-        // TODO Auto-generated method stub
+
         return false;
     }
 
     @Override
     public int getInventoryStackLimit() {
-        // TODO Auto-generated method stub
-        return 0;
+        return 64;
     }
 
     @Override
@@ -73,16 +108,10 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     }
 
     @Override
-    public void openChest() {
-        // TODO Auto-generated method stub
-
-    }
+    public void openChest() {}
 
     @Override
-    public void closeChest() {
-        // TODO Auto-generated method stub
-
-    }
+    public void closeChest() { }
 
     @Override
     public boolean isStackValidForSlot(int i, ItemStack itemstack) {
