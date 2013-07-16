@@ -1,8 +1,8 @@
 package playacem.allrondism;
 
-// inspired by Pahimar's EE3 
+// inspired by Pahimar's EE3, some parts are nearly exact copies 
 // (https://github.com/pahimar/Equivalent-Exchange-3/)
-
+// Copying code is allowed due to LGPL
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;

@@ -28,8 +28,8 @@ public abstract class BlockAM extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconReg) {
-        blockIcon = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":"
-                + this.getUnlocalizedName2());
+        blockIcon = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + this.getUnlocalizedName2());
     }
 
+    
 }
