@@ -2,7 +2,6 @@ package playacem.allrondism.tileentity;
 
 import playacem.allrondism.block.BlockMultiFurnace;
 import playacem.allrondism.lib.Strings;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 
@@ -33,7 +32,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         isValidMultiblock = false;
         
         int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 0, 2);
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata - 1, 2);
         
         furnaceBurnTime = 0;
         currentItemBurnTime = 0;
@@ -101,14 +100,9 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         return 64;
     }
 
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        // TODO Auto-generated method stub
-        return false;
-    }
 
     @Override
-    public void openChest() {}
+    public void openChest() { }
 
     @Override
     public void closeChest() { }
@@ -122,19 +116,16 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     /* ISidedInventory stuff */
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-        // TODO Auto-generated method stub
         return false;
     }
 

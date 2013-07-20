@@ -25,8 +25,11 @@ public class GuiMultiFurnace extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
-        // TODO Auto-generated method stub
 
     }
 
+    @Override
+    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+        
+    }
 }

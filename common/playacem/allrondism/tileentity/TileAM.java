@@ -73,7 +73,7 @@ public class TileAM extends TileEntity {
         this.customName = customName;
     }
 
-    public boolean isUsableByPlayer(EntityPlayer player) {
+    public boolean isUseableByPlayer(EntityPlayer player) {
 
         return owner.equals(player.username);
     }
