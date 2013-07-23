@@ -15,6 +15,10 @@ import net.minecraft.item.ItemStack;
  */
 public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventory {
 
+    private ItemStack[] inventory;
+    
+    public static final int INVENTORY_SIZE = 9;
+    
     public int furnaceBurnTime = 0;
     public int currentItemBurnTime = 0;
     public int furnaceCookTime = 0;
@@ -22,6 +26,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     private boolean isValidMultiblock = false;
     
     public TileEntityMultiFurnaceCore() {
+        inventory = new ItemStack[INVENTORY_SIZE];
     }
 
     public boolean getIsValid() {
@@ -55,30 +60,28 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     
     @Override
     public int getSizeInventory() {
-        // TODO Auto-generated method stub
-        return 0;
+        return inventory.length;
     }
 
     @Override
-    public ItemStack getStackInSlot(int i) {
-        // TODO Auto-generated method stub
-        return null;
+    public ItemStack getStackInSlot(int slot) {
+        return inventory[slot];
     }
 
     @Override
-    public ItemStack decrStackSize(int i, int j) {
+    public ItemStack decrStackSize(int slot, int amount) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public ItemStack getStackInSlotOnClosing(int i) {
+    public ItemStack getStackInSlotOnClosing(int slot) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public void setInventorySlotContents(int i, ItemStack itemstack) {
+    public void setInventorySlotContents(int slot, ItemStack itemstack) {
         // TODO Auto-generated method stub
 
     }
@@ -108,24 +111,24 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     public void closeChest() { }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+    public boolean isStackValidForSlot(int slot, ItemStack itemstack) {
         // TODO Auto-generated method stub
         return false;
     }
 
     /* ISidedInventory stuff */
     @Override
-    public int[] getAccessibleSlotsFromSide(int var1) {
+    public int[] getAccessibleSlotsFromSide(int side) {
         return null;
     }
 
     @Override
-    public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+    public boolean canInsertItem(int slot, ItemStack itemstack, int j) {
         return false;
     }
 
     @Override
-    public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+    public boolean canExtractItem(int slot, ItemStack itemstack, int j) {
         return false;
     }
 
