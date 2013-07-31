@@ -1,14 +1,11 @@
 package playacem.allrondism.item;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import playacem.allrondism.block.ModBlocks;
-import playacem.allrondism.core.util.LogHelper;
-import playacem.allrondism.core.util.UtilOreDict;
+import playacem.allrondism.configuration.ConfigurationSettings;
 import playacem.allrondism.core.util.UtilRecipes;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Strings;
@@ -93,87 +90,39 @@ public class ModItems {
         // TODO Add more doubling recipes
         
         // Copper
-        addDoubleMetalRecipe("Copper", Item.appleRed, 3);
-        // Gold
-        addDoubleMetalRecipe("Gold", Block.sandStone, 5);
-        // Lead
-        addDoubleMetalRecipe("Lead", Block.chest , 2);
-        // Silver
-        if(addDoubleMetalRecipe("Silver", Item.egg, 2)) {
-           addDoubleMetalRecipe("Silver", "seedsAll" , 7); 
+        if(ConfigurationSettings.DOUBLING_COPPER) {
+            UtilRecipes.addDoubleMetalRecipe("Copper", Item.appleRed, 3);
         }
+        
+        // Gold
+        if(ConfigurationSettings.DOUBLING_GOLD) {
+            UtilRecipes.addDoubleMetalRecipe("Gold", Block.sandStone, 5);
+        }
+        
+        // Lead
+        if(ConfigurationSettings.DOUBLING_LEAD) {
+          UtilRecipes.addDoubleMetalRecipe("Lead", Block.chest , 2);  
+        }
+        
+        // Silver
+        if(ConfigurationSettings.DOUBLING_SILVER) {
+            if(UtilRecipes.addDoubleMetalRecipe("Silver", Item.egg, 2)) {
+                UtilRecipes.addDoubleMetalRecipe("Silver", "seedsAll" , 7); 
+            }   
+        }
+        
         // Tin
-        addDoubleMetalRecipe("Tin", Block.thinGlass, 3);
+        if(ConfigurationSettings.DOUBLING_TIN) {
+            UtilRecipes.addDoubleMetalRecipe("Tin", Block.thinGlass, 3); 
+        }
+        
         // Steel
-        addDoubleMetalRecipe("Steel", new ItemStack(Item.coal, 1, 0), 7);
+        if(ConfigurationSettings.DOUBLING_STEEL) {
+           UtilRecipes.addDoubleMetalRecipe("Steel", new ItemStack(Item.coal, 1, 0), 7); 
+        }
+        
         
     }
     
-    private static boolean addDoubleMetalRecipe(String metal, Object usedMat, int amount) {
-        ArrayList<ItemStack> ingots = UtilOreDict.instance().getItemStackArray("ingot" + metal, 2);
-        boolean isValidObj = false;
-        
-        if(ingots != null) {
-            
-            if(usedMat instanceof Block){ isValidObj = true; }
-            if(usedMat instanceof Item) { isValidObj = true; }
-            if(usedMat instanceof String) { isValidObj = true; }
-            if(usedMat instanceof ItemStack) { isValidObj = true; }
-            if(isValidObj == false) { LogHelper.alert("The given Object is not valid. Metal: " + metal); return false; }
-            
-            switch(amount) {
-                case 1:
-                    for(int i = 0; i < ingots.size(); i++) {
-                        UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] { "   ", "XOM", "   ",
-                            Character.valueOf('X'), usedMat, Character.valueOf('O'), "oreIron", 
-                            Character.valueOf('M'), ingots.get(i)});
-                    }; break;
-                case 2:
-                    for(int i = 0; i < ingots.size(); i++) {
-                        UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] { " X ", " OM", " X ",
-                            Character.valueOf('X'), usedMat, Character.valueOf('O'), "oreIron", 
-                            Character.valueOf('M'), ingots.get(i)});
-                    }; break;
-                case 3:
-                    for(int i = 0; i < ingots.size(); i++) {
-                        UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] { " X ", "XOM", " X ",
-                            Character.valueOf('X'), usedMat, Character.valueOf('O'), "oreIron", 
-                            Character.valueOf('M'), ingots.get(i)});
-                    }; break;
-                case 4:
-                    for(int i = 0; i < ingots.size(); i++) {
-                        UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] { "XX ", " OM", "XX ",
-                            Character.valueOf('X'), usedMat, Character.valueOf('O'), "oreIron", 
-                            Character.valueOf('M'), ingots.get(i)});
-                    }; break;
-                case 5:
-                    for(int i = 0; i < ingots.size(); i++) {
-                        UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] { "XX ", "XOM", "XX ",
-                            Character.valueOf('X'), usedMat, Character.valueOf('O'), "oreIron", 
-                            Character.valueOf('M'), ingots.get(i)});
-                    }
-                case 6:
-                    for(int i = 0; i < ingots.size(); i++) {
-                        UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] { "XXX", " OM", "XXX",
-                            Character.valueOf('X'), usedMat, Character.valueOf('O'), "oreIron", 
-                            Character.valueOf('M'), ingots.get(i)});
-                    }; break;
-                case 7:
-                    for(int i = 0; i < ingots.size(); i++) {
-                        UtilRecipes.addVanillaRecipe("Shaped", ingots.get(i), new Object[] { "XXX", "XOM", "XXX",
-                            Character.valueOf('X'), usedMat, Character.valueOf('O'), "oreIron", 
-                            Character.valueOf('M'), ingots.get(i)});
-                    }; break;
-                default: break;
-            }
-        }else { LogHelper.info(getError(metal)); return false; }
-        
-        return true;
-    }
-    
-    private static String getError(String metal) {
-        StringBuilder sB = new StringBuilder();
-        sB.append(String.format("Cannot find \"ingot%s\" in the OreDictionary! Cannot add %s \"Doubling Recipes\"", metal, metal));
-        return sB.toString();
-    }
+
 }

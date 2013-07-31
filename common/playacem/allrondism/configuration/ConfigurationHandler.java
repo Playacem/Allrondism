@@ -23,6 +23,7 @@ public class ConfigurationHandler {
 
     public static Configuration config;
 
+    public static final String CATEGORY_DOUBLING = "doublingRecipes";
     public static void init(File configFile) {
 
         config = new Configuration(configFile);
@@ -41,6 +42,14 @@ public class ConfigurationHandler {
             ItemIDs.GEM_ALLRONDIUM = config.getItem(Strings.GEM_ALLRONDIUM_NAME, ItemIDs.GEM_ALLRONDIUM_DEFAULT).getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);
             ItemIDs.APPLE_GOLD_ZOMBIE = config.getItem(Strings.APPLE_GOLD_ZOMBIE_NAME, ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT).getInt(ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT);
             ItemIDs.DYE_ROSE = config.getItem(Strings.DYE_ROSE_NAME, ItemIDs.DYE_ROSE_DEFAULT).getInt(ItemIDs.DYE_ROSE_DEFAULT);
+            
+            ConfigurationSettings.DOUBLING_COPPER = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_COPPER_CONFIGNAME, ConfigurationSettings.DOUBLING_COPPER_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_COPPER_DEFAULT);
+            ConfigurationSettings.DOUBLING_GOLD = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_GOLD_CONFIGNAME, ConfigurationSettings.DOUBLING_GOLD_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_GOLD_DEFAULT);
+            ConfigurationSettings.DOUBLING_LEAD = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_LEAD_CONFIGNAME, ConfigurationSettings.DOUBLING_LEAD_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_LEAD_DEFAULT);
+            ConfigurationSettings.DOUBLING_SILVER = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_SILVER_CONFIGNAME, ConfigurationSettings.DOUBLING_SILVER_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_SILVER_DEFAULT);
+            ConfigurationSettings.DOUBLING_TIN = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_TIN_CONFIGNAME, ConfigurationSettings.DOUBLING_TIN_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_TIN_DEFAULT);
+            ConfigurationSettings.DOUBLING_STEEL = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_STEEL_CONFIGNAME, ConfigurationSettings.DOUBLING_STEEL_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_STEEL_DEFAULT);
+            
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");
         } finally {
