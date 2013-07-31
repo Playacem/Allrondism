@@ -23,7 +23,7 @@ public class ConfigurationHandler {
 
     public static Configuration config;
 
-    public static final String CATEGORY_DOUBLING = "doublingRecipes";
+    public static final String CATEGORY_DOUBLING = "doubling_recipes";
     public static void init(File configFile) {
 
         config = new Configuration(configFile);
@@ -43,6 +43,8 @@ public class ConfigurationHandler {
             ItemIDs.APPLE_GOLD_ZOMBIE = config.getItem(Strings.APPLE_GOLD_ZOMBIE_NAME, ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT).getInt(ItemIDs.APPLE_GOLD_ZOMBIE_DEFAULT);
             ItemIDs.DYE_ROSE = config.getItem(Strings.DYE_ROSE_NAME, ItemIDs.DYE_ROSE_DEFAULT).getInt(ItemIDs.DYE_ROSE_DEFAULT);
             
+            /* Doubling recipes*/
+            config.addCustomCategoryComment(CATEGORY_DOUBLING, "Here you can disable or enable various doubling recipes.");
             ConfigurationSettings.DOUBLING_COPPER = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_COPPER_CONFIGNAME, ConfigurationSettings.DOUBLING_COPPER_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_COPPER_DEFAULT);
             ConfigurationSettings.DOUBLING_GOLD = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_GOLD_CONFIGNAME, ConfigurationSettings.DOUBLING_GOLD_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_GOLD_DEFAULT);
             ConfigurationSettings.DOUBLING_LEAD = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_LEAD_CONFIGNAME, ConfigurationSettings.DOUBLING_LEAD_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_LEAD_DEFAULT);
