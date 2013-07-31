@@ -6,6 +6,7 @@ package playacem.allrondism;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+
 import playacem.allrondism.block.ModBlocks;
 import playacem.allrondism.configuration.ConfigurationHandler;
 import playacem.allrondism.core.handlers.FuelHandler;
@@ -14,6 +15,7 @@ import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.creativetab.CreativeTabAM;
 import playacem.allrondism.item.ModItems;
 import playacem.allrondism.lib.Reference;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
