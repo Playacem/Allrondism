@@ -35,7 +35,7 @@ public class BlockMultiFurnace extends BlockContainerAM {
 
     @Override
     public int damageDropped(int meta) {
-        if(meta == 1) return 0;
+        if(meta <= 8) return 0;
         return meta;
     }
 

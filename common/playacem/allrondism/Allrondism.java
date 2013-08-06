@@ -6,6 +6,7 @@ package playacem.allrondism;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.ForgeDirection;
 
 import playacem.allrondism.block.ModBlocks;
 import playacem.allrondism.configuration.ConfigurationHandler;
@@ -88,7 +89,7 @@ public class Allrondism {
     @PostInit
     public void modsLoaded(FMLPostInitializationEvent event) {
         // Adding cross-mod recipes
-        ModItems.postInit();
+        ModItems.postInit();        
     }
 
 }

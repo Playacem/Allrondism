@@ -75,7 +75,7 @@ public class TileAM extends TileEntity {
 
     public boolean isUseableByPlayer(EntityPlayer player) {
 
-        return owner.equals(player.username);
+        return true; //owner.equals(player.username); // option to override?
     }
 
 }

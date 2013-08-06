@@ -45,16 +45,16 @@ public abstract class BlockContainerAM extends BlockContainer {
         int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 
         if (facing == 0) {
-            direction = ForgeDirection.NORTH.ordinal();
+            direction = ForgeDirection.NORTH.ordinal(); // 2
         }
         else if (facing == 1) {
-            direction = ForgeDirection.EAST.ordinal();
+            direction = ForgeDirection.EAST.ordinal(); // 5
         }
         else if (facing == 2) {
-            direction = ForgeDirection.SOUTH.ordinal();
+            direction = ForgeDirection.SOUTH.ordinal(); // 3
         }
         else if (facing == 3) {
-            direction = ForgeDirection.WEST.ordinal();
+            direction = ForgeDirection.WEST.ordinal(); // 4
         }
 
         world.setBlockMetadataWithNotify(x, y, z, direction, 3);

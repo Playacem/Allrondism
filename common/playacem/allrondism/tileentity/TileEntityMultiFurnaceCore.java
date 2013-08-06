@@ -37,7 +37,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         isValidMultiblock = false;
         
         int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata - 1, 2);
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata - 4, 2);
         
         furnaceBurnTime = 0;
         currentItemBurnTime = 0;
