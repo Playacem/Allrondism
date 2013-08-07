@@ -23,7 +23,7 @@ public class ContainerMultiFurnace extends Container {
     @Override
     public boolean canInteractWith(EntityPlayer entityplayer) {
 
-        return false;
+        return tileEntity.isUseableByPlayer(entityplayer);
     }
 
 }

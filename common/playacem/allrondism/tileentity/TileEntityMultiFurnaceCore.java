@@ -58,6 +58,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         
     }
     
+    /* IInventory stuff */
     @Override
     public int getSizeInventory() {
         return inventory.length;
@@ -88,13 +89,11 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public String getInvName() {
-
         return this.hasCustomName() ? this.getCustomName() : Strings.CONTAINER_MULTI_FURNACE_NAME;
     }
 
     @Override
     public boolean isInvNameLocalized() {
-
         return false;
     }
 

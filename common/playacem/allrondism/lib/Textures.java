@@ -26,6 +26,7 @@ public class Textures {
     // Armor sprite sheets
     
     // GUI textures
+    public static final String GUI_MULTI_FURNACE = GUI_SHEET_LOCATION + "temp.png";
     
     // Effect textures
 }

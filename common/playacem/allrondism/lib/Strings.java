@@ -27,7 +27,8 @@ public class Strings {
     public static final String DYE_ROSE_NAME = "dyeRose";
     
     /* TileEntity name constants */
-    public static final String TE_MULTI_FURNACE_NAME = "tileMultiFurnace";
+    public static final String TE_MULTI_FURNACE_CORE_NAME = "tileMultiFurnaceCore";
+    public static final String TE_MULTI_FURNACE_DUMMY_NAME = "tileMultiFurnaceDummy";
     
     /* Container releated constants */
     public static final String CONTAINER_MULTI_FURNACE_NAME = "container." + MULTI_FURNACE_NAME;
