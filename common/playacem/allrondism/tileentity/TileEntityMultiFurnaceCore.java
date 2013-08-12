@@ -4,6 +4,7 @@ import playacem.allrondism.block.BlockMultiFurnace;
 import playacem.allrondism.lib.Strings;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 /**
  * Allrondism
@@ -12,10 +13,14 @@ import net.minecraft.item.ItemStack;
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * @credit pahimar, Minalien
  */
 public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventory {
 
     private ItemStack[] inventory;
+    private static int[] inputSlots = {0, 1, 2};
+    private static int[] fuelSlots = {3, 4, 5};
+    private static int[] outputSlots = {6, 7, 8};
     
     public static final int INVENTORY_SIZE = 9;
     
@@ -26,6 +31,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     private boolean isValidMultiblock = false;
     
     public TileEntityMultiFurnaceCore() {
+        super();
         inventory = new ItemStack[INVENTORY_SIZE];
     }
 
@@ -33,11 +39,18 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         return isValidMultiblock;
     }
     
+    public boolean isActive() {
+        int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        if(metadata > 6) return true;
+        return false;
+    }
+    
     public void invalidateMultiBlock() {
         isValidMultiblock = false;
         
         int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata - 4, 2);
+        if ( isActive() ) metadata -= 4;
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata, 2);
         
         furnaceBurnTime = 0;
         currentItemBurnTime = 0;
@@ -71,20 +84,36 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public ItemStack decrStackSize(int slot, int amount) {
-        // TODO Auto-generated method stub
-        return null;
+       
+        ItemStack itemStack = getStackInSlot(slot);
+        if(itemStack != null) {
+            if(itemStack.stackSize <= amount) {
+                setInventorySlotContents(slot, null);
+            } else {
+                itemStack = itemStack.splitStack(amount);
+                if(itemStack.stackSize == 0) {
+                    setInventorySlotContents(slot, null);
+                }
+            }
+        }
+        return itemStack;
     }
 
     @Override
     public ItemStack getStackInSlotOnClosing(int slot) {
-        // TODO Auto-generated method stub
-        return null;
+        ItemStack itemStack = getStackInSlot(slot);
+        if(itemStack != null) {
+            inventory[slot] = null;
+            return itemStack;
+        } else return null;
     }
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemstack) {
-        // TODO Auto-generated method stub
-
+        inventory[slot] = itemstack;
+        
+        if(itemstack != null && itemstack.stackSize > this.getInventoryStackLimit())
+            itemstack.stackSize = this.getInventoryStackLimit();
     }
 
     @Override
@@ -94,7 +123,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public boolean isInvNameLocalized() {
-        return false;
+        return this.hasCustomName();
     }
 
     @Override
@@ -111,7 +140,15 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public boolean isStackValidForSlot(int slot, ItemStack itemstack) {
-        // TODO Auto-generated method stub
+        for(int i = 0; i < outputSlots.length; ++i) {
+            if( outputSlots[i] == slot) return false;
+        }
+        for(int i = 0; i < fuelSlots.length; ++i) {
+            if( fuelSlots[i] == slot) return TileEntityFurnace.isItemFuel(itemstack);
+        }
+        for(int i = 0; i < inputSlots.length; ++i) {
+            if( inputSlots[i] == slot) return true;
+        }
         return false;
     }
 
