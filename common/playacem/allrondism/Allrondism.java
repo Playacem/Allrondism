@@ -6,7 +6,7 @@ package playacem.allrondism;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.ForgeDirection;
+
 
 import playacem.allrondism.block.ModBlocks;
 import playacem.allrondism.configuration.ConfigurationHandler;
