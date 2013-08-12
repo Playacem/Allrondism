@@ -28,8 +28,8 @@ public class SoundHandler {
         String name = event.name;
 
         if (name.contains("stone")) {
-            // The event gives incase of a StepSound the coordinates of the Block above.
-            if (name.contains("step")) { y--; } 
+            // The event gives, incase of a StepSound, the coordinates of the Block above.
+            if (name.contains("step")) { --y; } 
             boolean valid = UtilBlock.isValidBlock(world, x, y, z, ModBlocks.storageBlock.blockID, 0);
             if (valid) {
                 if (name.contains("dig")) {
