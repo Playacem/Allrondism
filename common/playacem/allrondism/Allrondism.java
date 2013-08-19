@@ -16,6 +16,7 @@ import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.creativetab.CreativeTabAM;
 import playacem.allrondism.item.ModItems;
 import playacem.allrondism.lib.Reference;
+import playacem.allrondism.network.PacketHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -40,7 +41,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class Allrondism {
 
     @Instance(Reference.MOD_ID)
@@ -59,8 +60,7 @@ public class Allrondism {
         LogHelper.init();
 
         // Initialize the configuration
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator
-                + Reference.MOD_NAME + ".cfg"));
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME + ".cfg"));
 
         // Register the Spawn Handler
         proxy.registerSpawnHandler();

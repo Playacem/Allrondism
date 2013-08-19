@@ -16,6 +16,7 @@ public class Reference {
     public static final String MOD_NAME = "Allrondism";
     // @ Stuff will be replaced by an Apache Ant Build script soon(tm)
     public static final String VERSION_NUMBER = "@VERSION@ (build @BUILD_NUMBER@)";
+    public static final String CHANNEL_NAME = MOD_ID;
     public static final String DEPENDENCIES = "required-after:Forge@[7.8.1.737,);after:IC2;after:Forestry;after:ThermalExpansion";
     public static final int SHIFTED_ID_RANGE_CORRECTION = 256;
 
