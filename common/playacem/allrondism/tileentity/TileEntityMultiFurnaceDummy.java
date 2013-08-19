@@ -13,16 +13,15 @@ import net.minecraft.item.ItemStack;
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInventory {
+public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInventory, ICoreExtension {
     
     TileEntityMultiFurnaceCore tileEntityCore;
     int coreX;
     int coreY;
     int coreZ;
     
-    public TileEntityMultiFurnaceDummy() {
-    }
 
+    @Override
     public void setCore(TileEntityMultiFurnaceCore core) {
         coreX = core.xCoord;
         coreY = core.yCoord;
@@ -30,6 +29,7 @@ public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInvento
         tileEntityCore = core;
     }
     
+    @Override
     public TileEntityMultiFurnaceCore getCore() {
         if(tileEntityCore == null) {
             tileEntityCore = (TileEntityMultiFurnaceCore)worldObj.getBlockTileEntity(coreX, coreY, coreZ);
@@ -37,6 +37,7 @@ public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInvento
         return tileEntityCore;
     }
     
+    /* IInventory stuff */
     @Override
     public int getSizeInventory() {
         return tileEntityCore.getSizeInventory();
