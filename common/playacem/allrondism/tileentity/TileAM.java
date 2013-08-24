@@ -1,6 +1,8 @@
 package playacem.allrondism.tileentity;
 
+import playacem.allrondism.lib.Strings;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -17,15 +19,15 @@ import net.minecraftforge.common.ForgeDirection;
  */
 public class TileAM extends TileEntity {
 
-    private ForgeDirection orientation;
-    private String owner;
-    private String customName;
+    protected ForgeDirection orientation;
+    protected String owner;
+    protected String customName;
 
     public TileAM() {
 
-        setOrientation(ForgeDirection.SOUTH);
-        setOwner("");
-        setCustomName("");
+        orientation = ForgeDirection.SOUTH;
+        owner = "";
+        customName = "";
     }
 
     public ForgeDirection getOrientation() {
@@ -78,4 +80,29 @@ public class TileAM extends TileEntity {
         return true; //owner.equals(player.username); // option to override?
     }
 
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTag) {
+        
+        super.readFromNBT(nbtTag);
+        
+        if(nbtTag.hasKey(Strings.NBT_TE_DIRECTION_KEY)) {
+            orientation = ForgeDirection.getOrientation(nbtTag.getByte(Strings.NBT_TE_DIRECTION_KEY));
+        }
+        
+        if(nbtTag.hasKey(Strings.NBT_TE_CUSTOM_NAME)) {
+            customName = nbtTag.getString(Strings.NBT_TE_CUSTOM_NAME);
+        }
+    }
+    
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTag) {
+        
+        super.writeToNBT(nbtTag);
+        
+        nbtTag.setByte(Strings.NBT_TE_DIRECTION_KEY, (byte) orientation.ordinal());
+        
+        if(this.hasCustomName()) {
+            nbtTag.setString(Strings.NBT_TE_CUSTOM_NAME, customName);
+        }
+    }
 }

@@ -11,6 +11,10 @@ package playacem.allrondism.lib;
  */
 public class Strings {
 
+    /* NBT related constants */
+    public static final String NBT_TE_CUSTOM_NAME = "CustomName";
+    public static final String NBT_TE_DIRECTION_KEY = "teDirection";
+    
     /* Block name constants */
     public static final String[] STORAGE_BLOCKS = { "Dirt", "Cobble", "Allrondium" };
     public static final String STORAGE_BLOCKS_NAME = "storageBlock";
@@ -18,8 +22,7 @@ public class Strings {
     public static final String GLASS_SUN_BLOCKER_NAME = "glassSunBlocker";
     public static final String[] ROSES = { "Black", "White" };
     public static final String PLANT_ROSE_NAME = "plantRose";
-    public static final String[] MULTI_FURNACE_BLOCKS = { "Core", "CoreActive" };
-    public static final String MULTI_FURNACE_NAME = "multiFurnace";
+    public static final String MULTI_FURNACE_CORE_NAME = "multiFurnaceCore";
     
     /* Item name constants */
     public static final String GEM_ALLRONDIUM_NAME = "gemAllrondium";
@@ -31,5 +34,6 @@ public class Strings {
     public static final String TE_MULTI_FURNACE_DUMMY_NAME = "tileMultiFurnaceDummy";
     
     /* Container releated constants */
-    public static final String CONTAINER_MULTI_FURNACE_NAME = "container." + MULTI_FURNACE_NAME;
+    public static final String CONTAINER_MULTI_FURNACE_NAME = "container." + MULTI_FURNACE_CORE_NAME;
+    public static final String CONTAINER_INVENTORY = "container.inventory";
 }
