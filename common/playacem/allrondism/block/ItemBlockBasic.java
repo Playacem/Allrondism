@@ -40,11 +40,28 @@ public class ItemBlockBasic extends ItemBlock {
         }
         
         if(id == ModBlocks.glassSunBlocker.blockID) {
-            infoList.add("This glass filters any light");
-            infoList.add("which passes through it");
+            if(player.isSneaking()) {
+                infoList.add("Filters light");
+                infoList.add("<Press shift for more information>");
+            } else {
+                infoList.add("This glass filters any light");
+                infoList.add("which passes through it");
+            }
+            
             if(advancedToolTips) {
                 infoList.add("Tip: Use it for your mob traps");
             }
+        }
+        
+        if(id == ModBlocks.multiFurnace.blockID) {
+            infoList.add("Sizes: 3x3x3, 5x5x5, 7x7x7, 9x9x9");
+            if(player.isSneaking()) {
+                infoList.add("<Press shift for more information>");
+            } else {
+                infoList.add("This Block needs to be in the center");
+                infoList.add("of one vertical side");
+            }
+            
         }
     }
 }
