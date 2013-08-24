@@ -35,7 +35,7 @@ public class ModBlocks {
         storageBlock = new BlockStorageBlock(BlockIDs.STORAGE_BLOCKS);
         glassSunBlocker = new BlockGlassSunBlocker(BlockIDs.GLASS_SUN_BLOCKER);
         plantRose = new BlockPlantRose(BlockIDs.PLANT_ROSE);
-        multiFurnace = new BlockMultiFurnace(BlockIDs.MULTI_FURNACE);
+        multiFurnace = new BlockMultiFurnaceCore(BlockIDs.MULTI_FURNACE);
 
         GameRegistry.registerBlock(oreAllrondium, ItemBlockBasic.class, Strings.ORE_ALLRONDIUM_NAME);
         GameRegistry.registerBlock(storageBlock, ItemBlockStorageBlock.class, storageBlock.getUnlocalizedName());
