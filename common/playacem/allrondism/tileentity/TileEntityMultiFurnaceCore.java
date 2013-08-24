@@ -1,10 +1,14 @@
 package playacem.allrondism.tileentity;
 
-import playacem.allrondism.block.BlockMultiFurnace;
+import playacem.allrondism.block.ModBlocks;
+import playacem.allrondism.core.util.UtilBlock;
 import playacem.allrondism.lib.Strings;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.common.ForgeDirection;
 
 /**
  * Allrondism
@@ -23,10 +27,11 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     private static int[] outputSlots = {6, 7, 8};
     
     public static final int INVENTORY_SIZE = 9;
+    public int sizeMultiBlock = 0;
     
-    public int furnaceBurnTime = 0;
-    public int currentItemBurnTime = 0;
-    public int furnaceCookTime = 0;
+    public int furnaceBurnTime = 0; // if this value reaches 0 --> 1 item finished
+    public int currentItemBurnTime = 0; // how long the current consumed item will still last.
+    public int furnaceCookTime = 0; // Cook progress
     
     private boolean isValidMultiblock = false;
     
@@ -45,6 +50,10 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         return false;
     }
     
+    public int getDirection() {
+        return isActive() ? getBlockMetadata() - 4 : getBlockMetadata();
+    }
+    
     public void invalidateMultiBlock() {
         isValidMultiblock = false;
         
@@ -56,19 +65,114 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         currentItemBurnTime = 0;
         furnaceCookTime = 0;
         
-        revertDummies();
+        revertDummies(sizeMultiBlock);
     }
-    
-    public boolean checkIfProperlyFormed() {
+    // size = 3 --> 3x3x3
+    public boolean checkIfProperlyFormed(int size) {
+        int maxDepth = size - 1;
+        int max = size - 2;
+        int negativeMax = max * -1;
+        
+        int dir = getDirection();
+        
+        boolean forwardZ = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.SOUTH.ordinal()));
+        int depthMultiplier = forwardZ ? 1 : -1;
+        
+        for(int horiz = negativeMax; horiz <= max; horiz++) {
+            for(int vert = negativeMax; vert <= max; vert++) {
+                for(int depth = 0; depth <= maxDepth; depth++) {
+                    int x = xCoord + (forwardZ ? horiz : (depth * depthMultiplier));
+                    int y = yCoord + vert;
+                    int z = zCoord + (forwardZ ? (depth * depthMultiplier) : horiz);
+                    
+                    int blockID = worldObj.getBlockId(x, y, z);
+                    
+                    if(horiz == 0 && vert == 0) {
+                        if(depth == 0) // Looking at core, move on!
+                            continue;
+                        
+                        if(depth == maxDepth / 2) { // Center must be air!
+                            if(!worldObj.isAirBlock(x, y, z)) {
+                                return false;
+                            } else {
+                                continue;
+                            }
+                        }
+                    }
+                    // oreAllrondium is a placeholder
+                    if(!(blockID == ModBlocks.storageBlock.blockID || blockID == ModBlocks.oreAllrondium.blockID )) {
+                        return false;
+                    }
+                }
+            }
+        }
+        
         return false;
     }
     
-    public void convertDummies() {
+    public void convertDummies(int size) {
+        int maxDepth = size - 1;
+        int max = size - 2;
+        int negativeMax = max * -1;
         
+        int dir = getDirection();
+        
+        boolean forwardZ = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.SOUTH.ordinal()));
+        int depthMultiplier = forwardZ ? 1 : -1;
+        
+        for(int horiz = negativeMax; horiz <= max; horiz++) {
+            for(int vert = negativeMax; vert <= max; vert++) {
+                for(int depth = 0; depth <= maxDepth; depth++) {
+                    int x = xCoord + (forwardZ ? horiz : (depth * depthMultiplier));
+                    int y = yCoord + vert;
+                    int z = zCoord + (forwardZ ? (depth * depthMultiplier) : horiz);
+                    
+                    
+                    if(horiz == 0 && vert == 0 && (depth == 0 || depth == maxDepth / 2))
+                        continue;
+                    //TODO change BlockID and Metadata
+                    worldObj.setBlock(x, y, z, 0);
+                    worldObj.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                    
+                    ICoreExtension dummyTE = (ICoreExtension)worldObj.getBlockTileEntity(x, y, z);
+                    dummyTE.setCore(this);
+                }
+            }
+        }
     }
     
-    private void revertDummies() {
+    private void revertDummies(int size) {
+        int maxDepth = size - 1;
+        int max = size - 2;
+        int negativeMax = max * -1;
         
+        int dir = getDirection();
+        
+        boolean forwardZ = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.SOUTH.ordinal()));
+        int depthMultiplier = forwardZ ? 1 : -1;
+        
+        for(int horiz = negativeMax; horiz <= max; horiz++) {   // Horizontal (X or Z)
+            for(int vert = negativeMax; vert <= max; vert++) { // Vertical (Y)
+                for(int depth = 0; depth <= maxDepth; depth++) { // Depth (Z or X)
+                    int x = xCoord + (forwardZ ? horiz : (depth * depthMultiplier));
+                    int y = yCoord + vert;
+                    int z = zCoord + (forwardZ ? (depth * depthMultiplier) : horiz);
+                    
+                    int blockID = worldObj.getBlockId(x, y, z);
+                    
+                    if(horiz == 0 && vert == 0 && (depth == 0 || depth == maxDepth / 2))
+                        continue;
+                    
+                    if(UtilBlock.isValidBlock(worldObj, x, y, z, blockID, 1))
+                        continue;
+                    
+                    worldObj.setBlock(x, y, z, ModBlocks.storageBlock.blockID);
+                    worldObj.setBlockMetadataWithNotify(x, y, z, 1, 2);
+                    worldObj.markBlockForUpdate(x, y, z);
+                }
+            }
+        }
+        isValidMultiblock = false;
     }
     
     /* IInventory stuff */
@@ -168,4 +272,48 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         return false;
     }
 
+    /* NBT stuff */
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        
+        //int md = compound.getInteger("BlockMeta");
+        isValidMultiblock = compound.getBoolean("isValidMultiblock");
+        
+        NBTTagList itemsTag = compound.getTagList("Items");
+        
+        for(int i = 0; i < itemsTag.tagCount(); i++) {
+            NBTTagCompound slotTag = (NBTTagCompound)itemsTag.tagAt(i);
+            byte slot = slotTag.getByte("Slot");
+            
+            if(slot >= 0 && slot < inventory.length)
+                inventory[slot] = ItemStack.loadItemStackFromNBT(slotTag);    
+        }
+        
+        furnaceBurnTime = compound.getShort("BurnTime");
+        furnaceCookTime = compound.getShort("CookTime");
+        currentItemBurnTime = TileEntityFurnace.getItemBurnTime(inventory[fuelSlots[0]]);
+    }
+    
+    @Override
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        
+        compound.setBoolean("isValidMultiblock", isValidMultiblock);
+        
+        compound.setShort("BurnTime", (short)furnaceBurnTime);
+        compound.setShort("CookTime", (short)furnaceCookTime);
+        NBTTagList itemsList = new NBTTagList();
+        
+        for(int i = 0; i < inventory.length; i++) {
+            if(inventory[i] != null) {
+                NBTTagCompound slotTag = new NBTTagCompound();
+                slotTag.setByte("Slot", (byte)i);
+                inventory[i].writeToNBT(slotTag);
+                itemsList.appendTag(slotTag);
+            }
+            
+            compound.setTag("Items", itemsList);
+        }
+    }
 }
