@@ -4,6 +4,7 @@ import playacem.allrondism.tileentity.TileEntityMultiFurnaceCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 /**
  * Allrondism
@@ -35,6 +36,24 @@ public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInvento
             tileEntityCore = (TileEntityMultiFurnaceCore)worldObj.getBlockTileEntity(coreX, coreY, coreZ);
         }
         return tileEntityCore;
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound compund) {
+        super.readFromNBT(compund);
+        
+        coreX = compund.getInteger("CoreX");
+        coreY = compund.getInteger("CoreY");
+        coreZ = compund.getInteger("CoreZ");
+    }
+    
+    @Override
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        
+        compound.setInteger("CoreX", coreX);
+        compound.setInteger("CoreY", coreY);
+        compound.setInteger("CoreZ", coreZ);
     }
     
     /* IInventory stuff */
