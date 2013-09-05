@@ -87,6 +87,9 @@ public class Allrondism {
         // Register the Renderers
         proxy.registerRenderers();
         
+        // Initialize mod tile entities
+        proxy.registerTileEntities();
+        
         // Register the FuelHandler
         GameRegistry.registerFuelHandler(new FuelHandler());
     }
