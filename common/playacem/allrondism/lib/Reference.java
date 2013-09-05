@@ -17,7 +17,7 @@ public class Reference {
     // @ Stuff will be replaced by an Apache Ant Build script soon(tm)
     public static final String VERSION_NUMBER = "@VERSION@ (build @BUILD_NUMBER@)";
     public static final String CHANNEL_NAME = MOD_ID;
-    public static final String DEPENDENCIES = "required-after:Forge@[7.8.1.737,);after:IC2;after:Forestry;after:ThermalExpansion";
+    public static final String DEPENDENCIES = "required-after:Forge@[7.8.1.737,);after:IC2;after:Forestry;after:ThermalExpansion;after:Railcraft";
     public static final int SHIFTED_ID_RANGE_CORRECTION = 256;
 
     public static final String SERVER_PROXY_CLASS = "playacem.allrondism.core.proxy.CommonProxy";
