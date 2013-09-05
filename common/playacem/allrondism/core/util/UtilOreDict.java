@@ -74,6 +74,7 @@ public class UtilOreDict {
             }
             else {
                 LogHelper.alert("Position: " + position + "is bigger than Array Size: " + ores.size());
+                LogHelper.alert("Setting position to 0");
                 position = 0;
             }
         }
