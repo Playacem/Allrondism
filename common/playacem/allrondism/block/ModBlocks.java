@@ -27,7 +27,8 @@ public class ModBlocks {
     public static Block storageBlock;
     public static Block glassSunBlocker;
     public static Block plantRose;
-    public static Block multiFurnace;
+    public static Block multiFurnaceCore;
+    public static Block multiFurnaceExtension;
 
     public static void init() {
 
@@ -35,24 +36,31 @@ public class ModBlocks {
         storageBlock = new BlockStorageBlock(BlockIDs.STORAGE_BLOCKS);
         glassSunBlocker = new BlockGlassSunBlocker(BlockIDs.GLASS_SUN_BLOCKER);
         plantRose = new BlockPlantRose(BlockIDs.PLANT_ROSE);
-        multiFurnace = new BlockMultiFurnaceCore(BlockIDs.MULTI_FURNACE);
+        multiFurnaceCore = new BlockMultiFurnaceCore(BlockIDs.MULTI_FURNACE_CORE);
+        multiFurnaceExtension = new BlockMultiFurnaceExtension(BlockIDs.MULTI_FURNACE_EXTENSION);
 
         GameRegistry.registerBlock(oreAllrondium, ItemBlockBasic.class, Strings.ORE_ALLRONDIUM_NAME);
         GameRegistry.registerBlock(storageBlock, ItemBlockStorageBlock.class, storageBlock.getUnlocalizedName());
         GameRegistry.registerBlock(glassSunBlocker, ItemBlockBasic.class, Strings.GLASS_SUN_BLOCKER_NAME);
         GameRegistry.registerBlock(plantRose, ItemBlockPlantRose.class, plantRose.getUnlocalizedName());
-        //GameRegistry.registerBlock(multiFurnace, ItemBlockMultiFurnace.class, multiFurnace.getUnlocalizedName());
+        GameRegistry.registerBlock(multiFurnaceCore, ItemBlockBasic.class, Strings.MULTI_FURNACE_CORE_NAME);
+        GameRegistry.registerBlock(multiFurnaceExtension, ItemBlockMultiFurnaceExtension.class, multiFurnaceExtension.getUnlocalizedName());
         
         LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
+        
         for (int i = 0; i < Strings.STORAGE_BLOCKS.length; i++) {
             ItemStack storageBlockStack = new ItemStack(storageBlock, 1, i);
             LanguageRegistry.addName(storageBlockStack, "Storage " + Strings.STORAGE_BLOCKS[i]);
         }
+        
         LanguageRegistry.addName(glassSunBlocker, "Sunblocking Glass");
+        
         for (int i = 0; i < Strings.ROSES.length; i++) {
             ItemStack plantRoseStack = new ItemStack(plantRose, 1, i);
             LanguageRegistry.addName(plantRoseStack, Strings.ROSES[i] + " Rose");
         }
+        
+        LanguageRegistry.addName(multiFurnaceCore, "Multi-Furnace Core");
         
         setupBlockHarvestLevels();
         setupGrassEntries();
@@ -77,10 +85,10 @@ public class ModBlocks {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), new Object[] { "bdw", "dsd", "wdb",
-                Character.valueOf('d'), Item.diamond, Character.valueOf('s'), Block.stone,
+                Character.valueOf('d'), Block.blockDiamond, Character.valueOf('s'), Block.stone,
                 Character.valueOf('b'), "dyeBlack", Character.valueOf('w'), "dyeWhite" });
         UtilRecipes.addVanillaRecipe("Shaped", new ItemStack(oreAllrondium), new Object[] { "wdb", "dsd", "bdw",
-                Character.valueOf('d'), Item.diamond, Character.valueOf('s'), Block.stone,
+                Character.valueOf('d'), Block.blockDiamond, Character.valueOf('s'), Block.stone,
                 Character.valueOf('b'), "dyeBlack", Character.valueOf('w'), "dyeWhite" });
 
         // Storage Block Recipes
