@@ -8,6 +8,7 @@ import playacem.allrondism.Allrondism;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.AxisAlignedBB;
@@ -27,7 +28,7 @@ import static net.minecraftforge.common.EnumPlantType.*;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
  */
-public class BlockPlantRose extends BlockAM implements IPlantable {
+public class BlockPlantRose extends BlockFlower implements IPlantable {
 
     private String[] names = Strings.ROSES;
     private Icon[] icons = new Icon[names.length];
@@ -40,26 +41,28 @@ public class BlockPlantRose extends BlockAM implements IPlantable {
         setCreativeTab(Allrondism.tabsAM);
         this.setTickRandomly(true);
         
-        float f = 0.2F;
-        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 3.0F, 0.5F + f);
     }
 
+    @Override
     public boolean canPlaceBlockAt(World world, int x, int y, int z) {
         return super.canPlaceBlockAt(world, x, y, z) && canBlockStay(world, x, y, z);
     }
     
+    @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
         Block soil = blocksList[world.getBlockId(x, y - 1, z)];
         return (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
     }
     
+    @Override
     public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant) {
         int id = world.getBlockId(x, y, z);
-        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID;
+        return canThisPlantGrowOnThisBlockID(id);
     }
     
+    
     public boolean canThisPlantGrowOnThisBlockID(int id) {
-        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID;
+        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || id == ModBlocks.storageBlock.blockID;
     }
     
     /* GameUpdate relevant stuff */
@@ -154,8 +157,7 @@ public class BlockPlantRose extends BlockAM implements IPlantable {
     @Override
     public void registerIcons(IconRegister iconReg) {
         for (int i = 0; i < icons.length; i++) {
-            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase()
-                    + ":" + getUnlocalizedName2() + names[i]);
+            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + getUnlocalizedName2() + names[i]);
         }
     }
     
