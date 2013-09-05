@@ -2,6 +2,8 @@ package playacem.allrondism.block;
 
 import java.util.List;
 
+import playacem.allrondism.lib.Strings;
+
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -35,14 +37,14 @@ public class ItemBlockBasic extends ItemBlock {
             infoList.add("This ore cannot be");
             infoList.add("found underground");
             if(advancedToolTips) {
-                infoList.add("Hint: The Recipe involves Diamonds, stone, and 2 opposite colors");
+                infoList.add("Hint: The Recipe involves Diamond-Blocks, stone, and 2 opposite colors");
             }
         }
         
         if(id == ModBlocks.glassSunBlocker.blockID) {
             if(player.isSneaking()) {
                 infoList.add("Filters light");
-                infoList.add("<Press shift for more information>");
+                infoList.add(Strings.TOOLTIP_MORE_INFO);
             } else {
                 infoList.add("This glass filters any light");
                 infoList.add("which passes through it");
@@ -53,10 +55,10 @@ public class ItemBlockBasic extends ItemBlock {
             }
         }
         
-        if(id == ModBlocks.multiFurnace.blockID) {
+        if(id == ModBlocks.multiFurnaceCore.blockID) {
             infoList.add("Sizes: 3x3x3, 5x5x5, 7x7x7, 9x9x9");
             if(player.isSneaking()) {
-                infoList.add("<Press shift for more information>");
+                infoList.add(Strings.TOOLTIP_MORE_INFO);
             } else {
                 infoList.add("This Block needs to be in the center");
                 infoList.add("of one vertical side");
