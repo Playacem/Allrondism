@@ -4,12 +4,15 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import playacem.allrondism.Allrondism;
+import playacem.allrondism.lib.GuiIDs;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceCore;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
@@ -55,10 +58,45 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
     @Override
     public Icon getIcon(int side, int meta) {
 
-        boolean isActive = meta > 6;
+        boolean isActive = meta > 5;
         int facing = meta;
         
         return (side == facing ? (isActive ? faceIconLit : faceIconUnlit) : blockIcon);
+    }
+    
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    {
+        if(player.isSneaking())
+            return false;
+        
+        TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore)world.getBlockTileEntity(x, y, z);
+        
+        if(tileCore != null) {
+            // Determine if the Multiblock is currently known to be valid
+            if(!tileCore.getIsValid()) {
+                
+                for(int i = 9; i >= 3; --i) {
+                    if(i % 2 == 0)
+                        continue;
+                    
+                    if(!tileCore.checkIfProperlyFormed(i)) {
+                        continue;
+                    }
+                    tileCore.convertDummies(i);
+                    if(world.isRemote)
+                        player.sendChatToPlayer("Multi-Furnace Created!");
+                }
+            }
+            
+            // Check if the multi-block structure has been formed.
+            if(tileCore.getIsValid()) {
+                player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
+            }
+                
+        }
+        
+        return true;
     }
     
     @Override
