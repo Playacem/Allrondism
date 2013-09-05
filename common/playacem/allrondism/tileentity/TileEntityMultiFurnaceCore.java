@@ -1,7 +1,11 @@
 package playacem.allrondism.tileentity;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import playacem.allrondism.block.ModBlocks;
+import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.core.util.UtilBlock;
+import playacem.allrondism.lib.ExtensionData;
 import playacem.allrondism.lib.Strings;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -27,14 +31,18 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     private static int[] outputSlots = {6, 7, 8};
     
     public static final int INVENTORY_SIZE = 9;
-    public int sizeMultiBlock = 0;
+    public int sizeMultiblock = 0;
     
     public int furnaceBurnTime = 0; // if this value reaches 0 --> 1 item finished
     public int currentItemBurnTime = 0; // how long the current consumed item will still last.
-    public int furnaceCookTime = 0; // Cook progress
+    public int furnaceCookTime = 0; // Cook progress(the bar)
+    
+    private int cookDuration = 200; // Vanilla default, to be changed by extensions, acts like a speed modifier
+    private float itemBurnTimeFactor = 1.0F;
+    private float cookDurationFactor = 1.0F;
     
     private boolean isValidMultiblock = false;
-    
+     
     public TileEntityMultiFurnaceCore() {
         super();
         inventory = new ItemStack[INVENTORY_SIZE];
@@ -46,7 +54,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     
     public boolean isActive() {
         int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-        if(metadata > 6) return true;
+        if(metadata > 5) return true;
         return false;
     }
     
@@ -65,18 +73,20 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         currentItemBurnTime = 0;
         furnaceCookTime = 0;
         
-        revertDummies(sizeMultiBlock);
+        revertDummies(sizeMultiblock);
+        sizeMultiblock = 0;
     }
+    
     // size = 3 --> 3x3x3
     public boolean checkIfProperlyFormed(int size) {
         int maxDepth = size - 1;
-        int max = size - 2;
+        int max = (size - 1) / 2;
         int negativeMax = max * -1;
         
         int dir = getDirection();
         
         boolean forwardZ = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.SOUTH.ordinal()));
-        int depthMultiplier = forwardZ ? 1 : -1;
+        int depthMultiplier = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.WEST.ordinal())) ? 1 : -1;
         
         for(int horiz = negativeMax; horiz <= max; horiz++) {
             for(int vert = negativeMax; vert <= max; vert++) {
@@ -93,32 +103,38 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                         
                         if(depth == maxDepth / 2) { // Center must be air!
                             if(!worldObj.isAirBlock(x, y, z)) {
+                                StringBuilder sb = new StringBuilder();
+                                sb.append(String.format("The Center Block is not Air!(x: %d, y: %d, z: %d, Size: %d)", x, y, z, size));
+                                LogHelper.debug(sb.toString());
                                 return false;
                             } else {
                                 continue;
                             }
                         }
                     }
-                    // oreAllrondium is a placeholder
-                    if(!(blockID == ModBlocks.storageBlock.blockID || blockID == ModBlocks.oreAllrondium.blockID )) {
+                    
+                    if(!(UtilBlock.isValidBlock(worldObj, x, y, z, ModBlocks.storageBlock.blockID, 1) || blockID == ModBlocks.multiFurnaceExtension.blockID )) {
+                        StringBuilder s = new StringBuilder();
+                        s.append(String.format("A block with id %d located relative to the Core at horiz: %d, vert: %d, depth: %d (x: %d, y: %d, z: %d) is not usable with this MultiBlock (Size: %d)!", blockID, horiz, vert, depth, x, y, z, size));
+                        LogHelper.debug(s.toString());
                         return false;
                     }
                 }
             }
         }
-        
-        return false;
+        sizeMultiblock = size;
+        return true;
     }
     
     public void convertDummies(int size) {
         int maxDepth = size - 1;
-        int max = size - 2;
+        int max = (size - 1) / 2;
         int negativeMax = max * -1;
         
         int dir = getDirection();
         
         boolean forwardZ = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.SOUTH.ordinal()));
-        int depthMultiplier = forwardZ ? 1 : -1;
+        int depthMultiplier = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.WEST.ordinal())) ? 1 : -1;
         
         for(int horiz = negativeMax; horiz <= max; horiz++) {
             for(int vert = negativeMax; vert <= max; vert++) {
@@ -130,26 +146,27 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                     
                     if(horiz == 0 && vert == 0 && (depth == 0 || depth == maxDepth / 2))
                         continue;
-                    //TODO change BlockID and Metadata
-                    worldObj.setBlock(x, y, z, 0);
-                    worldObj.setBlockMetadataWithNotify(x, y, z, 0, 3);
+                    if(UtilBlock.isValidBlock(worldObj, x, y, z, ModBlocks.storageBlock.blockID, 1))
+                        worldObj.setBlock(x, y, z, ModBlocks.multiFurnaceExtension.blockID, ExtensionData.DUMMY_META, 3);
                     
-                    ICoreExtension dummyTE = (ICoreExtension)worldObj.getBlockTileEntity(x, y, z);
-                    dummyTE.setCore(this);
+                    ICoreExtension extensionTE = (ICoreExtension)worldObj.getBlockTileEntity(x, y, z);
+                    extensionTE.setCore(this);
                 }
             }
         }
+        
+        isValidMultiblock = true;
     }
     
     private void revertDummies(int size) {
         int maxDepth = size - 1;
-        int max = size - 2;
+        int max = (size - 1) / 2;
         int negativeMax = max * -1;
         
         int dir = getDirection();
         
         boolean forwardZ = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.SOUTH.ordinal()));
-        int depthMultiplier = forwardZ ? 1 : -1;
+        int depthMultiplier = ((dir == ForgeDirection.NORTH.ordinal()) || (dir == ForgeDirection.WEST.ordinal())) ? 1 : -1;
         
         for(int horiz = negativeMax; horiz <= max; horiz++) {   // Horizontal (X or Z)
             for(int vert = negativeMax; vert <= max; vert++) { // Vertical (Y)
@@ -158,21 +175,80 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                     int y = yCoord + vert;
                     int z = zCoord + (forwardZ ? (depth * depthMultiplier) : horiz);
                     
-                    int blockID = worldObj.getBlockId(x, y, z);
                     
                     if(horiz == 0 && vert == 0 && (depth == 0 || depth == maxDepth / 2))
                         continue;
                     
-                    if(UtilBlock.isValidBlock(worldObj, x, y, z, blockID, 1))
+                    if(!UtilBlock.isValidBlock(worldObj, x, y, z, ModBlocks.multiFurnaceExtension.blockID, 0))
                         continue;
                     
-                    worldObj.setBlock(x, y, z, ModBlocks.storageBlock.blockID);
-                    worldObj.setBlockMetadataWithNotify(x, y, z, 1, 2);
-                    worldObj.markBlockForUpdate(x, y, z);
+                    worldObj.setBlock(x, y, z, ModBlocks.storageBlock.blockID, 1, 2);
                 }
             }
         }
+        
         isValidMultiblock = false;
+    }
+    
+    @Override
+    public void updateEntity() {
+        if(!isValidMultiblock)
+            return;
+        
+        boolean inventoryChanged = false;
+        int metadata = getBlockMetadata();
+        int isActive = isActive() ? 1 : 0;
+        
+        if(furnaceBurnTime > 0)
+            furnaceBurnTime--;
+        
+        if(!this.worldObj.isRemote) {
+            if(furnaceBurnTime == 0 && canSmelt()) {
+                
+                int firstFuelSlotWithFuel = -1;
+                do {
+                    ++firstFuelSlotWithFuel;
+                    currentItemBurnTime = furnaceBurnTime = TileEntityFurnace.getItemBurnTime(inventory[fuelSlots[firstFuelSlotWithFuel]]); 
+                }while(firstFuelSlotWithFuel < fuelSlots.length && furnaceBurnTime == 0);
+                currentItemBurnTime *= itemBurnTimeFactor;
+                
+                if(furnaceBurnTime > 0) {
+                    inventoryChanged = true;
+                    
+                    if(inventory[fuelSlots[firstFuelSlotWithFuel]] != null) {
+                        inventory[fuelSlots[firstFuelSlotWithFuel]].stackSize--;
+                        
+                        if(inventory[fuelSlots[firstFuelSlotWithFuel]].stackSize == 0)
+                            inventory[fuelSlots[firstFuelSlotWithFuel]] = inventory[fuelSlots[firstFuelSlotWithFuel]].getItem().getContainerItemStack(inventory[fuelSlots[firstFuelSlotWithFuel]]);
+
+                    }
+                }
+            
+            if(isBurning() && canSmelt()) {
+                furnaceCookTime++;
+                
+                if(furnaceCookTime == cookDuration * cookDurationFactor) {
+                    furnaceCookTime = 0;
+                    smeltItems();
+                    inventoryChanged = true;
+                }
+            } else 
+                furnaceCookTime = 0;
+            
+            
+            if(isActive == 0 && furnaceBurnTime > 0) {
+                inventoryChanged = true;
+                metadata = getBlockMetadata();
+                isActive = 1;
+                metadata += 4;
+                worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata, 2);
+            }
+            
+            }
+        
+            if(inventoryChanged) 
+                onInventoryChanged();
+        }
     }
     
     /* IInventory stuff */
@@ -277,8 +353,8 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         
-        //int md = compound.getInteger("BlockMeta");
         isValidMultiblock = compound.getBoolean("isValidMultiblock");
+        sizeMultiblock = compound.getByte("sizeMultiblock");
         
         NBTTagList itemsTag = compound.getTagList("Items");
         
@@ -300,6 +376,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         super.writeToNBT(compound);
         
         compound.setBoolean("isValidMultiblock", isValidMultiblock);
+        compound.setByte("sizeMultiblock", (byte)sizeMultiblock);
         
         compound.setShort("BurnTime", (short)furnaceBurnTime);
         compound.setShort("CookTime", (short)furnaceCookTime);
@@ -315,5 +392,30 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
             
             compound.setTag("Items", itemsList);
         }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public int getCookProgressScaled(int scalingFactor) {
+        return furnaceCookTime * scalingFactor / 100;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public int getBurnTimeRemainingScaled(int scalingFactor) {
+        if(currentItemBurnTime == 0) 
+            currentItemBurnTime = 100;
+        
+        return furnaceBurnTime * scalingFactor / currentItemBurnTime;
+    }
+    
+    public boolean isBurning() {
+        return furnaceBurnTime > 0;
+    }
+    
+    private boolean canSmelt() {
+         return false;
+    }
+    
+    public void smeltItems() {
+        return;
     }
 }
