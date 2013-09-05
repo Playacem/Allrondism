@@ -19,6 +19,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
+/**
+ * Allrondism
+ * 
+ * BlockMultiFurnaceExtension
+ * 
+ * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * 
+ */
 public class BlockMultiFurnaceExtension extends BlockContainerAM {
 
     private String[] names = Strings.MULTI_FURNACE_EXTENSIONS;

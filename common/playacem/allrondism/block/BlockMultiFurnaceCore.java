@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 /**
  * Allrondism
  * 
- * BlockMultiFurnace
+ * BlockMultiFurnaceCore
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)

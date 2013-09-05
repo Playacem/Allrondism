@@ -4,6 +4,15 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
+/**
+ * Allrondism
+ * 
+ * FuelHandler
+ * 
+ * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * 
+ */
 public class FuelHandler implements IFuelHandler {
 
 

@@ -6,6 +6,15 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import playacem.allrondism.lib.Strings;
 
+/**
+ * Allrondism
+ * 
+ * ItemBlockMultiFurnaceExtension
+ * 
+ * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * 
+ */
 public class ItemBlockMultiFurnaceExtension extends ItemBlockExtended {
 
     public ItemBlockMultiFurnaceExtension(int id) {
