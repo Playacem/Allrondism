@@ -3,6 +3,7 @@ package playacem.allrondism.configuration;
 import java.io.File;
 import java.util.logging.Level;
 
+import static net.minecraftforge.common.Configuration.CATEGORY_GENERAL;
 import net.minecraftforge.common.Configuration;
 import playacem.allrondism.lib.BlockIDs;
 import playacem.allrondism.lib.ItemIDs;
@@ -23,20 +24,24 @@ public class ConfigurationHandler {
 
     public static Configuration config;
 
-    public static final String CATEGORY_DOUBLING = "doubling_recipes";
+    public static final String CATEGORY_DOUBLING = "doublingRecipes";
+    
     public static void init(File configFile) {
 
-        config = new Configuration(configFile);
+        config = new Configuration(configFile, true);
 
         try {
             config.load();
-
+            /* Debug config*/
+            ConfigurationSettings.DEBUG_MODE = config.get(CATEGORY_GENERAL, ConfigurationSettings.DEBUG_MODE_CONFIGNAME, ConfigurationSettings.DEBUG_MODE_DEFAULT).getBoolean(ConfigurationSettings.DEBUG_MODE_DEFAULT);
+            
             /* Block configs */
             BlockIDs.ORE_ALLRONDIUM = config.getBlock(Strings.ORE_ALLRONDIUM_NAME, BlockIDs.ORE_ALLRONDIUM_DEFAULT).getInt(BlockIDs.ORE_ALLRONDIUM_DEFAULT);
             BlockIDs.STORAGE_BLOCKS = config.getBlock(Strings.STORAGE_BLOCKS_NAME, BlockIDs.STORAGE_BLOCKS_DEFAULT).getInt(BlockIDs.STORAGE_BLOCKS_DEFAULT);
             BlockIDs.GLASS_SUN_BLOCKER = config.getBlock(Strings.GLASS_SUN_BLOCKER_NAME, BlockIDs.GLASS_SUN_BLOCKER_DEFAULT).getInt(BlockIDs.GLASS_SUN_BLOCKER_DEFAULT);
             BlockIDs.PLANT_ROSE = config.getBlock(Strings.PLANT_ROSE_NAME, BlockIDs.PLANT_ROSE_DEFAULT).getInt(BlockIDs.PLANT_ROSE_DEFAULT);
-            BlockIDs.MULTI_FURNACE = config.getBlock(Strings.MULTI_FURNACE_NAME, BlockIDs.MULTI_FURNACE_DEFAULT).getInt(BlockIDs.MULTI_FURNACE_DEFAULT);
+            BlockIDs.MULTI_FURNACE_CORE = config.getBlock(Strings.MULTI_FURNACE_CORE_NAME, BlockIDs.MULTI_FURNACE_CORE_DEFAULT).getInt(BlockIDs.MULTI_FURNACE_CORE_DEFAULT);
+            BlockIDs.MULTI_FURNACE_EXTENSION = config.getBlock(Strings.MULTI_FURNACE_EXTENSION_NAME, BlockIDs.MULTI_FURNACE_EXTENSION_DEFAULT).getInt(BlockIDs.MULTI_FURNACE_EXTENSION_DEFAULT);
             
             /* Item configs */
             ItemIDs.GEM_ALLRONDIUM = config.getItem(Strings.GEM_ALLRONDIUM_NAME, ItemIDs.GEM_ALLRONDIUM_DEFAULT).getInt(ItemIDs.GEM_ALLRONDIUM_DEFAULT);
