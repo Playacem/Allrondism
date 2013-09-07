@@ -10,7 +10,7 @@ package playacem.allrondism.tileentity;
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public interface IExtensionSlot {
+public interface IExtensionSlot extends ICoreExtension{
 
     /** return the type of slot here */
     public EnumSlotType getSlotType();
