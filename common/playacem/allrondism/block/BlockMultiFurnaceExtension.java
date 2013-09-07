@@ -69,15 +69,14 @@ public class BlockMultiFurnaceExtension extends BlockContainerAM {
         
         icons[ExtensionData.DUMMY_META] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "storageBlockCobble");
         for (int i = 1; i < icons.length; i++) {
-            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase()
-                    + ":" + getUnlocalizedName2() + names[i]);
+            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + getUnlocalizedName2() + names[i]);
         }
     }
 
     @Override
     public Icon getIcon(int side, int meta) {
 
-        return icons[Math.min(meta, icons.length)];
+        return icons[Math.min(meta, icons.length - 1)];
     }
     
     @Override
@@ -95,8 +94,7 @@ public class BlockMultiFurnaceExtension extends BlockContainerAM {
     }
     
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-    {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if(player.isSneaking())
             return false;
         
@@ -104,7 +102,10 @@ public class BlockMultiFurnaceExtension extends BlockContainerAM {
         
         if(extension != null && extension.getCore() != null) {
             TileEntityMultiFurnaceCore core = extension.getCore();
-            return core.getBlockType().onBlockActivated(world, core.xCoord, core.yCoord, core.zCoord, player, par6, par7, par8, par9);
+            // This is a very dirty way to fix a NPE(The TEs that "add Slots" are always there(possible fix: removing the tileEntity on invalidation?)
+            try { return core.getBlockType().onBlockActivated(world, core.xCoord, core.yCoord, core.zCoord, player, par6, par7, par8, par9);
+            }catch(Exception e) { return false; }
+            
         }
         
         return true;
