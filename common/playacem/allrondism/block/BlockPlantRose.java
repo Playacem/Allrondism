@@ -5,6 +5,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import playacem.allrondism.Allrondism;
+import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
 import net.minecraft.block.Block;
@@ -14,10 +15,8 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import static net.minecraftforge.common.EnumPlantType.*;
 
 /**
  * Allrondism
@@ -28,7 +27,7 @@ import static net.minecraftforge.common.EnumPlantType.*;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * 
  */
-public class BlockPlantRose extends BlockFlower implements IPlantable {
+public class BlockPlantRose extends BlockFlower {
 
     private String[] names = Strings.ROSES;
     private Icon[] icons = new Icon[names.length];
@@ -60,7 +59,7 @@ public class BlockPlantRose extends BlockFlower implements IPlantable {
         return canThisPlantGrowOnThisBlockID(id);
     }
     
-    
+    @Override
     public boolean canThisPlantGrowOnThisBlockID(int id) {
         return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.tilledField.blockID || id == ModBlocks.storageBlock.blockID;
     }
@@ -71,6 +70,7 @@ public class BlockPlantRose extends BlockFlower implements IPlantable {
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor blockID
      */
+    @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, int neighborBlockID) {
         super.onNeighborBlockChange(world, x, y, z, neighborBlockID);
         this.checkRoseChange(world, x, y, z);
@@ -79,44 +79,35 @@ public class BlockPlantRose extends BlockFlower implements IPlantable {
     /**
      * Ticks the block if it's been scheduled
      */
+    @Override
     public void updateTick(World world, int x, int y, int z, Random par5Random) {
         this.checkRoseChange(world, x, y, z);
     }
-    
-    protected void checkRoseChange(World world, int x, int y, int z) {
+
+    private void checkRoseChange(World world, int x, int y, int z) {
         int lightVal = world.getBlockLightValue(x, y, z);
+        int oldMetadata = world.getBlockMetadata(x, y, z);
         int newMetadata = 0;
         
-        if (!this.canBlockStay(world, x, y, z)) {
-            this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-            world.setBlockToAir(x, y, z);
-        }else {
+        /*if (!this.canBlockStay(world, x, y, z)) {
+            LogHelper.debug("Rose cannot stay, dropping it!",  true);
+            //this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+            //world.setBlockToAir(x, y, z);
+        }*/
+        if(this.canBlockStay(world, x, y, z)) {
             if(lightVal > 7) { newMetadata = 1; }
-            /** Flag 1 will cause a block update. 
-             *  Flag 2 will send the change to clients (you almost always want this). 
-             *  Flag 4 prevents the block from being re-rendered, if this is a client world. 
-             *  Flags can be added together. */
-            world.setBlockMetadataWithNotify(x, y, z, newMetadata , 3); 
+            if(oldMetadata != newMetadata) {
+            
+                /** Flag 1 will cause a block update. 
+                 *  Flag 2 will send the change to clients (you almost always want this). 
+                 *  Flag 4 prevents the block from being re-rendered, if this is a client world. 
+                 *  Flags can be added together. */
+                world.setBlockMetadataWithNotify(x, y, z, newMetadata , 3);
+            }
         }
     }
     
-    /* IPlantable stuff */
     
-    @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z) {
-        return Plains;
-    }
-
-    @Override
-    public int getPlantID(World world, int x, int y, int z) {
-        return blockID;
-    }
-
-    @Override
-    public int getPlantMetadata(World world, int x, int y, int z) {
-        return world.getBlockMetadata(x, y, z);
-    }
-
     /* Render relevant stuff */
     
     /**
@@ -147,10 +138,22 @@ public class BlockPlantRose extends BlockFlower implements IPlantable {
     }
     
     /* Game and texture relevant stuff */
+    @Override 
+    public int idDropped(int par1, Random random, int zero) {
+        return blockID;   
+    }
 
     @Override
     public int damageDropped(int meta) {
         return meta;
+    }
+    
+    public int quantityDropped(Random random) {
+        short f = 0;
+        int i = random.nextInt(100);
+        LogHelper.debug("Random int for dropping Roses: " + i + ", drops bonus: " + (i < 25 ? "yes" : "no"));
+        if(i < 25) f = 1;
+        return 1 + f;
     }
     
     @SideOnly(Side.CLIENT)
