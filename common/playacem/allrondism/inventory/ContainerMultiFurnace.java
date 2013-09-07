@@ -22,6 +22,8 @@ public class ContainerMultiFurnace extends Container {
     public ContainerMultiFurnace(InventoryPlayer playerInventory, TileEntityMultiFurnaceCore tileEntity) {
         this.tileCore = tileEntity;
         
+        //TODO add Slots for the furnace
+        
         bindPlayerInventory(playerInventory);
     }
 
