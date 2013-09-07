@@ -41,6 +41,10 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     private float itemBurnTimeFactor = 1.0F;
     private float cookDurationFactor = 1.0F;
     
+    public int bonusSlotsInput = 0;
+    public int bonusSlotsFuel = 0;
+    public int bonusSlotsOutput = 0;
+    
     private boolean isValidMultiblock = false;
      
     public TileEntityMultiFurnaceCore() {
@@ -75,6 +79,10 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         
         revertDummies(sizeMultiblock);
         sizeMultiblock = 0;
+        
+        bonusSlotsInput = 0;
+        bonusSlotsFuel = 0;
+        bonusSlotsOutput = 0;
     }
     
     // size = 3 --> 3x3x3
@@ -148,6 +156,26 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                         continue;
                     if(UtilBlock.isValidBlock(worldObj, x, y, z, ModBlocks.storageBlock.blockID, 1))
                         worldObj.setBlock(x, y, z, ModBlocks.multiFurnaceExtension.blockID, ExtensionData.DUMMY_META, 3);
+                    
+                    try {
+                        IExtensionSlot te = (IExtensionSlot)worldObj.getBlockTileEntity(x, y, z);
+                        EnumSlotType type = te.getSlotType();
+                        int amount = te.getAmountAdditionalSlots();
+                        switch(type) {
+                            case INPUT:
+                                bonusSlotsInput += amount;
+                                Math.min(bonusSlotsInput, inputSlots.length - 1);
+                                break;
+                            case FUEL:
+                                bonusSlotsFuel += amount;
+                                Math.min(bonusSlotsFuel, fuelSlots.length - 1);
+                                break;
+                            case OUTPUT:
+                                bonusSlotsOutput += amount;
+                                Math.min(bonusSlotsOutput, outputSlots.length - 1);
+                                break;
+                        }
+                    }catch(Exception e) {}
                     
                     ICoreExtension extensionTE = (ICoreExtension)worldObj.getBlockTileEntity(x, y, z);
                     extensionTE.setCore(this);
