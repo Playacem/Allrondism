@@ -37,6 +37,9 @@ public class Strings {
     /* TileEntity name constants */
     public static final String TE_MULTI_FURNACE_CORE_NAME = "tileMultiFurnaceCore";
     public static final String TE_MULTI_FURNACE_DUMMY_NAME = "tileMultiFurnaceDummy";
+    public static final String TE_MULTI_FURNACE_SLOT_INPUT = "tileMultiFurnaceSlotInput";
+    public static final String TE_MULTI_FURNACE_SLOT_FUEL = "tileMultiFurnaceSlotFuel";
+    public static final String TE_MULTI_FURNACE_SLOT_OUTPUT = "tileMultiFurnaceSlotOutput";
     
     /* Container releated constants */
     public static final String CONTAINER_MULTI_FURNACE_NAME = "container." + MULTI_FURNACE_CORE_NAME;
