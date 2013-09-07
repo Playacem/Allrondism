@@ -44,8 +44,7 @@ public class ItemBlockExtended extends ItemBlock {
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1)
-                + names[Math.min(stack.getItemDamage(), names.length - 1)];
+        return this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + names[Math.min(stack.getItemDamage(), names.length - 1)];
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
