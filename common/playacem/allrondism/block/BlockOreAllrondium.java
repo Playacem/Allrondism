@@ -3,6 +3,7 @@ package playacem.allrondism.block;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.world.World;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Strings;
 
@@ -28,4 +29,9 @@ public class BlockOreAllrondium extends BlockAM {
         return ItemIDs.GEM_ALLRONDIUM;
     }
 
+    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int par5, float par6, int par7) {
+        super.dropBlockAsItemWithChance(world, x, y, z, par5, par6, par7);
+        int xp = 45 + world.rand.nextInt(45);
+        this.dropXpOnBlockBreak(world, x, y, z, xp);
+    }
 }
