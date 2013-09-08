@@ -24,6 +24,10 @@ public class ContainerMultiFurnace extends Container {
         
         //TODO add Slots for the furnace
         
+        //Inputs
+        
+        
+        
         bindPlayerInventory(playerInventory);
     }
 
