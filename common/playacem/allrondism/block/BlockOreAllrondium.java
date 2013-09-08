@@ -31,7 +31,10 @@ public class BlockOreAllrondium extends BlockAM {
 
     public void dropBlockAsItemWithChance(World world, int x, int y, int z, int par5, float par6, int par7) {
         super.dropBlockAsItemWithChance(world, x, y, z, par5, par6, par7);
-        int xp = 45 + world.rand.nextInt(45);
-        this.dropXpOnBlockBreak(world, x, y, z, xp);
+        if(this.idDropped(par5, world.rand, par7) != this.blockID) {
+            int xp = 45 + world.rand.nextInt(45);
+            this.dropXpOnBlockBreak(world, x, y, z, xp);
+        }
+        
     }
 }
