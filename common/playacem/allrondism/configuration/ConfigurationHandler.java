@@ -56,6 +56,7 @@ public class ConfigurationHandler {
             ConfigurationSettings.DOUBLING_SILVER = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_SILVER_CONFIGNAME, ConfigurationSettings.DOUBLING_SILVER_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_SILVER_DEFAULT);
             ConfigurationSettings.DOUBLING_TIN = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_TIN_CONFIGNAME, ConfigurationSettings.DOUBLING_TIN_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_TIN_DEFAULT);
             ConfigurationSettings.DOUBLING_STEEL = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_STEEL_CONFIGNAME, ConfigurationSettings.DOUBLING_STEEL_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_STEEL_DEFAULT);
+            ConfigurationSettings.DOUBLING_HSLA = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_HSLA_CONFIGNAME, ConfigurationSettings.DOUBLING_HSLA_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_HSLA_DEFAULT);
             
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");

@@ -41,4 +41,8 @@ public class ConfigurationSettings {
     public static boolean DOUBLING_STEEL;
     public static final String DOUBLING_STEEL_CONFIGNAME = "doublingRecipes.enable_steel";
     public static final boolean DOUBLING_STEEL_DEFAULT = true;
+    
+    public static boolean DOUBLING_HSLA;
+    public static final String DOUBLING_HSLA_CONFIGNAME = "doublingRecipes.enable_hsla";
+    public static final boolean DOUBLING_HSLA_DEFAULT = true;
 }

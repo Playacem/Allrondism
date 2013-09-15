@@ -121,6 +121,9 @@ public class ModItems {
            UtilRecipes.addDoubleMetalRecipe("Steel", new ItemStack(Item.coal, 1, 0), 7); 
         }
         
+        if(ConfigurationSettings.DOUBLING_HSLA) {
+            UtilRecipes.addDoubleRecipe("HSLA", new ItemStack(Item.coal, 1, 0), 7, Item.gunpowder);
+        }
         
     }
     
