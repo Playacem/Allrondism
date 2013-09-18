@@ -11,6 +11,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import playacem.allrondism.block.ModBlocks;
 import playacem.allrondism.configuration.ConfigurationHandler;
 import playacem.allrondism.core.handlers.FuelHandler;
+import playacem.allrondism.core.handlers.ImageHandler;
 import playacem.allrondism.core.proxy.CommonProxy;
 import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.creativetab.CreativeTabAM;
@@ -61,6 +62,9 @@ public class Allrondism {
 
         // Initialize the configuration
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME + ".cfg"));
+        
+        // Does some image magic
+        ImageHandler.init();
 
         // Register the Spawn Handler
         proxy.registerSpawnHandler();
