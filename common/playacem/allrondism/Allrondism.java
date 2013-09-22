@@ -63,7 +63,7 @@ public class Allrondism {
         // Initialize the configuration
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME + ".cfg"));
         
-        // Does some image magic
+        // Does some image magic, creates merged images.
         ImageHandler.init();
 
         // Register the Spawn Handler
