@@ -97,7 +97,7 @@ public class ComparableMergableImage {
     private String getErrorText(String phase) {
         StringBuilder sb = new StringBuilder();
         
-        sb.append(String.format("Error during %s phase! File(s) not found! Used Filenames: Background: %s, Overlay: %s", phase, this.bg, this.overlay));
+        sb.append(String.format("Error during %s phase! File(s) not found! Used Filenames: Background: %s.png, Overlay: %s.png", phase, this.bg, this.overlay));
         
         return sb.toString();
     }
