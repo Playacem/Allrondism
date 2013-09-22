@@ -28,10 +28,23 @@ public class ImageHandler {
         // TODO add real File names;
         // TODO add system to store hashcodes
         
-        String baseFileName = Strings.STORAGE_BLOCKS_NAME + Strings.STORAGE_BLOCKS[1];
+        String storageCobbleFileName = Strings.STORAGE_BLOCKS_NAME + Strings.STORAGE_BLOCKS[1]; // storageBlockCobble
         
-        multiFurnaceSlotInput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), baseFileName, "TODO");
-        multiFurnaceSlotFuel = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), baseFileName, "TODO");
-        multiFurnaceSlotOutput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), baseFileName, "TODO");
+        multiFurnaceSlotInput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
+        multiFurnaceSlotFuel = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
+        multiFurnaceSlotOutput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
+        
+        /*
+         * For later reference: 
+         * 
+         *  mods/allrondism/textures/blocks/multiFurnaceExtensionSlotInput.png
+         *  mods/allrondism/textures/blocks/multiFurnaceExtensionSlotFuel.png
+         *  mods/allrondism/textures/blocks/multiFurnaceExtensionSlotOutput.png
+         *   
+         *  mods/allrondism/textures/blocks/multiFurnaceCoreFront_Unlit.png
+         *  mods/allrondism/textures/blocks/multiFurnaceCoreFront_Lit.png
+         *  
+         *  (Textures i still need)
+         */
     }
 }
