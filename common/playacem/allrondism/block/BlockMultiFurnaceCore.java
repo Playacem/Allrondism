@@ -51,8 +51,8 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
     @Override
     public void registerIcons(IconRegister iconReg) {
         blockIcon = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "storageBlockCobble");
-        faceIconUnlit = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "multiFurnaceCore_front_unlit");
-        faceIconLit = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "multiFurnaceCore_front_lit");
+        faceIconUnlit = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "multiFurnaceCoreFront_Unlit");
+        faceIconLit = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "multiFurnaceCoreFront_Lit");
     }
 
     @Override
