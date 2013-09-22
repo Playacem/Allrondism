@@ -28,8 +28,8 @@ public class ComparableMergableImage {
     private File overlayFile;
     public String bg;
     public String overlay;
-    private HashCode checksumBackground;
-    private HashCode checksumOverlay;
+    private HashCode hashBackground;
+    private HashCode hashOverlay;
     
     
     public ComparableMergableImage( File path, String background, String overlay) {
@@ -41,10 +41,10 @@ public class ComparableMergableImage {
         img = new File(path, this.bg + ".png");
         overlayFile = new File(path, this.overlay + ".png");
         try {
-            this.setChecksumBG(Files.hash(img, Hashing.crc32()));
-            this.setChecksumOverlay(Files.hash(overlayFile , Hashing.crc32()));
+            this.setHashBG(Files.hash(img, Hashing.crc32()));
+            this.setHashOverlay(Files.hash(overlayFile , Hashing.crc32()));
         } catch (IOException e) {
-            LogHelper.alert("Error during checksum phase!");
+            LogHelper.alert(getErrorText("hashing"));
         }
         
     }
@@ -58,7 +58,7 @@ public class ComparableMergableImage {
             image = ImageIO.read(img);
             overlay = ImageIO.read(overlayFile);
         } catch (IOException e) {
-            LogHelper.alert("Error during reading phase!"); 
+            LogHelper.alert(getErrorText("reading")); 
         }
         
         
@@ -74,25 +74,32 @@ public class ComparableMergableImage {
         try {
             ImageIO.write(combined, "PNG", new File(path, outputName + ".png"));
         } catch (IOException e) {
-            LogHelper.alert("Error during writing phase!");
+            LogHelper.alert(getErrorText("writing"));
         }
     }
 
-    public HashCode getChecksumBG() {
-        return checksumBackground;
+    public HashCode getHashBG() {
+        return hashBackground;
     }
 
-    public void setChecksumBG(HashCode checksumBackground) {
-        this.checksumBackground = checksumBackground;
+    public void setHashBG(HashCode hashBackground) {
+        this.hashBackground = hashBackground;
     }
 
-    public HashCode getChecksumOverlay() {
-        return checksumOverlay;
+    public HashCode getHashOverlay() {
+        return hashOverlay;
     }
 
-    public void setChecksumOverlay(HashCode checksumOverlay) {
-        this.checksumOverlay = checksumOverlay;
+    public void setHashOverlay(HashCode hashOverlay) {
+        this.hashOverlay = hashOverlay;
     }
 
+    private String getErrorText(String phase) {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append(String.format("Error during %s phase! File(s) not found! Used Filenames: Background: %s, Overlay: %s", phase, this.bg, this.overlay));
+        
+        return sb.toString();
+    }
     
 }
