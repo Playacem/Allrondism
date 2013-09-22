@@ -16,6 +16,8 @@ public class Textures {
     public static final String ARMOR_SHEET_LOCATION = "/mods/allrondism/textures/armor/";
     public static final String GUI_SHEET_LOCATION = "/mods/allrondism/textures/gui/";
     public static final String EFFECTS_LOCATION = "/mods/allrondism/textures/effects/";
+    public static final String BLOCKS_LOCATION = "/mods/allrondism/textures/blocks/";
+    public static final String ITEMS_LOCATION = "/mods/allrondism/textures/items/";
 
     // Item/Block sprite sheets
     public static final String VANILLA_ITEM_TEXTURE_SHEET = "/gui/items.png";
