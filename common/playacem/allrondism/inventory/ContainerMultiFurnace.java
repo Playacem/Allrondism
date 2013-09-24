@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.SlotFurnace;
 
 /**
  * Allrondism
@@ -22,11 +23,22 @@ public class ContainerMultiFurnace extends Container {
     public ContainerMultiFurnace(InventoryPlayer playerInventory, TileEntityMultiFurnaceCore tileEntity) {
         this.tileCore = tileEntity;
         
-        //TODO add Slots for the furnace
+        //TODO add Slots coordinates
         
-        //Inputs
+        //Input Slots
+        for(int i = 0; i < tileCore.inputSlots.length; ++i) {
+            addSlotToContainer(new Slot(tileCore, tileCore.inputSlots[i], 21 + 16 * i, 17)); 
+        }
         
+        //Fuel Slots
+        for(int i = 0; i < tileCore.fuelSlots.length; ++i) {
+            addSlotToContainer(new Slot(tileCore, tileCore.fuelSlots[i], 21 + 16 * i, 53)); 
+        }
         
+        //Output Slots
+        for(int i = 0; i < tileCore.outputSlots.length; ++i) {
+            addSlotToContainer(new SlotFurnace(playerInventory.player, tileCore, tileCore.outputSlots[i], 108 + 16 * i, 35)); 
+        }
         
         bindPlayerInventory(playerInventory);
     }
