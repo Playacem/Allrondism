@@ -43,8 +43,7 @@ public class BlockStorageBlock extends Block {
     @Override
     public void registerIcons(IconRegister iconReg) {
         for (int i = 0; i < icons.length; i++) {
-            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase()
-                    + ":" + getUnlocalizedName2() + names[i]);
+            icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + getUnlocalizedName2() + names[i]);
         }
     }
 
