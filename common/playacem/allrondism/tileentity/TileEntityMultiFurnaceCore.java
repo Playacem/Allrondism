@@ -26,9 +26,9 @@ import net.minecraftforge.common.ForgeDirection;
 public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventory {
 
     private ItemStack[] inventory;
-    private static int[] inputSlots = {0, 1, 2};
-    private static int[] fuelSlots = {3, 4, 5};
-    private static int[] outputSlots = {6, 7, 8};
+    public int[] inputSlots = {0, 1, 2};
+    public int[] fuelSlots = {3, 4, 5};
+    public int[] outputSlots = {6, 7, 8};
     
     public static final int INVENTORY_SIZE = 9;
     public int sizeMultiblock = 0;
