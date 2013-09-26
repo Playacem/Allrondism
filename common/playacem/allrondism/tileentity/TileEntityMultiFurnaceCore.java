@@ -85,8 +85,9 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         bonusSlotsOutput = 0;
     }
     
-    // size = 3 --> 3x3x3
+    // size = 3 --> 3x3x3 usw.
     public boolean checkIfProperlyFormed(int size) {
+        
         int maxDepth = size - 1;
         int max = (size - 1) / 2;
         int negativeMax = max * -1;
@@ -135,6 +136,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     }
     
     public void convertDummies(int size) {
+        
         int maxDepth = size - 1;
         int max = (size - 1) / 2;
         int negativeMax = max * -1;
@@ -187,6 +189,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     }
     
     private void revertDummies(int size) {
+        
         int maxDepth = size - 1;
         int max = (size - 1) / 2;
         int negativeMax = max * -1;
@@ -220,6 +223,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     
     @Override
     public void updateEntity() {
+        
         if(!isValidMultiblock)
             return;
         
@@ -282,11 +286,13 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     /* IInventory stuff */
     @Override
     public int getSizeInventory() {
+        
         return inventory.length;
     }
 
     @Override
     public ItemStack getStackInSlot(int slot) {
+        
         return inventory[slot];
     }
 
@@ -309,6 +315,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public ItemStack getStackInSlotOnClosing(int slot) {
+        
         ItemStack itemStack = getStackInSlot(slot);
         if(itemStack != null) {
             inventory[slot] = null;
@@ -318,6 +325,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemstack) {
+        
         inventory[slot] = itemstack;
         
         if(itemstack != null && itemstack.stackSize > this.getInventoryStackLimit())
@@ -326,16 +334,19 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public String getInvName() {
+        
         return this.hasCustomName() ? this.getCustomName() : Strings.CONTAINER_MULTI_FURNACE_NAME;
     }
 
     @Override
     public boolean isInvNameLocalized() {
+        
         return this.hasCustomName();
     }
 
     @Override
     public int getInventoryStackLimit() {
+        
         return 64;
     }
 
@@ -348,6 +359,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     @Override
     public boolean isStackValidForSlot(int slot, ItemStack itemstack) {
+        
         for(int i = 0; i < outputSlots.length; ++i) {
             if( outputSlots[i] == slot) return false;
         }
@@ -363,26 +375,38 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     /* ISidedInventory stuff */
     @Override
     public int[] getAccessibleSlotsFromSide(int side) {
+        
         return null;
     }
 
     @Override
     public boolean canInsertItem(int slot, ItemStack itemstack, int j) {
+        
         return false;
     }
 
     @Override
     public boolean canExtractItem(int slot, ItemStack itemstack, int j) {
+        
         return false;
     }
 
     /* NBT stuff */
     @Override
     public void readFromNBT(NBTTagCompound compound) {
+        
         super.readFromNBT(compound);
         
         isValidMultiblock = compound.getBoolean("isValidMultiblock");
         sizeMultiblock = compound.getByte("sizeMultiblock");
+        
+        furnaceBurnTime = compound.getShort("BurnTime");
+        furnaceCookTime = compound.getShort("CookTime");
+        currentItemBurnTime = TileEntityFurnace.getItemBurnTime(inventory[fuelSlots[0]]);
+        
+        bonusSlotsInput = compound.getShort("bonusSlotsInput");
+        bonusSlotsFuel = compound.getShort("bonusSlotsFuel");
+        bonusSlotsOutput = compound.getShort("bonusSlotsOutput");
         
         NBTTagList itemsTag = compound.getTagList("Items");
         
@@ -394,13 +418,12 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                 inventory[slot] = ItemStack.loadItemStackFromNBT(slotTag);    
         }
         
-        furnaceBurnTime = compound.getShort("BurnTime");
-        furnaceCookTime = compound.getShort("CookTime");
-        currentItemBurnTime = TileEntityFurnace.getItemBurnTime(inventory[fuelSlots[0]]);
+        
     }
     
     @Override
     public void writeToNBT(NBTTagCompound compound) {
+        
         super.writeToNBT(compound);
         
         compound.setBoolean("isValidMultiblock", isValidMultiblock);
@@ -408,6 +431,11 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         
         compound.setShort("BurnTime", (short)furnaceBurnTime);
         compound.setShort("CookTime", (short)furnaceCookTime);
+        
+        compound.setShort("bonusSlotsInput", (short)bonusSlotsInput);
+        compound.setShort("bonusSlotsFuel", (short)bonusSlotsFuel);
+        compound.setShort("bonusSlotsOutput", (short)bonusSlotsOutput);
+        
         NBTTagList itemsList = new NBTTagList();
         
         for(int i = 0; i < inventory.length; i++) {
