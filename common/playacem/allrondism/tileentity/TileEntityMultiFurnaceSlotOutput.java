@@ -12,7 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class TileEntityMultiFurnaceSlotOutput extends TileEntityMultiFurnaceDummy implements IExtensionSlot {
 
-    TileEntityMultiFurnaceCore tileEntityCore;
+    TileEntityMultiFurnaceCore tileEntityCore = null;
     int coreX;
     int coreY;
     int coreZ;

@@ -16,7 +16,7 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInventory, ICoreExtension {
     
-    TileEntityMultiFurnaceCore tileEntityCore;
+    TileEntityMultiFurnaceCore tileEntityCore = null;
     int coreX;
     int coreY;
     int coreZ;
