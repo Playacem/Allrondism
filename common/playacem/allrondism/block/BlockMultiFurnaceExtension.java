@@ -35,6 +35,7 @@ public class BlockMultiFurnaceExtension extends BlockContainerAM {
     private Icon[] icons = new Icon[names.length];
     
     public BlockMultiFurnaceExtension(int id) {
+        
         super(id, Material.rock);
         setStepSound(soundStoneFootstep);
         setUnlocalizedName(Strings.MULTI_FURNACE_EXTENSION_NAME);
@@ -49,6 +50,7 @@ public class BlockMultiFurnaceExtension extends BlockContainerAM {
 
     @Override
     public int idDropped(int meta, Random random, int zero) {
+        
         if(meta == ExtensionData.DUMMY_META) {
             return ModBlocks.storageBlock.blockID;
         }
@@ -57,6 +59,7 @@ public class BlockMultiFurnaceExtension extends BlockContainerAM {
     
     @Override
     public int damageDropped(int meta) {
+        
         if(meta == ExtensionData.DUMMY_META) {
             return 1;
         }

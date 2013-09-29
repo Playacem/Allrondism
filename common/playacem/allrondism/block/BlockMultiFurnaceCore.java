@@ -33,8 +33,9 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
     private Icon faceIconUnlit;
     @SideOnly(Side.CLIENT)
     private Icon faceIconLit;
-    
+
     public BlockMultiFurnaceCore(int id) {
+
         super(id, Material.rock);
         setHardness(3.0F);
         setResistance(10.0F);
@@ -44,12 +45,14 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
     @Override
     public int damageDropped(int meta) {
+
         return 0;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconReg) {
+
         blockIcon = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "storageBlockCobble");
         faceIconUnlit = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "multiFurnaceCoreFront_Unlit");
         faceIconLit = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + "multiFurnaceCoreFront_Lit");
@@ -60,45 +63,47 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
         boolean isActive = meta > 5;
         int facing = meta;
-        
+
         return (side == facing ? (isActive ? faceIconLit : faceIconUnlit) : blockIcon);
     }
-    
+
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
-    {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if(player.isSneaking())
             return false;
-        
+
         TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore)world.getBlockTileEntity(x, y, z);
-        
+
         if(tileCore != null) {
+
             // Determine if the Multiblock is currently known to be valid
             if(!tileCore.getIsValid()) {
-                
+
                 for(int i = 9; i >= 3; --i) {
+
                     if(i % 2 == 0)
                         continue;
-                    
-                    if(!tileCore.checkIfProperlyFormed(i)) {
-                        continue;
-                    }
-                    tileCore.convertDummies(i);
-                    if(world.isRemote)
-                        player.sendChatToPlayer("Multi-Furnace Created!");
+
+                    if(tileCore.checkIfProperlyFormed(i)) {
+                        
+                        tileCore.convertDummies(i);
+                        if(world.isRemote) 
+                            player.sendChatToPlayer("Multi-Furnace Created!");
+                        break;     
+                    }   
                 }
             }
-            
+
             // Check if the multi-block structure has been formed.
             if(tileCore.getIsValid()) {
                 player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
             }
-                
+
         }
-        
+
         return true;
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World world) {
 
@@ -107,30 +112,32 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6 ) {
+
         TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore)world.getBlockTileEntity(x, y, z);
-        
+
         if(tileCore != null) {
             tileCore.invalidateMultiBlock();
             dropItems(world, x, y, z);
         }
         super.breakBlock(world, x, y, z, par5, par6);
     }
-    
+
     private void dropItems(World world, int x, int y, int z) {
+
         Random rand = new Random();
-        
+
         TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore)world.getBlockTileEntity(x, y, z);
         if(tileCore == null)
             return;
-    
+
         for(int slot = 0; slot < tileCore.getSizeInventory(); slot++) {
             ItemStack item = tileCore.getStackInSlot(slot);
-            
+
             if(item != null && item.stackSize > 0) {
                 float rx = rand.nextFloat() * 0.8f + 0.1f;
                 float ry = rand.nextFloat() * 0.8f + 0.1f;
                 float rz = rand.nextFloat() * 0.8f + 0.1f;
-                
+
                 EntityItem entityItem = new EntityItem(world, x + rx, y + ry, z + rz, item.copy());
                 world.spawnEntityInWorld(entityItem);
                 item.stackSize = 0;
