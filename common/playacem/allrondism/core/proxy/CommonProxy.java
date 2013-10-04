@@ -64,14 +64,7 @@ public class CommonProxy implements IGuiHandler {
 
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        switch(ID) {
-            case GuiIDs.MULTI_FURNACE:
-                TileEntityMultiFurnaceCore tileMultiFurnace = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
-                return new GuiMultiFurnace(player.inventory, tileMultiFurnace);
-            default:
-                LogHelper.alert("Invalid Gui ID!(Client Side)");
-                break;
-        }
+        
         return null;
     }
 }
