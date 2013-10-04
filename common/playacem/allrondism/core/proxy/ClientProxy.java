@@ -26,6 +26,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerRenderers() {
+
         // Loading textures
         // MinecraftForgeClient.preloadTexture(ITEMS_PNG);
         // MinecraftForgeClient.preloadTexture(BLOCKS_PNG);
@@ -33,16 +34,18 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerSoundHandler() {
+
         MinecraftForge.EVENT_BUS.register(new SoundHandler());
     }
-    
+
     @Override
     public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        
-        switch(ID) {
+
+        switch (ID) {
             case GuiIDs.MULTI_FURNACE:
                 TileEntityMultiFurnaceCore tileMultiFurnace = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
-                return new GuiMultiFurnace(player.inventory, tileMultiFurnace);
+                if (tileMultiFurnace != null)
+                    return new GuiMultiFurnace(player.inventory, tileMultiFurnace);
             default:
                 LogHelper.alert("Invalid Gui ID!(Client Side)");
                 break;
