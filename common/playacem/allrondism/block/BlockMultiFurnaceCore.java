@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import playacem.allrondism.Allrondism;
 import playacem.allrondism.core.util.LogHelper;
@@ -50,6 +51,12 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
         return 0;
     }
 
+    @Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z) {
+
+        return ((world.getBlockMetadata(x, y, z) > 5) ? 15 : 0); 
+    }
+    
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconReg) {
@@ -65,7 +72,7 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
         boolean isActive = meta > 5;
         int facing = isActive ? meta - 4 : meta;
 
-        return side == facing ? isActive ? faceIconLit : faceIconUnlit : blockIcon;
+        return (side == getSideFromFacing(facing) ? (isActive ? faceIconLit : faceIconUnlit ) : blockIcon);
     }
 
     @Override
@@ -78,33 +85,34 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
         if (tileCore != null) {
 
-            LogHelper.debug("oBA(Side: " + (world.isRemote ? "Client" : "Server") + "): Is valid? " + (tileCore.getIsValid() ? "yes" : "no"));
-            // Determine if the Multiblock is currently known to be valid
+            LogHelper.debug("oBA (Side: " + (world.isRemote ? "Client" : "Server") + "): Is valid? " + (tileCore.getIsValid() ? "yes" : "no"));
             
-                if (!tileCore.getIsValid()) {
+            // Determine if the Multiblock is currently known to be valid
+            if (!tileCore.getIsValid()) {
 
-                    for (int i = 9; i >= 3; --i) {
+                for (int i = 9; i >= 3; --i) {
 
-                        if (i % 2 == 0) {
-                            continue;
-                        }
+                    if (i % 2 == 0) 
+                        continue;
+                    
 
-                        if (tileCore.checkIfProperlyFormed(i)) {
+                    if (tileCore.checkIfProperlyFormed(i)) {
 
-                            tileCore.convertDummies(i);
+                        tileCore.convertDummies(i);
+                        if(world.isRemote)
                             player.sendChatToPlayer("Multi-Furnace Created!");
-                            
-                            break;
-                        }
+
+                        break;
                     }
                 }
-
-                // Check if the multi-block structure has been formed.
-                if (tileCore.getIsValid()) {
-                    player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
-                }
-
+                return false; // now you can place a block if a check failed.
             }
+
+            // Check if the multi-block structure has been formed.
+            if (tileCore.getIsValid()) 
+                player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
+        }
+
         return true;
     }
 
@@ -124,6 +132,26 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
             dropItems(world, x, y, z);
         }
         super.breakBlock(world, x, y, z, par5, par6);
+    }
+
+    private static int getSideFromFacing(int facing) {
+
+        switch (facing) {
+            case 4: // WEST
+                return 4;
+
+            case 5: // EAST
+                return 5;
+
+            case 2: // NORTH
+                return 2;
+
+            case 3: // SOUTH
+                return 3;
+
+            default:
+                return 4;
+        }
     }
 
     private void dropItems(World world, int x, int y, int z) {
