@@ -2,13 +2,6 @@ package playacem.allrondism.block;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import playacem.allrondism.Allrondism;
-import playacem.allrondism.lib.GuiIDs;
-import playacem.allrondism.lib.Reference;
-import playacem.allrondism.lib.Strings;
-import playacem.allrondism.tileentity.TileEntityMultiFurnaceCore;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
@@ -17,6 +10,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import playacem.allrondism.Allrondism;
+import playacem.allrondism.core.util.LogHelper;
+import playacem.allrondism.lib.GuiIDs;
+import playacem.allrondism.lib.Reference;
+import playacem.allrondism.lib.Strings;
+import playacem.allrondism.tileentity.TileEntityMultiFurnaceCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Allrondism
@@ -62,45 +63,48 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
     public Icon getIcon(int side, int meta) {
 
         boolean isActive = meta > 5;
-        int facing = meta;
+        int facing = isActive ? meta - 4 : meta;
 
-        return (side == facing ? (isActive ? faceIconLit : faceIconUnlit) : blockIcon);
+        return side == facing ? isActive ? faceIconLit : faceIconUnlit : blockIcon;
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-        if(player.isSneaking())
+
+        if (player.isSneaking())
             return false;
 
-        TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore)world.getBlockTileEntity(x, y, z);
+        TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
 
-        if(tileCore != null) {
+        if (tileCore != null) {
 
+            LogHelper.debug("oBA(Side: " + (world.isRemote ? "Client" : "Server") + "): Is valid? " + (tileCore.getIsValid() ? "yes" : "no"));
             // Determine if the Multiblock is currently known to be valid
-            if(!tileCore.getIsValid()) {
+            
+                if (!tileCore.getIsValid()) {
 
-                for(int i = 9; i >= 3; --i) {
+                    for (int i = 9; i >= 3; --i) {
 
-                    if(i % 2 == 0)
-                        continue;
+                        if (i % 2 == 0) {
+                            continue;
+                        }
 
-                    if(tileCore.checkIfProperlyFormed(i)) {
-                        
-                        tileCore.convertDummies(i);
-                        if(world.isRemote) 
+                        if (tileCore.checkIfProperlyFormed(i)) {
+
+                            tileCore.convertDummies(i);
                             player.sendChatToPlayer("Multi-Furnace Created!");
-                        break;     
-                    }   
+                            
+                            break;
+                        }
+                    }
                 }
+
+                // Check if the multi-block structure has been formed.
+                if (tileCore.getIsValid()) {
+                    player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
+                }
+
             }
-
-            // Check if the multi-block structure has been formed.
-            if(tileCore.getIsValid()) {
-                player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
-            }
-
-        }
-
         return true;
     }
 
@@ -111,11 +115,11 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6 ) {
+    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
 
-        TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore)world.getBlockTileEntity(x, y, z);
+        TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
 
-        if(tileCore != null) {
+        if (tileCore != null) {
             tileCore.invalidateMultiBlock();
             dropItems(world, x, y, z);
         }
@@ -126,14 +130,14 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
         Random rand = new Random();
 
-        TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore)world.getBlockTileEntity(x, y, z);
-        if(tileCore == null)
+        TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
+        if (tileCore == null)
             return;
 
-        for(int slot = 0; slot < tileCore.getSizeInventory(); slot++) {
+        for (int slot = 0; slot < tileCore.getSizeInventory(); slot++) {
             ItemStack item = tileCore.getStackInSlot(slot);
 
-            if(item != null && item.stackSize > 0) {
+            if (item != null && item.stackSize > 0) {
                 float rx = rand.nextFloat() * 0.8f + 0.1f;
                 float ry = rand.nextFloat() * 0.8f + 0.1f;
                 float rz = rand.nextFloat() * 0.8f + 0.1f;
