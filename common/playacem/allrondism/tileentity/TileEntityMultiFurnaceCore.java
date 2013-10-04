@@ -67,7 +67,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
     public int getDirection() {
 
-        int metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+        int metadata = getBlockMetadata(); //worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
         return isActive() ? metadata - 4 : metadata;
     }
 
@@ -162,8 +162,11 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
                     if(horiz == 0 && vert == 0 && (depth == 0 || depth == maxDepth / 2))
                         continue;
-                    if(UtilBlock.isValidBlock(worldObj, x, y, z, ModBlocks.storageBlock.blockID, 1))
+                    if(UtilBlock.isValidBlock(worldObj, x, y, z, ModBlocks.storageBlock.blockID, 1)) {
                         worldObj.setBlock(x, y, z, ModBlocks.multiFurnaceExtension.blockID, ExtensionData.DUMMY_META, 3);
+                        worldObj.markBlockForUpdate(x, y, z);
+                    }
+                        
 
                     try {
                         IExtensionSlot te = (IExtensionSlot)worldObj.getBlockTileEntity(x, y, z);
@@ -221,6 +224,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                         continue;
 
                     worldObj.setBlock(x, y, z, ModBlocks.storageBlock.blockID, 1, 2);
+                    worldObj.markBlockForUpdate(x, y, z);
                 }
             }
         }

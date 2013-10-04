@@ -24,6 +24,7 @@ public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInvento
 
     @Override
     public void setCore(TileEntityMultiFurnaceCore core) {
+        
         coreX = core.xCoord;
         coreY = core.yCoord;
         coreZ = core.zCoord;
@@ -32,6 +33,7 @@ public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInvento
     
     @Override
     public TileEntityMultiFurnaceCore getCore() {
+        
         if(tileEntityCore == null) {
             tileEntityCore = (TileEntityMultiFurnaceCore)worldObj.getBlockTileEntity(coreX, coreY, coreZ);
         }
