@@ -85,7 +85,7 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
         if (tileCore != null) {
 
-            LogHelper.debug("oBA (Side: " + (world.isRemote ? "Client" : "Server") + "): Is valid? " + (tileCore.getIsValid() ? "yes" : "no"));
+            LogHelper.debug("oBA (Side: " + (world.isRemote ? "Client" : "Server") + "): Is valid? " + (tileCore.getIsValid() ? "yes" : "no") + " [SizeSaved:] " + tileCore.sizeMultiblock);
             
             // Determine if the Multiblock is currently known to be valid
             if (!tileCore.getIsValid()) {
@@ -94,20 +94,18 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
                     if (i % 2 == 0) 
                         continue;
-                    
 
                     if (tileCore.checkIfProperlyFormed(i)) {
-
+                        
                         tileCore.convertDummies(i);
                         if(world.isRemote)
                             player.sendChatToPlayer("Multi-Furnace Created!");
-
+                        LogHelper.debug("Final Size MB: " + tileCore.sizeMultiblock);
                         break;
                     }
                 }
-                return false; // now you can place a block if a check failed.
             }
-
+            
             // Check if the multi-block structure has been formed.
             if (tileCore.getIsValid()) 
                 player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
@@ -128,9 +126,9 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
         TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
 
         if (tileCore != null) {
-            tileCore.invalidateMultiBlock();
-            dropItems(world, x, y, z);
+            tileCore.invalidateMultiBlock(); 
         }
+        dropItems(world, x, y, z);
         super.breakBlock(world, x, y, z, par5, par6);
     }
 

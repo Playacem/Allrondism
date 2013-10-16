@@ -68,7 +68,7 @@ public abstract class BlockContainerAM extends BlockContainer {
             direction = ForgeDirection.WEST.ordinal(); // 4
         }
 
-        world.setBlockMetadataWithNotify(x, y, z, direction, 3);
+        world.setBlockMetadataWithNotify(x, y, z, direction, 2);
 
         if (itemStack.hasDisplayName()) {
             ((TileAM) world.getBlockTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());

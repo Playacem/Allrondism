@@ -420,7 +420,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
         }
 
         isValidMultiblock = compound.getBoolean("isValidMultiblock");
-        sizeMultiblock = compound.getByte("sizeMultiblock");
+        sizeMultiblock = compound.getShort("sizeMultiblock");
 
         furnaceBurnTime = compound.getShort("BurnTime");
         furnaceCookTime = compound.getShort("CookTime");
@@ -450,10 +450,11 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
             compound.setTag("Items", itemsList);
         }
+        
         compound.setBoolean("isValidMultiblock", isValidMultiblock);
-        System.out.println("Is valid? " + (isValidMultiblock ? "Yes" : "No"));
+        System.out.println("[NBT-SavingState] Is valid? " + (isValidMultiblock ? "Yes" : "No"));
 
-        compound.setByte("sizeMultiblock", (byte)sizeMultiblock);
+        compound.setShort("sizeMultiblock", (short)sizeMultiblock);
 
         compound.setShort("BurnTime", (short)furnaceBurnTime);
         compound.setShort("CookTime", (short)furnaceCookTime);
