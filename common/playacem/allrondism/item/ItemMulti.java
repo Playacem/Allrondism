@@ -50,16 +50,14 @@ public class ItemMulti extends ItemAM {
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) 
-                + names[Math.min(stack.getItemDamage(), names.length - 1)];
+        return this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + names[Math.min(stack.getItemDamage(), names.length - 1)];
     }
     
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister ir) {
         for(int i = 0; i < icons.length; i++) {
-            icons[i] = ir.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName()
-                    .substring(this.getUnlocalizedName().indexOf(".") + 1) + names[i]);
+            icons[i] = ir.registerIcon(Reference.MOD_ID + ":" + this.getUnlocalizedName().substring(this.getUnlocalizedName().indexOf(".") + 1) + names[i]);
         }
     }
     

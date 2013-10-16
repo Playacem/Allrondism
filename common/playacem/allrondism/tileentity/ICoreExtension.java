@@ -5,7 +5,7 @@ package playacem.allrondism.tileentity;
  * 
  * ICoreExtension
  * 
- * this interface is implemented my every TileEntity, which belong to the core
+ * this interface is implemented by every TileEntity, which belong to the core
  * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)

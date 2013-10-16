@@ -6,8 +6,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-//import de.playacem.allrondism.lib.Strings;
-
 /**
  * Allrondism
  * 

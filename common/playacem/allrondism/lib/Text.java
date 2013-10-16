@@ -1,7 +1,17 @@
 package playacem.allrondism.lib;
 
 import net.minecraft.util.EnumChatFormatting;
-
+/**
+ * Allrondism
+ * 
+ * Text
+ * 
+ * Collection of functions for String Manipulation in Minecraft
+ * 
+ * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * 
+ */
 public class Text {
 
     // Colors

@@ -1,5 +1,16 @@
 package playacem.allrondism.lib;
 
+/**
+ * Allrondism
+ * 
+ * ExtensionData
+ * 
+ * collection of metadatas used by multi furnace extensions
+ * 
+ * @author Playacem
+ * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
+ * 
+ */
 public class ExtensionData {
 
     public static final int DUMMY_META = 0;
