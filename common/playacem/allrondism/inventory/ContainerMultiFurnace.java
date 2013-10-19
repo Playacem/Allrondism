@@ -87,37 +87,37 @@ public class ContainerMultiFurnace extends Container {
         for (int i = 0; i < crafters.size(); ++i) {
             ICrafting icrafting = (ICrafting) crafters.get(i);
 
-            if (lastCookTime != tileCore.furnaceCookTime) {
+            if (this.lastCookTime != this.tileCore.furnaceCookTime) {
                 icrafting.sendProgressBarUpdate(this, 0, tileCore.furnaceCookTime);
             }
 
-            if (lastBurnTime != tileCore.furnaceBurnTime) {
+            if (this.lastBurnTime != this.tileCore.furnaceBurnTime) {
                 icrafting.sendProgressBarUpdate(this, 1, tileCore.furnaceBurnTime);
             }
 
-            if (lastItemBurnTime != tileCore.currentItemBurnTime) {
+            if (this.lastItemBurnTime != this.tileCore.currentItemBurnTime) {
                 icrafting.sendProgressBarUpdate(this, 2, tileCore.currentItemBurnTime);
             }
         }
 
-        lastCookTime = tileCore.furnaceCookTime;
-        lastBurnTime = tileCore.furnaceBurnTime;
-        lastItemBurnTime = tileCore.currentItemBurnTime;
+        this.lastCookTime = this.tileCore.furnaceCookTime;
+        this.lastBurnTime = this.tileCore.furnaceBurnTime;
+        this.lastItemBurnTime = this.tileCore.currentItemBurnTime;
     }
 
     @Override
     public void updateProgressBar(int id, int value) {
 
         if (id == 0) {
-            tileCore.furnaceCookTime = value;
+            this.tileCore.furnaceCookTime = value;
         }
 
         if (id == 1) {
-            tileCore.furnaceBurnTime = value;
+            this.tileCore.furnaceBurnTime = value;
         }
 
         if (id == 2) {
-            tileCore.currentItemBurnTime = value;
+            this.tileCore.currentItemBurnTime = value;
         }
     }
 
@@ -148,13 +148,13 @@ public class ContainerMultiFurnace extends Container {
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex) {
 
-        ItemStack itemStack = null;
+        ItemStack stack = null;
         Slot slot = (Slot) inventorySlots.get(slotIndex);
 
         if (slot != null && slot.getHasStack()) {
 
             ItemStack slotItemStack = slot.getStack();
-            itemStack = slotItemStack.copy();
+            stack = slotItemStack.copy();
 
             /**
              * If we are shift-clicking an item out of the Aludel's container,
@@ -203,6 +203,6 @@ public class ContainerMultiFurnace extends Container {
             }
         }
 
-        return itemStack;
+        return stack;
     }
 }
