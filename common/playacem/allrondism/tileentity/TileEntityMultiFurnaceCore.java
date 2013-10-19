@@ -9,6 +9,7 @@ import playacem.allrondism.lib.ExtensionData;
 import playacem.allrondism.lib.Strings;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityFurnace;
@@ -252,7 +253,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                 do {
                     ++firstFuelSlotWithFuel;
                     currentItemBurnTime = furnaceBurnTime = TileEntityFurnace.getItemBurnTime(inventory[fuelSlots[firstFuelSlotWithFuel]]); 
-                }while(firstFuelSlotWithFuel < fuelSlots.length && furnaceBurnTime == 0);
+                }while(firstFuelSlotWithFuel < fuelSlots.length - 1 && furnaceBurnTime == 0);
                 currentItemBurnTime *= itemBurnTimeFactor;
 
                 if(furnaceBurnTime > 0) {
@@ -485,12 +486,60 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     }
 
     private boolean canSmelt() {
+        return getSmeltingFlag() != 0;
+    }
+    
+    private int getSmeltingFlag() {
 
-        return false;
+        final int[] array = {1, 2, 4};
+        int result = 0;
+        for (int i = 0; i < inputSlots.length; i++) {
+            if(inventory[inputSlots[i]] != null && (inventory[outputSlots[i]] == null || inventory[outputSlots[i]].isItemEqual(FurnaceRecipes.smelting().getSmeltingResult(inventory[inputSlots[i]]))))
+                result += array[i];   
+        }
+        
+        return result;
     }
 
     public void smeltItems() {
-
-        return;
+        
+        int smeltFlag = getSmeltingFlag();
+        if (smeltFlag != 0) {
+            
+            if(smeltFlag >= 4) {
+                if(bonusSlotsOutput >= 2) {
+                    doSmelting(2);
+                }
+                smeltFlag -= 4;
+            }
+            
+            if(smeltFlag >= 2) {
+                if(bonusSlotsOutput >= 1) {
+                    doSmelting(1);
+                }
+                smeltFlag -= 2;
+            }
+            
+            if(smeltFlag >= 1) {
+                if(bonusSlotsOutput >= 0) {
+                    doSmelting(0);
+                }
+                smeltFlag -= 1;
+            }
+        }
+    }
+    
+    private void doSmelting(int slotGroup) {
+        ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inventory[inputSlots[slotGroup]]);
+        
+        if(inventory[outputSlots[slotGroup]] == null) {
+            inventory[outputSlots[slotGroup]] = result.copy();
+        }else if(inventory[outputSlots[slotGroup]].isItemEqual(result)) {
+            inventory[outputSlots[slotGroup]].stackSize += result.stackSize;
+        }
+        
+        inventory[inputSlots[slotGroup]].stackSize--;
+        if(inventory[inputSlots[slotGroup]].stackSize <= 0)
+            inventory[inputSlots[slotGroup]] = null;
     }
 }
