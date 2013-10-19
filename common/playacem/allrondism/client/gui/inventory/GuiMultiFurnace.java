@@ -46,11 +46,10 @@ public class GuiMultiFurnace extends GuiContainer {
         int yStart = (height - ySize) / 2;
         this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
         int timeScaled;
-        int debug = -16;
         
         if(tileCore.isBurning()) {
             timeScaled = tileCore.getBurnTimeRemainingScaled(12);
-            drawTexturedModalRect(xStart + 56 + debug, yStart + 36 + 12 - timeScaled, 176, 12 - timeScaled, 14, timeScaled + 2);
+            drawTexturedModalRect(xStart + 39, yStart + 37 + 12 - timeScaled, 176, 12 - timeScaled, 14, timeScaled + 2);
             //^needs to be tested!
         }
         
