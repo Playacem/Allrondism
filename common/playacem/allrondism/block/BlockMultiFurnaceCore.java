@@ -78,6 +78,8 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
 
+        if (world.isRemote)
+            return true;
         if (player.isSneaking())
             return false;
 
@@ -98,8 +100,7 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
                     if (tileCore.checkIfProperlyFormed(i)) {
                         
                         tileCore.convertDummies(i);
-                        if(world.isRemote)
-                            player.sendChatToPlayer("Multi-Furnace Created!");
+                        player.sendChatToPlayer("Multi-Furnace Created!");
                         LogHelper.debug("Final Size MB: " + tileCore.sizeMultiblock);
                         break;
                     }
