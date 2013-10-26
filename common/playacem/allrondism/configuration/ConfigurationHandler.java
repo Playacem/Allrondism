@@ -70,7 +70,7 @@ public class ConfigurationHandler {
         config.load();
         if (config.getCategoryNames().contains(categoryName)) {
             if (config.getCategory(categoryName).containsKey(propertyName)) {
-                config.getCategory(categoryName).get(propertyName).set(categoryName);
+                config.getCategory(categoryName).get(propertyName).set(newValue);
             }
         }
         config.save();
