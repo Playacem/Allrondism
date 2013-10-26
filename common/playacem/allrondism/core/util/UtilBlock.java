@@ -1,5 +1,6 @@
 package playacem.allrondism.core.util;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 
@@ -30,5 +31,15 @@ public class UtilBlock {
     public static boolean isValidBlock(World w, int x, int y, int z, int blockID, int meta) {
         if(w.getBlockId(x, y, z) == blockID && w.getBlockMetadata(x, y, z) == meta) return true;
         return false;
+    }
+    /**
+     * Compares coordinates of a block with the given ItemStack
+     * @param w - world
+     * @param stack - ItemStack
+     * @return true - if the blocks are identical
+     */
+    public static boolean isValidBlock(World w, int x, int y, int z, ItemStack stack) {
+        return isValidBlock(w, x, y, z, stack.itemID, stack.getItemDamage());
+        
     }
 }
