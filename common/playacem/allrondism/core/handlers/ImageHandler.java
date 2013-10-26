@@ -1,6 +1,9 @@
 package playacem.allrondism.core.handlers;
 
 import java.io.File;
+import java.util.HashMap;
+
+import com.google.common.hash.HashCode;
 
 import playacem.allrondism.core.util.ComparableMergableImage;
 import playacem.allrondism.lib.Strings;
@@ -24,6 +27,12 @@ public class ImageHandler {
     public static ComparableMergableImage multiFurnaceSlotFuel;
     public static ComparableMergableImage multiFurnaceSlotOutput;
     
+    public static ComparableMergableImage multiFurnaceCoreFrontUnlit;
+    public static ComparableMergableImage multiFurnaceCoreFrontLit;
+    
+    public static HashMap<String, HashCode> map;
+
+    
     public static void init() {
         // TODO add real File names;
         // TODO add system to store hashcodes
@@ -33,6 +42,11 @@ public class ImageHandler {
         multiFurnaceSlotInput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
         multiFurnaceSlotFuel = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
         multiFurnaceSlotOutput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
+        
+        multiFurnaceCoreFrontUnlit = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION),storageCobbleFileName, "TODO");
+        multiFurnaceCoreFrontLit = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
+        
+        //map.put(storageCobbleFileName, multiFurnaceSlotInput.getHashBG());
         
         /*
          * For later reference: 
