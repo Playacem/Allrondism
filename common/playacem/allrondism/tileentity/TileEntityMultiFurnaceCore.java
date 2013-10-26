@@ -34,10 +34,14 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     public static final int INVENTORY_SIZE = 9;
     public int sizeMultiblock = 0;
 
-    public int furnaceBurnTime = 0; // if this value reaches 0 --> 1 item finished
-    public int currentItemBurnTime = 0; // how long the current consumed item will still last.
-    public int furnaceCookTime = 0; // Cook progress(the bar)
+    /** if this value reaches 0 --> 1 fuel-item finished */
+    public int furnaceBurnTime = 0;
+    /** for the scaling of the fire */
+    public int currentItemBurnTime = 0; 
+    /** Cook progress(the bar), if this reaches {@link playacem.allrondism.tileentity.TileEntityMultiFurnaceCore#cookDuration cookDuration} items will be smelt */
+    public int furnaceCookTime = 0; 
 
+    /** describes the duration an item will smelt until it is finished */
     private int cookDuration = 200; // Vanilla default, to be changed by extensions, acts like a speed modifier
     private float itemBurnTimeFactor = 1.0F;
     private float cookDurationFactor = 1.0F;
@@ -167,13 +171,13 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                         worldObj.setBlock(x, y, z, ModBlocks.multiFurnaceExtension.blockID, ExtensionData.DUMMY_META, 3);
                         worldObj.markBlockForUpdate(x, y, z);
                     }
-                        
+
 
                     try {
                         IExtensionSlot te = (IExtensionSlot)worldObj.getBlockTileEntity(x, y, z);
                         EnumSlotType type = te.getSlotType();
                         int amount = te.getAmountAdditionalSlots();
-                        
+
                         switch(type) {
                             case INPUT:
                                 bonusSlotsInput += amount;
@@ -255,6 +259,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                     currentItemBurnTime = furnaceBurnTime = TileEntityFurnace.getItemBurnTime(inventory[fuelSlots[firstFuelSlotWithFuel]]); 
                 }while(firstFuelSlotWithFuel < fuelSlots.length - 1 && furnaceBurnTime == 0);
                 currentItemBurnTime *= itemBurnTimeFactor;
+                furnaceBurnTime *= itemBurnTimeFactor;
 
                 if(furnaceBurnTime > 0) {
                     inventoryChanged = true;
@@ -267,32 +272,32 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
                     }
                 }
-
-                if(isBurning() && canSmelt()) {
-                    furnaceCookTime++;
-
-                    if(furnaceCookTime == cookDuration * cookDurationFactor) {
-                        furnaceCookTime = 0;
-                        smeltItems();
-                        inventoryChanged = true;
-                    }
-                } else 
-                    furnaceCookTime = 0;
-
-
-                if(isActive == 0 && furnaceBurnTime > 0) {
-                    inventoryChanged = true;
-                    metadata = getBlockMetadata();
-                    isActive = 1;
-                    metadata += 4;
-                    worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata, 2);
-                }
-
             }
+            
+            if(isBurning() && canSmelt()) {
+                furnaceCookTime++;
+            
 
-            if(inventoryChanged) 
-                onInventoryChanged();
+                if(furnaceCookTime == ((int)cookDuration * (int)cookDurationFactor)) {
+                    furnaceCookTime = 0;
+                    smeltItems();
+                    inventoryChanged = true;
+                }
+            } else { furnaceCookTime = 0; }
+
+
+            if(isActive == 0 && furnaceBurnTime > 0) {
+                inventoryChanged = true;
+                metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                isActive = 1;
+                metadata += 4;
+                worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, metadata, 2);
+            }
+            
         }
+
+        if(inventoryChanged) 
+            onInventoryChanged();
     }
 
     /* IInventory stuff */
@@ -451,10 +456,8 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
 
             compound.setTag("Items", itemsList);
         }
-        
-        compound.setBoolean("isValidMultiblock", isValidMultiblock);
-        System.out.println("[NBT-SavingState] Is valid? " + (isValidMultiblock ? "Yes" : "No"));
 
+        compound.setBoolean("isValidMultiblock", isValidMultiblock);
         compound.setShort("sizeMultiblock", (short)sizeMultiblock);
 
         compound.setShort("BurnTime", (short)furnaceBurnTime);
@@ -468,7 +471,7 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     @SideOnly(Side.CLIENT)
     public int getCookProgressScaled(int scalingFactor) {
 
-        return furnaceCookTime * scalingFactor / 100;
+        return (int) (furnaceCookTime * scalingFactor / cookDuration * cookDurationFactor);
     }
 
     @SideOnly(Side.CLIENT)
@@ -488,11 +491,12 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     private boolean canSmelt() {
         return getSmeltingFlag() != 0;
     }
-    
+
     private int getSmeltingFlag() {
 
         final int[] array = {1, 2, 4};
         int result = 0;
+        
         for (int i = 0; i < inputSlots.length; i++) {
             if(inventory[inputSlots[i]] != null && (inventory[outputSlots[i]] == null || inventory[outputSlots[i]].isItemEqual(FurnaceRecipes.smelting().getSmeltingResult(inventory[inputSlots[i]]))))
                 result += array[i];   
@@ -502,24 +506,24 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     }
 
     public void smeltItems() {
-        
+
         int smeltFlag = getSmeltingFlag();
         if (smeltFlag != 0) {
-            
+
             if(smeltFlag >= 4) {
                 if(bonusSlotsOutput >= 2) {
                     doSmelting(2);
                 }
                 smeltFlag -= 4;
             }
-            
+
             if(smeltFlag >= 2) {
                 if(bonusSlotsOutput >= 1) {
                     doSmelting(1);
                 }
                 smeltFlag -= 2;
             }
-            
+
             if(smeltFlag >= 1) {
                 if(bonusSlotsOutput >= 0) {
                     doSmelting(0);
@@ -528,16 +532,16 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
             }
         }
     }
-    
+
     private void doSmelting(int slotGroup) {
         ItemStack result = FurnaceRecipes.smelting().getSmeltingResult(inventory[inputSlots[slotGroup]]);
-        
+
         if(inventory[outputSlots[slotGroup]] == null) {
             inventory[outputSlots[slotGroup]] = result.copy();
         }else if(inventory[outputSlots[slotGroup]].isItemEqual(result)) {
             inventory[outputSlots[slotGroup]].stackSize += result.stackSize;
         }
-        
+
         inventory[inputSlots[slotGroup]].stackSize--;
         if(inventory[inputSlots[slotGroup]].stackSize <= 0)
             inventory[inputSlots[slotGroup]] = null;
