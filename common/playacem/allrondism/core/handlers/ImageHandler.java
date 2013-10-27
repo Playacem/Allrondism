@@ -31,14 +31,14 @@ public class ImageHandler {
     public static ComparableMergableImage multiFurnaceCoreFrontLit;
     
     public static HashMap<String, HashCode> map;
+    
+    private static String storageCobbleFileName = Strings.STORAGE_BLOCKS_NAME + Strings.STORAGE_BLOCKS[1]; // storageBlockCobble
 
     
     public static void init() {
         // TODO add real File names;
         // TODO add system to store hashcodes
-        
-        String storageCobbleFileName = Strings.STORAGE_BLOCKS_NAME + Strings.STORAGE_BLOCKS[1]; // storageBlockCobble
-        
+
         multiFurnaceSlotInput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
         multiFurnaceSlotFuel = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
         multiFurnaceSlotOutput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
@@ -46,7 +46,7 @@ public class ImageHandler {
         multiFurnaceCoreFrontUnlit = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION),storageCobbleFileName, "TODO");
         multiFurnaceCoreFrontLit = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
         
-        //map.put(storageCobbleFileName, multiFurnaceSlotInput.getHashBG());
+        //fillMap();
         
         /*
          * For later reference: 
@@ -60,5 +60,18 @@ public class ImageHandler {
          *  
          *  (Textures i still need)
          */
+    }
+    
+    @SuppressWarnings("unused")
+    private static void fillMap() {
+        
+        map.put(storageCobbleFileName, multiFurnaceSlotInput.getHashBG());
+        
+        map.put("TODO", multiFurnaceSlotInput.getHashOverlay());
+        map.put("TODO", multiFurnaceSlotFuel.getHashOverlay());
+        map.put("TODO", multiFurnaceSlotOutput.getHashOverlay());
+        
+        map.put("TODO", multiFurnaceCoreFrontUnlit.getHashOverlay());
+        map.put("TODO", multiFurnaceCoreFrontLit.getHashOverlay());
     }
 }
