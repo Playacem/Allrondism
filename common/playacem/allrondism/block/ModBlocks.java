@@ -45,42 +45,44 @@ public class ModBlocks {
         GameRegistry.registerBlock(plantRose, ItemBlockPlantRose.class, plantRose.getUnlocalizedName());
         GameRegistry.registerBlock(multiFurnaceCore, ItemBlockBasic.class, Strings.MULTI_FURNACE_CORE_NAME);
         GameRegistry.registerBlock(multiFurnaceExtension, ItemBlockMultiFurnaceExtension.class, multiFurnaceExtension.getUnlocalizedName());
-        
+
         LanguageRegistry.addName(oreAllrondium, "Allrondium Ore");
-        
+
         for (int i = 0; i < Strings.STORAGE_BLOCKS.length; i++) {
             ItemStack storageBlockStack = new ItemStack(storageBlock, 1, i);
             LanguageRegistry.addName(storageBlockStack, "Storage " + Strings.STORAGE_BLOCKS[i]);
         }
-        
+
         LanguageRegistry.addName(glassSunBlocker, "Sunblocking Glass");
-        
+
         for (int i = 0; i < Strings.ROSES.length; i++) {
             ItemStack plantRoseStack = new ItemStack(plantRose, 1, i);
             LanguageRegistry.addName(plantRoseStack, Strings.ROSES[i] + " Rose");
         }
-        
+
         LanguageRegistry.addName(multiFurnaceCore, "Multi-Furnace Core");
-        
+
         setupBlockHarvestLevels();
         setupGrassEntries();
     }
 
     private static void setupBlockHarvestLevels() {
+
         // 0 == wood, 1 == stone, 2 == iron, 3 == diamond
         MinecraftForge.setBlockHarvestLevel(oreAllrondium, "pickaxe", 3);
         MinecraftForge.setBlockHarvestLevel(storageBlock, "pickaxe", 0);
         MinecraftForge.setBlockHarvestLevel(storageBlock, "shovel", 0);
         MinecraftForge.setBlockHarvestLevel(glassSunBlocker, "pickaxe", 0);
     }
-    
+
     private static void setupGrassEntries() {
+
         // weight of plants:
         // red: 10, yellow: 20
         MinecraftForge.addGrassPlant(plantRose, 0, 10);
         MinecraftForge.addGrassPlant(plantRose, 1, 10);
     }
-    
+
     public static void initBlockRecipes() {
 
         // AllrondiumOre recipe (maybe temporary; WorldGen being optional?)

@@ -20,10 +20,12 @@ public class UtilOreDict {
     private static UtilOreDict instance = null;
 
     private UtilOreDict() {
+
     }
 
     public static UtilOreDict instance() {
-        if(instance == null) {
+
+        if (instance == null) {
             instance = new UtilOreDict();
         }
         return instance;
@@ -32,39 +34,47 @@ public class UtilOreDict {
     // They all fall down to getItemStack(String, int , int)
     /* Object based */
     public ItemStack getItemStack(Object oreDictObject) {
+
         return getItemStack((String) oreDictObject);
     }
 
     public ItemStack getItemStack(Object oreDictObject, int stackSize) {
+
         return getItemStack((String) oreDictObject, stackSize);
     }
 
     public ItemStack getItemStack(Object oreDictObject, int stackSize, int position) {
+
         return getItemStack((String) oreDictObject, stackSize, position);
     }
 
     /* OreID based */
     public ItemStack getItemStack(int oreID) {
+
         return getItemStack(oreID, 1);
     }
 
     public ItemStack getItemStack(int oreID, int stackSize) {
+
         return getItemStack(oreID, stackSize, 0);
     }
 
     public ItemStack getItemStack(int oreID, int stackSize, int position) {
+
         return getItemStack(OreDictionary.getOreName(oreID), stackSize, position);
     }
-    
+
     /* String based */
     public ItemStack getItemStack(String oreDictObject) {
+
         return getItemStack(oreDictObject, 1);
     }
 
     public ItemStack getItemStack(String oreDictObject, int stackSize) {
+
         return getItemStack(oreDictObject, stackSize, 0);
     }
-    
+
     public ItemStack getItemStack(String oreDictObject, int stackSize, int position) {
 
         ArrayList<ItemStack> ores = OreDictionary.getOres(oreDictObject);

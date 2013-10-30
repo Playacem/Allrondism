@@ -22,13 +22,13 @@ public class Textures {
     // Item/Block sprite sheets
     public static final String VANILLA_ITEM_TEXTURE_SHEET = "/gui/items.png";
     public static final String VANILLA_BLOCK_TEXTURE_SHEET = "/terrain.png";
-    
+
     // Model textures
-    
+
     // Armor sprite sheets
-    
+
     // GUI textures
     public static final String GUI_MULTI_FURNACE = GUI_SHEET_LOCATION + "multifurnace.png";
-    
+
     // Effect textures
 }

@@ -14,181 +14,180 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class NBTHelper {
 
-   
-   /**
-    * Initializes the NBT Tag Compound for the given ItemStack if it is null
-    */
-   private static void initNBTTagCompound(ItemStack itemStack) {
+    /**
+     * Initializes the NBT Tag Compound for the given ItemStack if it is null
+     */
+    private static void initNBTTagCompound(ItemStack itemStack) {
 
-       if (itemStack.stackTagCompound == null) {
-           itemStack.setTagCompound(new NBTTagCompound());
-       }
-   }
+        if (itemStack.stackTagCompound == null) {
+            itemStack.setTagCompound(new NBTTagCompound());
+        }
+    }
 
-   public static boolean hasTag(ItemStack itemStack, String keyName) {
+    public static boolean hasTag(ItemStack itemStack, String keyName) {
 
-       if (itemStack.stackTagCompound != null)
-           return itemStack.stackTagCompound.hasKey(keyName);
+        if (itemStack.stackTagCompound != null)
+            return itemStack.stackTagCompound.hasKey(keyName);
 
-       return false;
-   }
+        return false;
+    }
 
-   public static void removeTag(ItemStack itemStack, String keyName) {
+    public static void removeTag(ItemStack itemStack, String keyName) {
 
-       if (itemStack.stackTagCompound != null) {
-           itemStack.stackTagCompound.removeTag(keyName);
-       }
-   }
+        if (itemStack.stackTagCompound != null) {
+            itemStack.stackTagCompound.removeTag(keyName);
+        }
+    }
 
-   // String
-   public static String getString(ItemStack itemStack, String keyName) {
+    // String
+    public static String getString(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setString(itemStack, keyName, "");
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setString(itemStack, keyName, "");
+        }
 
-       return itemStack.stackTagCompound.getString(keyName);
-   }
+        return itemStack.stackTagCompound.getString(keyName);
+    }
 
-   public static void setString(ItemStack itemStack, String keyName, String keyValue) {
+    public static void setString(ItemStack itemStack, String keyName, String keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setString(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setString(keyName, keyValue);
+    }
 
-   // boolean
-   public static boolean getBoolean(ItemStack itemStack, String keyName) {
+    // boolean
+    public static boolean getBoolean(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setBoolean(itemStack, keyName, false);
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setBoolean(itemStack, keyName, false);
+        }
 
-       return itemStack.stackTagCompound.getBoolean(keyName);
-   }
+        return itemStack.stackTagCompound.getBoolean(keyName);
+    }
 
-   public static void setBoolean(ItemStack itemStack, String keyName, boolean keyValue) {
+    public static void setBoolean(ItemStack itemStack, String keyName, boolean keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setBoolean(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setBoolean(keyName, keyValue);
+    }
 
-   // byte
-   public static byte getByte(ItemStack itemStack, String keyName) {
+    // byte
+    public static byte getByte(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setByte(itemStack, keyName, (byte) 0);
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setByte(itemStack, keyName, (byte) 0);
+        }
 
-       return itemStack.stackTagCompound.getByte(keyName);
-   }
+        return itemStack.stackTagCompound.getByte(keyName);
+    }
 
-   public static void setByte(ItemStack itemStack, String keyName, byte keyValue) {
+    public static void setByte(ItemStack itemStack, String keyName, byte keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setByte(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setByte(keyName, keyValue);
+    }
 
-   // short
-   public static short getShort(ItemStack itemStack, String keyName) {
+    // short
+    public static short getShort(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setShort(itemStack, keyName, (short) 0);
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setShort(itemStack, keyName, (short) 0);
+        }
 
-       return itemStack.stackTagCompound.getShort(keyName);
-   }
+        return itemStack.stackTagCompound.getShort(keyName);
+    }
 
-   public static void setShort(ItemStack itemStack, String keyName, short keyValue) {
+    public static void setShort(ItemStack itemStack, String keyName, short keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setShort(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setShort(keyName, keyValue);
+    }
 
-   // int
-   public static int getInt(ItemStack itemStack, String keyName) {
+    // int
+    public static int getInt(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setInteger(itemStack, keyName, 0);
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setInteger(itemStack, keyName, 0);
+        }
 
-       return itemStack.stackTagCompound.getInteger(keyName);
-   }
+        return itemStack.stackTagCompound.getInteger(keyName);
+    }
 
-   public static void setInteger(ItemStack itemStack, String keyName, int keyValue) {
+    public static void setInteger(ItemStack itemStack, String keyName, int keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setInteger(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setInteger(keyName, keyValue);
+    }
 
-   // long
-   public static long getLong(ItemStack itemStack, String keyName) {
+    // long
+    public static long getLong(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setLong(itemStack, keyName, 0);
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setLong(itemStack, keyName, 0);
+        }
 
-       return itemStack.stackTagCompound.getLong(keyName);
-   }
+        return itemStack.stackTagCompound.getLong(keyName);
+    }
 
-   public static void setLong(ItemStack itemStack, String keyName, long keyValue) {
+    public static void setLong(ItemStack itemStack, String keyName, long keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setLong(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setLong(keyName, keyValue);
+    }
 
-   // float
-   public static float getFloat(ItemStack itemStack, String keyName) {
+    // float
+    public static float getFloat(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setFloat(itemStack, keyName, 0);
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setFloat(itemStack, keyName, 0);
+        }
 
-       return itemStack.stackTagCompound.getFloat(keyName);
-   }
+        return itemStack.stackTagCompound.getFloat(keyName);
+    }
 
-   public static void setFloat(ItemStack itemStack, String keyName, float keyValue) {
+    public static void setFloat(ItemStack itemStack, String keyName, float keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setFloat(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setFloat(keyName, keyValue);
+    }
 
-   // double
-   public static double getDouble(ItemStack itemStack, String keyName) {
+    // double
+    public static double getDouble(ItemStack itemStack, String keyName) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       if (!itemStack.stackTagCompound.hasKey(keyName)) {
-           setDouble(itemStack, keyName, 0);
-       }
+        if (!itemStack.stackTagCompound.hasKey(keyName)) {
+            setDouble(itemStack, keyName, 0);
+        }
 
-       return itemStack.stackTagCompound.getDouble(keyName);
-   }
+        return itemStack.stackTagCompound.getDouble(keyName);
+    }
 
-   public static void setDouble(ItemStack itemStack, String keyName, double keyValue) {
+    public static void setDouble(ItemStack itemStack, String keyName, double keyValue) {
 
-       initNBTTagCompound(itemStack);
+        initNBTTagCompound(itemStack);
 
-       itemStack.stackTagCompound.setDouble(keyName, keyValue);
-   }
+        itemStack.stackTagCompound.setDouble(keyName, keyValue);
+    }
 }

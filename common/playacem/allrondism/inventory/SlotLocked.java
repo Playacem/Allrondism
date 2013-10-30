@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 public class SlotLocked extends Slot {
 
     public SlotLocked(IInventory inventory, int slotIndex, int posX, int posY) {
+
         super(inventory, slotIndex, posX, posY);
     }
 

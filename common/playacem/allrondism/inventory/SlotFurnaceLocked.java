@@ -17,19 +17,19 @@ import net.minecraft.item.ItemStack;
 public class SlotFurnaceLocked extends SlotFurnace {
 
     public SlotFurnaceLocked(EntityPlayer player, IInventory inventory, int slotIndex, int posX, int posY) {
-        
+
         super(player, inventory, slotIndex, posX, posY);
     }
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        
+
         return false;
     }
-    
+
     @Override
     public boolean canTakeStack(EntityPlayer player) {
-        
+
         return false;
     }
 }

@@ -6,8 +6,6 @@ package playacem.allrondism;
 import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
-
-
 import playacem.allrondism.block.ModBlocks;
 import playacem.allrondism.configuration.ConfigurationHandler;
 import playacem.allrondism.core.handlers.FuelHandler;
@@ -18,7 +16,6 @@ import playacem.allrondism.creativetab.CreativeTabAM;
 import playacem.allrondism.item.ModItems;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.network.PacketHandler;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -38,11 +35,13 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * Allrondism
  * 
  * Main class for the Minecraft mod "Allrondism"
+ * 
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
-@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
+@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false,
+        packetHandler = PacketHandler.class)
 public class Allrondism {
 
     @Instance(Reference.MOD_ID)
@@ -55,28 +54,30 @@ public class Allrondism {
 
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
+
         // Here goes stuff like reading config files
 
         // Initialize the log helper
         LogHelper.init();
 
         // Initialize the configuration
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME + ".cfg"));
-        
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME
+                + ".cfg"));
+
         // Does some image magic, creates merged images.
         ImageHandler.init();
 
         // Register the Spawn Handler
         proxy.registerSpawnHandler();
-        
+
         // Register the Sound Handler (Client only)
         proxy.registerSoundHandler();
-        
+
         // Initialize mod blocks
         ModBlocks.init();
         // Initialize mod items
         ModItems.init();
-       
+
         // Initialize mod block recipes
         ModBlocks.initBlockRecipes();
         // Initialize mod item recipes
@@ -85,23 +86,25 @@ public class Allrondism {
 
     @Init
     public void load(FMLInitializationEvent event) {
+
         // Register the GuiHandler
         NetworkRegistry.instance().registerGuiHandler(instance, proxy);
-        
+
         // Register the Renderers
         proxy.registerRenderers();
-        
+
         // Initialize mod tile entities
         proxy.registerTileEntities();
-        
+
         // Register the FuelHandler
         GameRegistry.registerFuelHandler(new FuelHandler());
     }
 
     @PostInit
     public void modsLoaded(FMLPostInitializationEvent event) {
+
         // Adding cross-mod recipes
-        ModItems.postInit();        
+        ModItems.postInit();
     }
 
 }

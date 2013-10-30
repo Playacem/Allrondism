@@ -33,6 +33,7 @@ public class ContainerMultiFurnace extends Container {
     private final int PLAYER_INVENTORY_COLUMNS = 9;
 
     public ContainerMultiFurnace(InventoryPlayer playerInventory, TileEntityMultiFurnaceCore tileEntity) {
+
         tileCore = tileEntity;
         // used in transferStackInSlot, removes shift clicking into locked slots
         bonusSlotsInput = tileCore.bonusSlotsInput;
@@ -74,6 +75,7 @@ public class ContainerMultiFurnace extends Container {
     @Override
     public void addCraftingToCrafters(ICrafting par1ICrafting)
     {
+
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, tileCore.furnaceCookTime);
         par1ICrafting.sendProgressBarUpdate(this, 1, tileCore.furnaceBurnTime);
@@ -82,42 +84,43 @@ public class ContainerMultiFurnace extends Container {
 
     @Override
     public void detectAndSendChanges() {
+
         super.detectAndSendChanges();
 
         for (int i = 0; i < crafters.size(); ++i) {
             ICrafting icrafting = (ICrafting) crafters.get(i);
 
-            if (this.lastCookTime != this.tileCore.furnaceCookTime) {
+            if (lastCookTime != tileCore.furnaceCookTime) {
                 icrafting.sendProgressBarUpdate(this, 0, tileCore.furnaceCookTime);
             }
 
-            if (this.lastBurnTime != this.tileCore.furnaceBurnTime) {
+            if (lastBurnTime != tileCore.furnaceBurnTime) {
                 icrafting.sendProgressBarUpdate(this, 1, tileCore.furnaceBurnTime);
             }
 
-            if (this.lastItemBurnTime != this.tileCore.currentItemBurnTime) {
+            if (lastItemBurnTime != tileCore.currentItemBurnTime) {
                 icrafting.sendProgressBarUpdate(this, 2, tileCore.currentItemBurnTime);
             }
         }
 
-        this.lastCookTime = this.tileCore.furnaceCookTime;
-        this.lastBurnTime = this.tileCore.furnaceBurnTime;
-        this.lastItemBurnTime = this.tileCore.currentItemBurnTime;
+        lastCookTime = tileCore.furnaceCookTime;
+        lastBurnTime = tileCore.furnaceBurnTime;
+        lastItemBurnTime = tileCore.currentItemBurnTime;
     }
 
     @Override
     public void updateProgressBar(int id, int value) {
 
         if (id == 0) {
-            this.tileCore.furnaceCookTime = value;
+            tileCore.furnaceCookTime = value;
         }
 
         if (id == 1) {
-            this.tileCore.furnaceBurnTime = value;
+            tileCore.furnaceBurnTime = value;
         }
 
         if (id == 2) {
-            this.tileCore.currentItemBurnTime = value;
+            tileCore.currentItemBurnTime = value;
         }
     }
 
@@ -128,6 +131,7 @@ public class ContainerMultiFurnace extends Container {
     }
 
     private void bindPlayerInventory(InventoryPlayer playerInventory) {
+
         // Inventory
         for (int inventoryRowIndex = 0; inventoryRowIndex < PLAYER_INVENTORY_ROWS; ++inventoryRowIndex) {
             for (int inventoryColumnIndex = 0; inventoryColumnIndex < PLAYER_INVENTORY_COLUMNS; ++inventoryColumnIndex) {
@@ -164,11 +168,8 @@ public class ContainerMultiFurnace extends Container {
             if (slotIndex < TileEntityMultiFurnaceCore.INVENTORY_SIZE) {
                 /*
                  * mergeItemStack attempts to merge the given ItemStack into the
-                 * slots within the given range (x, y-1)
-                 * 
-                 * Boolean flag: startingPosition, false for Beginning, true for
-                 * the End
-                 * 
+                 * slots within the given range (x, y-1) Boolean flag:
+                 * startingPosition, false for Beginning, true for the End
                  * mergeItemStack will return true if the stack can be merged
                  * and false if it can't
                  */

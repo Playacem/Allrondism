@@ -12,11 +12,10 @@ package playacem.allrondism.tileentity;
  */
 public interface ICoreExtension {
 
-
     /** save the given core somewhere */
     public void setCore(TileEntityMultiFurnaceCore core);
-    
+
     /** return the saved core here */
     public TileEntityMultiFurnaceCore getCore();
-    
+
 }

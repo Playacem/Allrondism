@@ -21,6 +21,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemBlockPlantRose extends ItemBlockExtended {
 
     public ItemBlockPlantRose(int id) {
+
         super(id);
         setMaxDamage(0);
         setHasSubtypes(true);
@@ -31,6 +32,7 @@ public class ItemBlockPlantRose extends ItemBlockExtended {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
+
         infoList.add("This Rose is based of Light and Time");
         infoList.add("either " + Text.i(Text.add("Black", Text.COLOR_ORANGE)) + " or " + Text.i(Text.add("White", Text.COLOR_ORANGE)));
 

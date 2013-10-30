@@ -26,6 +26,7 @@ public class BlockStorageBlock extends Block {
     private Icon[] icons = new Icon[names.length];
 
     public BlockStorageBlock(int id) {
+
         super(id, Material.iron);
         setHardness(4.0F);
         setResistance(10.0F);
@@ -36,12 +37,14 @@ public class BlockStorageBlock extends Block {
 
     @Override
     public int damageDropped(int meta) {
+
         return meta;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconReg) {
+
         for (int i = 0; i < icons.length; i++) {
             icons[i] = iconReg.registerIcon(Reference.MOD_ID.toLowerCase() + ":" + getUnlocalizedName2() + names[i]);
         }

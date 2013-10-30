@@ -22,6 +22,7 @@ public class BlockGlassSunBlocker extends BlockAM {
     private boolean localFlag = false;
 
     public BlockGlassSunBlocker(int id) {
+
         super(id, Material.rock);
         this.setLightOpacity(100);
         this.setHardness(0.25F);
@@ -31,22 +32,26 @@ public class BlockGlassSunBlocker extends BlockAM {
 
     @Override
     public int quantityDropped(Random random) {
+
         return 1;
     }
 
     @Override
     public boolean isOpaqueCube() {
+
         return false;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public int getRenderBlockPass() {
+
         return 0;
     }
 
     @Override
     public boolean renderAsNormalBlock() {
+
         return true;
     }
 
@@ -58,6 +63,7 @@ public class BlockGlassSunBlocker extends BlockAM {
      */
     public boolean shouldSideBeRendered(IBlockAccess IBlockAccess, int x, int y, int z, int side)
     {
+
         int i1 = IBlockAccess.getBlockId(x, y, z);
         return !localFlag && i1 == blockID ? false : super.shouldSideBeRendered(IBlockAccess, x, y, z, side);
     }

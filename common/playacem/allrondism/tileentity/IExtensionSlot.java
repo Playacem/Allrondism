@@ -10,10 +10,11 @@ package playacem.allrondism.tileentity;
  * @author Playacem
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
-public interface IExtensionSlot extends ICoreExtension{
+public interface IExtensionSlot extends ICoreExtension {
 
     /** return the type of slot here */
     public EnumSlotType getSlotType();
-    /** how many slots shall be added by this specific TE?*/
+
+    /** how many slots shall be added by this specific TE? */
     public int getAmountAdditionalSlots();
 }

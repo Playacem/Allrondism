@@ -41,22 +41,28 @@ public class LogHelper {
         log(Level.WARNING, message);
     }
 
-    /** Uses INFO level and links to {@link playacem.allrondism.core.util.LogHelper#debug(String, boolean) this}*/
+    /**
+     * Uses INFO level and links to
+     * {@link playacem.allrondism.core.util.LogHelper#debug(String, boolean)
+     * this}
+     */
     public static void debug(String message) {
+
         debug(message, false);
     }
-    
-    /** if true: WARNING, if false: INFO*/
+
+    /** if true: WARNING, if false: INFO */
     public static void debug(String message, boolean isWarningLevel) {
-        if(ConfigurationSettings.DEBUG_MODE) {
-            if(isWarningLevel) {
+
+        if (ConfigurationSettings.DEBUG_MODE) {
+            if (isWarningLevel) {
                 log(Level.WARNING, "[DEBUG] " + message);
-            }else {
+            } else {
                 log(Level.INFO, "[DEBUG] " + message);
             }
         }
     }
-   
+
     public static void severe(String message) {
 
         log(Level.SEVERE, message);

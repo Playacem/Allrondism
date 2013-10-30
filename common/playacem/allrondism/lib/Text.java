@@ -1,6 +1,7 @@
 package playacem.allrondism.lib;
 
 import net.minecraft.util.EnumChatFormatting;
+
 /**
  * Allrondism
  * 
@@ -31,7 +32,7 @@ public class Text {
     public static final String COLOR_PINK = "\u00A7d";
     public static final String COLOR_YELLOW = "\u00A7e";
     public static final String COLOR_WHITE = "\u00A7f";
-    
+
     // Text modifier
     public static final String RESET = "\u00A7r";
     public static final String BOLD = EnumChatFormatting.BOLD.toString();
@@ -39,50 +40,71 @@ public class Text {
     public static final String UNDERLINE = EnumChatFormatting.UNDERLINE.toString();
     public static final String STRIKETHROUGH = EnumChatFormatting.STRIKETHROUGH.toString();
     public static final String OBFUSCATED = EnumChatFormatting.OBFUSCATED.toString();
-    
+
     /** Adds a given color to the given text */
     public static String add(String text, String color) {
+
         return color + text + COLOR_LIGHT_GREY;
     }
-    
+
     /** Writes the given String <b>bold</b> */
     public static String bold(String text) {
+
         return BOLD + text + COLOR_LIGHT_GREY;
     }
-    
+
     /** Writes the given String <i>italic</i> */
     public static String italic(String text) {
+
         return ITALIC + text + COLOR_LIGHT_GREY;
     }
-    
+
     /** Writes the given String <u>underlined</u> */
     public static String underline(String text) {
+
         return UNDERLINE + text + COLOR_LIGHT_GREY;
     }
-    
+
     /** Writes the given String <s>striked</s> */
     public static String strike(String text) {
+
         return STRIKETHROUGH + text + COLOR_LIGHT_GREY;
     }
-    
+
     /** Writes the given String obfuscated */
     public static String obfuscate(String text) {
+
         return OBFUSCATED + text + COLOR_LIGHT_GREY;
     }
-    
+
     /** Writes the given String <b>bold</b> */
-    public static String b(String s) { return bold(s); }
-    
+    public static String b(String s) {
+
+        return bold(s);
+    }
+
     /** Writes the given String <i>italic</i> */
-    public static String i(String s) { return italic(s); }
-    
+    public static String i(String s) {
+
+        return italic(s);
+    }
+
     /** Writes the given String <u>underlined</u> */
-    public static String u(String s) { return underline(s); }
-    
+    public static String u(String s) {
+
+        return underline(s);
+    }
+
     /** Writes the given String <s>striked</s> */
-    public static String s(String s) { return strike(s); }
-    
+    public static String s(String s) {
+
+        return strike(s);
+    }
+
     /** Writes the given String obfuscated */
-    public static String o(String s) { return obfuscate(s); }
-    
+    public static String o(String s) {
+
+        return obfuscate(s);
+    }
+
 }

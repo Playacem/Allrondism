@@ -18,6 +18,7 @@ import playacem.allrondism.lib.Strings;
 public class BlockOreAllrondium extends BlockAM {
 
     public BlockOreAllrondium(int id) {
+
         super(id, Material.rock);
         this.setHardness(5F);
         this.setUnlocalizedName(Strings.ORE_ALLRONDIUM_NAME);
@@ -26,15 +27,18 @@ public class BlockOreAllrondium extends BlockAM {
 
     @Override
     public int idDropped(int par1, Random random, int zero) {
+
         return ItemIDs.GEM_ALLRONDIUM;
     }
 
+    @Override
     public void dropBlockAsItemWithChance(World world, int x, int y, int z, int par5, float par6, int par7) {
+
         super.dropBlockAsItemWithChance(world, x, y, z, par5, par6, par7);
-        if(this.idDropped(par5, world.rand, par7) != this.blockID) {
+        if (this.idDropped(par5, world.rand, par7) != blockID) {
             int xp = 45 + world.rand.nextInt(45);
             this.dropXpOnBlockBreak(world, x, y, z, xp);
         }
-        
+
     }
 }

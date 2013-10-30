@@ -18,6 +18,7 @@ import playacem.allrondism.lib.Strings;
 public class ItemBlockMultiFurnaceExtension extends ItemBlockExtended {
 
     public ItemBlockMultiFurnaceExtension(int id) {
+
         super(id);
         setMaxDamage(0);
         setHasSubtypes(true);
@@ -27,7 +28,9 @@ public class ItemBlockMultiFurnaceExtension extends ItemBlockExtended {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void getSubItems(int itemId, CreativeTabs creativeTab, List subTypes) {
-        for (int i = 1; i < names.length; i++) { // disables dummy block in the CreativeTab
+
+        for (int i = 1; i < names.length; i++) { // disables dummy block in the
+                                                 // CreativeTab
             subTypes.add(new ItemStack(itemId, 1, i));
         }
     }

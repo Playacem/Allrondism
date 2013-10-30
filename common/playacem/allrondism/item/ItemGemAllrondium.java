@@ -4,8 +4,8 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import playacem.allrondism.lib.Text;
 import playacem.allrondism.lib.Strings;
+import playacem.allrondism.lib.Text;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,6 +28,7 @@ public class ItemGemAllrondium extends ItemAM {
 
     @Override
     public String getItemDisplayName(ItemStack stack) {
+
         return Text.COLOR_PURPLE + super.getItemDisplayName(stack);
     }
 
@@ -35,6 +36,7 @@ public class ItemGemAllrondium extends ItemAM {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
+
         infoList.add("This gem is impossible to ");
         infoList.add("obtain without using " + Text.add("Diamonds", Text.COLOR_LIGHT_GREEN));
         super.addInformation(stack, player, infoList, advancedToolTips);

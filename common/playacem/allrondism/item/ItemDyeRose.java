@@ -20,6 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemDyeRose extends ItemMulti {
 
     public ItemDyeRose(int id) {
+
         super(id);
         setMaxDamage(0);
         this.setMaxStackSize(64);
@@ -31,19 +32,22 @@ public class ItemDyeRose extends ItemMulti {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List infoList, boolean advancedToolTips) {
+
         int metadata = stack.getItemDamage();
-        infoList.add("Do not waste your " + Text.add(getItemNameByMetadata(metadata), Text.COLOR_LIGHT_GREEN) +" as " + Text.add(getColorByMetadata(metadata) + " Dye" , Text.COLOR_ORANGE) + "!");
+        infoList.add("Do not waste your " + Text.add(getItemNameByMetadata(metadata), Text.COLOR_LIGHT_GREEN) + " as " + Text.add(getColorByMetadata(metadata) + " Dye", Text.COLOR_ORANGE) + "!");
         infoList.add("Use this renewable " + Text.add(getColorByMetadata(metadata) + " Dye", Text.COLOR_LIGHT_GREEN) + " instead!");
         super.addInformation(stack, player, infoList, advancedToolTips);
     }
-    
+
     private String getColorByMetadata(int meta) {
-        if(meta == 1) return "White";
+
+        if (meta == 1) return "White";
         return "Black";
     }
-    
+
     private String getItemNameByMetadata(int meta) {
-        if(meta == 1) return "Bone Meal";
+
+        if (meta == 1) return "Bone Meal";
         return "Ink Sacs";
     }
 }
