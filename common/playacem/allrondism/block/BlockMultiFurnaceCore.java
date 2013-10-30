@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
@@ -16,6 +17,7 @@ import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.lib.GuiIDs;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.lib.Strings;
+import playacem.allrondism.lib.Text;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -54,9 +56,9 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
 
-        return ((world.getBlockMetadata(x, y, z) > 5) ? 15 : 0); 
+        return world.getBlockMetadata(x, y, z) > 5 ? 15 : 0;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconReg) {
@@ -72,7 +74,7 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
         boolean isActive = meta > 5;
         int facing = isActive ? meta - 4 : meta;
 
-        return (side == getSideFromFacing(facing) ? (isActive ? faceIconLit : faceIconUnlit ) : blockIcon);
+        return side == getSideFromFacing(facing) ? isActive ? faceIconLit : faceIconUnlit : blockIcon;
     }
 
     @Override
@@ -85,20 +87,24 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
         TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
 
+        ItemStack itemHeld = player.getHeldItem();
+
         if (tileCore != null) {
 
-            LogHelper.debug("oBA (Side: " + (world.isRemote ? "Client" : "Server") + "): Is valid? " + (tileCore.getIsValid() ? "yes" : "no") + " [SizeSaved:] " + tileCore.sizeMultiblock);
-            
+            LogHelper.debug("oBA (Side: " + (world.isRemote ? "Client" : "Server") + "): Is valid? "
+                    + (tileCore.getIsValid() ? "yes" : "no") + " [SizeSaved:] " + tileCore.sizeMultiblock);
+
             // Determine if the Multiblock is currently known to be valid
             if (!tileCore.getIsValid()) {
 
                 for (int i = 9; i >= 3; --i) {
 
-                    if (i % 2 == 0) 
+                    if (i % 2 == 0) {
                         continue;
+                    }
 
                     if (tileCore.checkIfProperlyFormed(i)) {
-                        
+
                         tileCore.convertDummies(i);
                         player.sendChatToPlayer("Multi-Furnace Created!");
                         LogHelper.debug("Final Size MB: " + tileCore.sizeMultiblock);
@@ -106,10 +112,24 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
                     }
                 }
             }
-            
+
+            if (itemHeld.getItem() == Item.stick) {
+                player.sendChatToPlayer(String.format("Information about MultiFurnaceCore at %d, %d, %d:", tileCore.xCoord, tileCore.yCoord, tileCore.zCoord));
+                player.sendChatToPlayer("Valid: "
+                        + (tileCore.getIsValid() ? Text.add("YES", Text.COLOR_LIGHT_GREEN) : Text.add("NO", Text.COLOR_LIGHT_RED)));
+                if (tileCore.getIsValid()) {
+                    player.sendChatToPlayer(Text.add("Size: ", Text.COLOR_LIGHT_RED) + Text.COLOR_WHITE + tileCore.sizeMultiblock);
+                }
+                if (!tileCore.errorMsg.isEmpty()) {
+                    player.sendChatToPlayer(Text.COLOR_LIGHT_RED + "Latest Error: " + Text.COLOR_WHITE + tileCore.errorMsg);
+                }
+                return false;
+            }
+
             // Check if the multi-block structure has been formed.
-            if (tileCore.getIsValid()) 
+            if (tileCore.getIsValid()) {
                 player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
+            }
         }
 
         return true;
@@ -127,7 +147,7 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
         TileEntityMultiFurnaceCore tileCore = (TileEntityMultiFurnaceCore) world.getBlockTileEntity(x, y, z);
 
         if (tileCore != null) {
-            tileCore.invalidateMultiBlock(); 
+            tileCore.invalidateMultiBlock();
         }
         dropItems(world, x, y, z);
         super.breakBlock(world, x, y, z, par5, par6);
