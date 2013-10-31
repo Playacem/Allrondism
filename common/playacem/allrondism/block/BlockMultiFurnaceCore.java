@@ -115,8 +115,7 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
 
             if (itemHeld.getItem() == Item.stick) {
                 player.sendChatToPlayer(String.format("Information about MultiFurnaceCore at %d, %d, %d:", tileCore.xCoord, tileCore.yCoord, tileCore.zCoord));
-                player.sendChatToPlayer("Valid: "
-                        + (tileCore.getIsValid() ? Text.add("YES", Text.COLOR_LIGHT_GREEN) : Text.add("NO", Text.COLOR_LIGHT_RED)));
+                player.sendChatToPlayer("Valid: " + (tileCore.getIsValid() ? Text.add("YES", Text.COLOR_LIGHT_GREEN) : Text.add("NO", Text.COLOR_LIGHT_RED)));
                 if (tileCore.getIsValid()) {
                     player.sendChatToPlayer(Text.add("Size: ", Text.COLOR_LIGHT_RED) + Text.COLOR_WHITE + tileCore.sizeMultiblock);
                 }
