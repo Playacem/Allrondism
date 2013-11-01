@@ -64,8 +64,8 @@ public class BlockGlassSunBlocker extends BlockAM {
     public boolean shouldSideBeRendered(IBlockAccess IBlockAccess, int x, int y, int z, int side)
     {
 
-        int i1 = IBlockAccess.getBlockId(x, y, z);
-        return !localFlag && i1 == blockID ? false : super.shouldSideBeRendered(IBlockAccess, x, y, z, side);
+        int adjacentBlock = IBlockAccess.getBlockId(x, y, z);
+        return !localFlag && adjacentBlock == blockID ? false : super.shouldSideBeRendered(IBlockAccess, x, y, z, side);
     }
 
 }
