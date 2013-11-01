@@ -1,4 +1,4 @@
-package playacem.allrondism.core.handlers;
+package playacem.allrondism.client.texture;
 
 import java.io.File;
 import java.util.HashMap;
