@@ -49,8 +49,8 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     // TODO add these variables to NBT system
     private int cookDuration = 200; // Vanilla default, to be changed by
                                     // extensions, acts like a speed modifier
-    private float itemBurnTimeFactor = 1.0F;
     private float cookDurationFactor = 1.0F;
+    private float burnFactor = 1.0F;
 
     public int bonusSlotsInput = 0;
     public int bonusSlotsFuel = 0;
@@ -279,8 +279,8 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
                     ++firstFuelSlotWithFuel;
                     currentItemBurnTime = furnaceBurnTime = TileEntityFurnace.getItemBurnTime(inventory[fuelSlots[firstFuelSlotWithFuel]]);
                 } while (firstFuelSlotWithFuel < fuelSlots.length - 1 && furnaceBurnTime == 0);
-                currentItemBurnTime *= itemBurnTimeFactor;
-                furnaceBurnTime *= itemBurnTimeFactor;
+                currentItemBurnTime *= burnFactor;
+                furnaceBurnTime *= burnFactor;
 
                 if (furnaceBurnTime > 0) {
                     inventoryChanged = true;
