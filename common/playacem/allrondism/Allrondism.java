@@ -7,9 +7,9 @@ import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
 import playacem.allrondism.block.ModBlocks;
+import playacem.allrondism.client.texture.ImageHandler;
 import playacem.allrondism.configuration.ConfigurationHandler;
 import playacem.allrondism.core.handlers.FuelHandler;
-import playacem.allrondism.core.handlers.ImageHandler;
 import playacem.allrondism.core.proxy.CommonProxy;
 import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.creativetab.CreativeTabAM;
@@ -40,8 +40,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION_NUMBER, dependencies = Reference.DEPENDENCIES)
-@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false,
-        packetHandler = PacketHandler.class)
+@NetworkMod(channels = { Reference.CHANNEL_NAME }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class)
 public class Allrondism {
 
     @Instance(Reference.MOD_ID)
@@ -61,10 +60,9 @@ public class Allrondism {
         LogHelper.init();
 
         // Initialize the configuration
-        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME
-                + ".cfg"));
+        ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME + ".cfg"));
 
-        // Does some image magic, creates merged images.
+        // Does some image magic, creates merged images. (Client Only)
         ImageHandler.init();
 
         // Register the Spawn Handler
