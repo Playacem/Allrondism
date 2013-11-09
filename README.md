@@ -28,4 +28,4 @@ Allrondism crashes every time?  Have a suggestion?  Found a bug?  Create an issu
 #### Disclaimer
 
 This readme is a modified version of [pahimar] (https://github.com/pahimar)'s readme for the [Equivalent Exchange 3 project] (https://github.com/pahimar/Equivalent-Exchange-3)
-[Original] (https://github.com/pahimar/Equivalent-Exchange-3/blob/master/README.md)
+([Original](https://github.com/pahimar/Equivalent-Exchange-3/blob/master/README.md)) 
