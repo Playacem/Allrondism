@@ -25,7 +25,7 @@ Allrondism crashes every time?  Have a suggestion?  Found a bug?  Create an issu
 4. Enter your Issue's title (something that summarizes your issue), and then create a detailed description ("Hey, could you add/change xxx?" or "Hey, found an exploit:  stuff").
 5. Click `Submit new issue`, and you're done!
 
-#### Disclaimer
+#### Credits
 
 This readme is a modified version of [pahimar] (https://github.com/pahimar)'s readme for the [Equivalent Exchange 3 project] (https://github.com/pahimar/Equivalent-Exchange-3)
 ([Original](https://github.com/pahimar/Equivalent-Exchange-3/blob/master/README.md)) 
