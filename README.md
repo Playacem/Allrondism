@@ -2,7 +2,7 @@
 
 [Contributing] (https://github.com/Playacem/Allrondism#contributing) - For those that want to help out.
 
-[Credits] (https://github.com/Playacem/Allrondism#Credits) - Guys who helped me.
+[Credits] (https://github.com/Playacem/Allrondism#credits) - Guys who helped me.
 ###Contributing
 ***
 #### Submitting a PR
