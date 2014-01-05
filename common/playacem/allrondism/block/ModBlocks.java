@@ -77,7 +77,7 @@ public class ModBlocks {
 
     private static void setupGrassEntries() {
 
-        // weight of plants:
+        // weight of vanilla plants:
         // red: 10, yellow: 20
         MinecraftForge.addGrassPlant(plantRose, 0, 10);
         MinecraftForge.addGrassPlant(plantRose, 1, 10);

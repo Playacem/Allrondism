@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import playacem.allrondism.block.ModBlocks;
-import playacem.allrondism.configuration.ConfigurationSettings;
+import playacem.allrondism.configuration.Settings;
 import playacem.allrondism.core.util.UtilRecipes;
 import playacem.allrondism.lib.ItemIDs;
 import playacem.allrondism.lib.Strings;
@@ -93,39 +93,39 @@ public class ModItems {
         // TODO Add more doubling recipes
 
         // Copper
-        if (ConfigurationSettings.DOUBLING_COPPER) {
+        if (Settings.DOUBLING_COPPER) {
             UtilRecipes.addDoubleMetalRecipe("Copper", Item.appleRed, 3);
         }
 
         // Gold
-        if (ConfigurationSettings.DOUBLING_GOLD) {
+        if (Settings.DOUBLING_GOLD) {
             UtilRecipes.addDoubleMetalRecipe("Gold", Block.sandStone, 5);
         }
 
         // Lead
-        if (ConfigurationSettings.DOUBLING_LEAD) {
+        if (Settings.DOUBLING_LEAD) {
             UtilRecipes.addDoubleMetalRecipe("Lead", Block.chest, 2);
         }
 
         // Silver
-        if (ConfigurationSettings.DOUBLING_SILVER) {
+        if (Settings.DOUBLING_SILVER) {
             if (UtilRecipes.addDoubleMetalRecipe("Silver", Item.egg, 2)) {
                 UtilRecipes.addDoubleMetalRecipe("Silver", "seedsAll", 7);
             }
         }
 
         // Tin
-        if (ConfigurationSettings.DOUBLING_TIN) {
+        if (Settings.DOUBLING_TIN) {
             UtilRecipes.addDoubleMetalRecipe("Tin", Block.thinGlass, 3);
         }
 
         // Steel
-        if (ConfigurationSettings.DOUBLING_STEEL) {
+        if (Settings.DOUBLING_STEEL) {
             UtilRecipes.addDoubleMetalRecipe("Steel", new ItemStack(Item.coal, 1, 0), 7);
         }
 
         // HSLA
-        if (ConfigurationSettings.DOUBLING_HSLA) {
+        if (Settings.DOUBLING_HSLA) {
             UtilRecipes.addDoubleRecipe("HSLA", new ItemStack(Item.coal, 1, 0), 7, Item.gunpowder);
         }
 
