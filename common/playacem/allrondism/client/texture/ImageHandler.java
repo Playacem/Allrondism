@@ -22,28 +22,43 @@ import com.google.common.hash.HashCode;
  */
 public class ImageHandler {
 
+
+    public static ComparableMergableImage multiFurnaceCoreFrontUnlit;
+    public static ComparableMergableImage multiFurnaceCoreFrontLit;
+
     public static ComparableMergableImage multiFurnaceSlotInput;
     public static ComparableMergableImage multiFurnaceSlotFuel;
     public static ComparableMergableImage multiFurnaceSlotOutput;
 
-    public static ComparableMergableImage multiFurnaceCoreFrontUnlit;
-    public static ComparableMergableImage multiFurnaceCoreFrontLit;
+    public static ComparableMergableImage multiFurnaceAutomationInput;
+    public static ComparableMergableImage multiFurnaceAutomationFuel;
+    public static ComparableMergableImage multiFurnaceAutomationOutput;
+
 
     public static HashMap<String, HashCode> map;
 
     private static String storageCobbleFileName = Strings.STORAGE_BLOCKS_NAME + Strings.STORAGE_BLOCKS[1]; // storageBlockCobble
 
-    public static void init() {
+    public static void init(File dir) {
 
         // TODO add real File names;
         // TODO add system to store hashcodes
 
-        multiFurnaceSlotInput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
-        multiFurnaceSlotFuel = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
-        multiFurnaceSlotOutput = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
+        // This solution works for a normal minecraft installation, but not in Eclipse!
+        File resourcePath = new File(dir,"");
+        File path = new File(resourcePath, Textures.BLOCKS_LOCATION);
+        multiFurnaceCoreFrontUnlit = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
+        multiFurnaceCoreFrontLit = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
 
-        multiFurnaceCoreFrontUnlit = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
-        multiFurnaceCoreFrontLit = new ComparableMergableImage(new File(Textures.BLOCKS_LOCATION), storageCobbleFileName, "TODO");
+        multiFurnaceSlotInput = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
+        multiFurnaceSlotFuel = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
+        multiFurnaceSlotOutput = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
+
+        multiFurnaceAutomationInput = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
+        multiFurnaceAutomationFuel = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
+        multiFurnaceAutomationOutput = new ComparableMergableImage(path, storageCobbleFileName, "TODO");
+
+
 
         // fillMap();
 
@@ -63,11 +78,17 @@ public class ImageHandler {
 
         map.put(storageCobbleFileName, multiFurnaceSlotInput.getHashBG());
 
+        map.put("TODO", multiFurnaceCoreFrontUnlit.getHashOverlay());
+        map.put("TODO", multiFurnaceCoreFrontLit.getHashOverlay());
+
         map.put("TODO", multiFurnaceSlotInput.getHashOverlay());
         map.put("TODO", multiFurnaceSlotFuel.getHashOverlay());
         map.put("TODO", multiFurnaceSlotOutput.getHashOverlay());
+        
+        map.put("TODO", multiFurnaceAutomationInput.getHashOverlay());
+        map.put("TODO", multiFurnaceAutomationFuel.getHashOverlay());
+        map.put("TODO", multiFurnaceAutomationOutput.getHashOverlay());
 
-        map.put("TODO", multiFurnaceCoreFrontUnlit.getHashOverlay());
-        map.put("TODO", multiFurnaceCoreFrontLit.getHashOverlay());
+
     }
 }

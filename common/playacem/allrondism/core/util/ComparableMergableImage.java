@@ -35,16 +35,25 @@ public class ComparableMergableImage {
     public ComparableMergableImage(File path, String background, String overlay) {
 
         this.path = path;
-        bg = background;
+        this.bg = background;
         this.overlay = overlay;
 
         img = new File(path, bg + ".png");
         overlayFile = new File(path, this.overlay + ".png");
+
         try {
             this.setHashBG(Files.hash(img, Hashing.crc32()));
+        } catch (IOException e) {
+            LogHelper.alert(getErrorText("hashing the background file")); 
+            LogHelper.alert(img.getAbsolutePath());
+        }
+
+        try {
             this.setHashOverlay(Files.hash(overlayFile, Hashing.crc32()));
         } catch (IOException e) {
-            LogHelper.alert(getErrorText("hashing"));
+            LogHelper.alert(getErrorText("hashing the overlay file"));
+            LogHelper.alert(overlayFile.getAbsolutePath());
+
         }
 
     }
@@ -56,10 +65,11 @@ public class ComparableMergableImage {
 
         try {
             image = ImageIO.read(img);
+        } catch (IOException e) { LogHelper.alert(getErrorText("reading the background file")); }
+
+        try {
             overlay = ImageIO.read(overlayFile);
-        } catch (IOException e) {
-            LogHelper.alert(getErrorText("reading"));
-        }
+        } catch (IOException e) { LogHelper.alert(getErrorText("reading the overlay file")); }
 
         int w = Math.max(image.getWidth(), overlay.getWidth());
         int h = Math.max(image.getHeight(), overlay.getHeight());
@@ -72,9 +82,7 @@ public class ComparableMergableImage {
 
         try {
             ImageIO.write(combined, "PNG", new File(path, outputName + ".png"));
-        } catch (IOException e) {
-            LogHelper.alert(getErrorText("writing"));
-        }
+        } catch (IOException e) { LogHelper.alert(getErrorText("writing the combined image")); }
     }
 
     public HashCode getHashBG() {
@@ -97,11 +105,11 @@ public class ComparableMergableImage {
         this.hashOverlay = hashOverlay;
     }
 
-    private String getErrorText(String phase) {
+    private String getErrorText(String text) {
 
         StringBuilder sb = new StringBuilder();
 
-        sb.append(String.format("Error during %s phase! File(s) not found! Used Filenames: Background: %s.png, Overlay: %s.png", phase, bg, overlay));
+        sb.append(String.format("Error during %s! Used Filenames: Background: %s.png, Overlay: %s.png", text, bg, overlay));
 
         return sb.toString();
     }

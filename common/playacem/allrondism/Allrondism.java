@@ -7,7 +7,7 @@ import java.io.File;
 
 import net.minecraft.creativetab.CreativeTabs;
 import playacem.allrondism.block.ModBlocks;
-import playacem.allrondism.client.texture.ImageHandler;
+//import playacem.allrondism.client.texture.ImageHandler;
 import playacem.allrondism.configuration.ConfigurationHandler;
 import playacem.allrondism.core.handlers.FuelHandler;
 import playacem.allrondism.core.proxy.CommonProxy;
@@ -62,8 +62,10 @@ public class Allrondism {
         // Initialize the configuration
         ConfigurationHandler.init(new File(event.getModConfigurationDirectory().getAbsolutePath() + File.separator + Reference.MOD_NAME + ".cfg"));
 
+        //File parentDir = event.getModConfigurationDirectory().getParentFile();
         // Does some image magic, creates merged images. (Client Only)
-        ImageHandler.init();
+        //ImageHandler.init(parentDir);
+        // WIP, temp solution: creating the images manually 
 
         // Register the Spawn Handler
         proxy.registerSpawnHandler();
