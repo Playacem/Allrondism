@@ -113,18 +113,19 @@ public class BlockMultiFurnaceCore extends BlockContainerAM {
                 }
             }
 
-            if (itemHeld.getItem() == Item.stick) {
-                player.sendChatToPlayer(String.format("Information about MultiFurnaceCore at %d, %d, %d:", tileCore.xCoord, tileCore.yCoord, tileCore.zCoord));
-                player.sendChatToPlayer("Valid: " + (tileCore.getIsValid() ? Text.add("YES", Text.COLOR_LIGHT_GREEN) : Text.add("NO", Text.COLOR_LIGHT_RED)));
-                if (tileCore.getIsValid()) {
-                    player.sendChatToPlayer(Text.add("Size: ", Text.COLOR_LIGHT_RED) + Text.COLOR_WHITE + tileCore.sizeMultiblock);
+            if (itemHeld != null) {
+                if (itemHeld.getItem() == Item.stick) {
+                    player.sendChatToPlayer(String.format("Information about MultiFurnaceCore at %d, %d, %d:", tileCore.xCoord, tileCore.yCoord, tileCore.zCoord));
+                    player.sendChatToPlayer("Valid: " + (tileCore.getIsValid() ? Text.add("YES", Text.COLOR_LIGHT_GREEN) : Text.add("NO", Text.COLOR_LIGHT_RED)));
+                    if (tileCore.getIsValid()) {
+                        player.sendChatToPlayer(Text.add("Size: ", Text.COLOR_LIGHT_RED) + Text.COLOR_WHITE + tileCore.sizeMultiblock);
+                    }
+                    if (!tileCore.errorMsg.isEmpty()) {
+                        player.sendChatToPlayer(Text.COLOR_LIGHT_RED + "Latest Error: " + Text.COLOR_WHITE + tileCore.errorMsg);
+                    }
+                    return false;
                 }
-                if (!tileCore.errorMsg.isEmpty()) {
-                    player.sendChatToPlayer(Text.COLOR_LIGHT_RED + "Latest Error: " + Text.COLOR_WHITE + tileCore.errorMsg);
-                }
-                return false;
             }
-
             // Check if the multi-block structure has been formed.
             if (tileCore.getIsValid()) {
                 player.openGui(Allrondism.instance, GuiIDs.MULTI_FURNACE, world, x, y, z);
