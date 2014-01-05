@@ -9,7 +9,7 @@ package playacem.allrondism.configuration;
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  * @credit pahimar
  */
-public class ConfigurationSettings {
+public class Settings {
 
     /* Debug setting */
     public static boolean DEBUG_MODE;

@@ -34,7 +34,7 @@ public class ConfigurationHandler {
         try {
             config.load();
             /* Debug config */
-            ConfigurationSettings.DEBUG_MODE = config.get(CATEGORY_GENERAL, ConfigurationSettings.DEBUG_MODE_CONFIGNAME, ConfigurationSettings.DEBUG_MODE_DEFAULT).getBoolean(ConfigurationSettings.DEBUG_MODE_DEFAULT);
+            Settings.DEBUG_MODE = config.get(CATEGORY_GENERAL, Settings.DEBUG_MODE_CONFIGNAME, Settings.DEBUG_MODE_DEFAULT).getBoolean(Settings.DEBUG_MODE_DEFAULT);
 
             /* Block configs */
             BlockIDs.ORE_ALLRONDIUM = config.getBlock(Strings.ORE_ALLRONDIUM_NAME, BlockIDs.ORE_ALLRONDIUM_DEFAULT).getInt(BlockIDs.ORE_ALLRONDIUM_DEFAULT);
@@ -51,13 +51,13 @@ public class ConfigurationHandler {
 
             /* Doubling recipes */
             config.addCustomCategoryComment(CATEGORY_DOUBLING, "Here you can disable or enable various doubling recipes.");
-            ConfigurationSettings.DOUBLING_COPPER = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_COPPER_CONFIGNAME, ConfigurationSettings.DOUBLING_COPPER_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_COPPER_DEFAULT);
-            ConfigurationSettings.DOUBLING_GOLD = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_GOLD_CONFIGNAME, ConfigurationSettings.DOUBLING_GOLD_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_GOLD_DEFAULT);
-            ConfigurationSettings.DOUBLING_LEAD = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_LEAD_CONFIGNAME, ConfigurationSettings.DOUBLING_LEAD_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_LEAD_DEFAULT);
-            ConfigurationSettings.DOUBLING_SILVER = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_SILVER_CONFIGNAME, ConfigurationSettings.DOUBLING_SILVER_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_SILVER_DEFAULT);
-            ConfigurationSettings.DOUBLING_TIN = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_TIN_CONFIGNAME, ConfigurationSettings.DOUBLING_TIN_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_TIN_DEFAULT);
-            ConfigurationSettings.DOUBLING_STEEL = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_STEEL_CONFIGNAME, ConfigurationSettings.DOUBLING_STEEL_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_STEEL_DEFAULT);
-            ConfigurationSettings.DOUBLING_HSLA = config.get(CATEGORY_DOUBLING, ConfigurationSettings.DOUBLING_HSLA_CONFIGNAME, ConfigurationSettings.DOUBLING_HSLA_DEFAULT).getBoolean(ConfigurationSettings.DOUBLING_HSLA_DEFAULT);
+            Settings.DOUBLING_COPPER = config.get(CATEGORY_DOUBLING, Settings.DOUBLING_COPPER_CONFIGNAME, Settings.DOUBLING_COPPER_DEFAULT).getBoolean(Settings.DOUBLING_COPPER_DEFAULT);
+            Settings.DOUBLING_GOLD = config.get(CATEGORY_DOUBLING, Settings.DOUBLING_GOLD_CONFIGNAME, Settings.DOUBLING_GOLD_DEFAULT).getBoolean(Settings.DOUBLING_GOLD_DEFAULT);
+            Settings.DOUBLING_LEAD = config.get(CATEGORY_DOUBLING, Settings.DOUBLING_LEAD_CONFIGNAME, Settings.DOUBLING_LEAD_DEFAULT).getBoolean(Settings.DOUBLING_LEAD_DEFAULT);
+            Settings.DOUBLING_SILVER = config.get(CATEGORY_DOUBLING, Settings.DOUBLING_SILVER_CONFIGNAME, Settings.DOUBLING_SILVER_DEFAULT).getBoolean(Settings.DOUBLING_SILVER_DEFAULT);
+            Settings.DOUBLING_TIN = config.get(CATEGORY_DOUBLING, Settings.DOUBLING_TIN_CONFIGNAME, Settings.DOUBLING_TIN_DEFAULT).getBoolean(Settings.DOUBLING_TIN_DEFAULT);
+            Settings.DOUBLING_STEEL = config.get(CATEGORY_DOUBLING, Settings.DOUBLING_STEEL_CONFIGNAME, Settings.DOUBLING_STEEL_DEFAULT).getBoolean(Settings.DOUBLING_STEEL_DEFAULT);
+            Settings.DOUBLING_HSLA = config.get(CATEGORY_DOUBLING, Settings.DOUBLING_HSLA_CONFIGNAME, Settings.DOUBLING_HSLA_DEFAULT).getBoolean(Settings.DOUBLING_HSLA_DEFAULT);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, Reference.MOD_NAME + " has had a problem loading its configuration");
