@@ -15,10 +15,10 @@ import net.minecraft.nbt.NBTTagCompound;
  */
 public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInventory, ICoreExtension {
 
-    TileEntityMultiFurnaceCore tileEntityCore = null;
-    int coreX;
-    int coreY;
-    int coreZ;
+    protected TileEntityMultiFurnaceCore tileEntityCore = null;
+    protected int coreX;
+    protected int coreY;
+    protected int coreZ;
 
     @Override
     public void setCore(TileEntityMultiFurnaceCore core) {
@@ -131,24 +131,20 @@ public class TileEntityMultiFurnaceDummy extends TileAM implements ISidedInvento
 
     /* ISidedInventory stuff */
     @Override
-    public int[] getAccessibleSlotsFromSide(int var1) {
+    public int[] getAccessibleSlotsFromSide(int side) {
 
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+    public boolean canInsertItem(int slot, ItemStack itemstack, int j) {
 
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+    public boolean canExtractItem(int slot, ItemStack itemstack, int j) {
 
-        // TODO Auto-generated method stub
         return false;
     }
-
 }

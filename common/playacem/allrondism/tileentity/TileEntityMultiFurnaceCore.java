@@ -427,13 +427,13 @@ public class TileEntityMultiFurnaceCore extends TileAM implements ISidedInventor
     }
 
     @Override
-    public boolean canInsertItem(int slot, ItemStack itemstack, int j) {
+    public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
 
         return false;
     }
 
     @Override
-    public boolean canExtractItem(int slot, ItemStack itemstack, int j) {
+    public boolean canExtractItem(int slot, ItemStack itemstack, int side) {
 
         return false;
     }
