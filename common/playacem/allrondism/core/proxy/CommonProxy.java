@@ -8,6 +8,9 @@ import playacem.allrondism.core.util.LogHelper;
 import playacem.allrondism.inventory.ContainerMultiFurnace;
 import playacem.allrondism.lib.GuiIDs;
 import playacem.allrondism.lib.Strings;
+import playacem.allrondism.tileentity.TileEntityMultiFurnaceAutomationFuel;
+import playacem.allrondism.tileentity.TileEntityMultiFurnaceAutomationInput;
+import playacem.allrondism.tileentity.TileEntityMultiFurnaceAutomationOutput;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceCore;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceDummy;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceSlotFuel;
@@ -45,6 +48,10 @@ public class CommonProxy implements IGuiHandler {
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceSlotInput.class, Strings.TE_MULTI_FURNACE_SLOT_INPUT);
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceSlotFuel.class, Strings.TE_MULTI_FURNACE_SLOT_FUEL);
         GameRegistry.registerTileEntity(TileEntityMultiFurnaceSlotOutput.class, Strings.TE_MULTI_FURNACE_SLOT_OUTPUT);
+        
+        GameRegistry.registerTileEntity(TileEntityMultiFurnaceAutomationInput.class, Strings.TE_MULTI_FURNACE_AUTOMATION_INPUT);
+        GameRegistry.registerTileEntity(TileEntityMultiFurnaceAutomationFuel.class, Strings.TE_MULTI_FURNACE_AUTOMATION_FUEL);
+        GameRegistry.registerTileEntity(TileEntityMultiFurnaceAutomationOutput.class, Strings.TE_MULTI_FURNACE_AUTOMATION_OUTPUT);
     }
 
     public void registerSpawnHandler() {

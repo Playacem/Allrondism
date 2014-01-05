@@ -14,6 +14,9 @@ import playacem.allrondism.lib.BlockIDs;
 import playacem.allrondism.lib.ExtensionData;
 import playacem.allrondism.lib.Reference;
 import playacem.allrondism.tileentity.TileAM;
+import playacem.allrondism.tileentity.TileEntityMultiFurnaceAutomationFuel;
+import playacem.allrondism.tileentity.TileEntityMultiFurnaceAutomationInput;
+import playacem.allrondism.tileentity.TileEntityMultiFurnaceAutomationOutput;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceCore;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceDummy;
 import playacem.allrondism.tileentity.TileEntityMultiFurnaceSlotFuel;
@@ -69,7 +72,8 @@ public abstract class BlockContainerAM extends BlockContainer {
             direction = ForgeDirection.WEST.ordinal(); // 4
         }
 
-        world.setBlockMetadataWithNotify(x, y, z, direction, 2);
+        if(itemStack.getItem().itemID != BlockIDs.MULTI_FURNACE_EXTENSION)
+            world.setBlockMetadataWithNotify(x, y, z, direction, 3);
 
         if (itemStack.hasDisplayName()) {
             ((TileAM) world.getBlockTileEntity(x, y, z)).setCustomName(itemStack.getDisplayName());
@@ -98,6 +102,12 @@ public abstract class BlockContainerAM extends BlockContainer {
                     return new TileEntityMultiFurnaceSlotFuel();
                 case ExtensionData.SLOT_OUTPUT_META:
                     return new TileEntityMultiFurnaceSlotOutput();
+                case ExtensionData.AUTOMATION_INPUT_META:
+                    return new TileEntityMultiFurnaceAutomationInput();
+                case ExtensionData.AUTOMATION_FUEL_META:
+                    return new TileEntityMultiFurnaceAutomationFuel();
+                case ExtensionData.AUTOMATION_OUTPUT_META:
+                    return new TileEntityMultiFurnaceAutomationOutput();
                 default:
                     return new TileEntityMultiFurnaceDummy();
             }

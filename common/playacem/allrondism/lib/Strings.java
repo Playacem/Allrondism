@@ -27,7 +27,7 @@ public class Strings {
 
     public static final String MULTI_FURNACE_CORE_NAME = "multiFurnaceCore";
     public static final String MULTI_FURNACE_EXTENSION_NAME = "multiFurnaceExtension";
-    public static final String[] MULTI_FURNACE_EXTENSIONS = { "Dummy", "SlotInput", "SlotFuel", "SlotOutput" };
+    public static final String[] MULTI_FURNACE_EXTENSIONS = { "Dummy", "SlotInput", "SlotFuel", "SlotOutput", "AutomationInput", "AutomationFuel", "AutomationOutput" };
 
     /* Item name constants */
     public static final String GEM_ALLRONDIUM_NAME = "gemAllrondium";
@@ -40,6 +40,9 @@ public class Strings {
     public static final String TE_MULTI_FURNACE_SLOT_INPUT = "tileMultiFurnaceSlotInput";
     public static final String TE_MULTI_FURNACE_SLOT_FUEL = "tileMultiFurnaceSlotFuel";
     public static final String TE_MULTI_FURNACE_SLOT_OUTPUT = "tileMultiFurnaceSlotOutput";
+    public static final String TE_MULTI_FURNACE_AUTOMATION_INPUT = "tileMultiFurnaceAutomationInput";
+    public static final String TE_MULTI_FURNACE_AUTOMATION_FUEL = "tileMultiFurnaceAutomationFuel";
+    public static final String TE_MULTI_FURNACE_AUTOMATION_OUTPUT = "tileMultiFurnaceAutomationOutput";
 
     /* Container releated constants */
     public static final String CONTAINER_MULTI_FURNACE_NAME = "container." + MULTI_FURNACE_CORE_NAME;
