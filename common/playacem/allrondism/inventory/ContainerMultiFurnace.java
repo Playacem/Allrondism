@@ -169,7 +169,7 @@ public class ContainerMultiFurnace extends Container {
                 /*
                  * mergeItemStack attempts to merge the given ItemStack into the
                  * slots within the given range (x, y-1) Boolean flag:
-                 * startingPosition, false for Beginning, true for the End
+                 * startingPosition, false for Beginning, true for End
                  * mergeItemStack will return true if the stack can be merged
                  * and false if it can't
                  */
