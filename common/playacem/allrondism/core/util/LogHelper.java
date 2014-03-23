@@ -27,7 +27,7 @@ public class LogHelper {
 
     public static void log(Level logLevel, Object object) {
 
-        amLogger.log(logLevel, object.toString());
+        amLogger.log(logLevel, String.valueOf(object));
     }
 
     public static void info(Object object) {
