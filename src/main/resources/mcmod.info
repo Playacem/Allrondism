@@ -1,0 +1,19 @@
+[
+{
+  "modid": "Allrondism",
+  "name": "Allrondism",
+  "description": "Store your stuff with style! Adds worldgen soon(TM) or not.",
+  "version": "@VERSION@",
+  "url": "http://www.playacem.has-no-homepage.net/",
+  "updateUrl": "",
+  "authorList": [
+    "Playacem"],
+  "credits": "Thanks to pahimar and his EE3 project, https://github.com/pahimar/Equivalent-Exchange-3/",
+  "logoFile": "/mods/allrondism/textures/logo/logo.png",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
