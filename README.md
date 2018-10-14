@@ -1,8 +1,8 @@
 ## Welcome to the Allrondism GitHub page
 
-[Contributing] (https://github.com/Playacem/Allrondism#contributing) - For those that want to help out.
+[Contributing](https://github.com/Playacem/Allrondism#contributing) - For those that want to help out.
 
-[Credits] (https://github.com/Playacem/Allrondism#credits) - Guys who helped me.
+[Credits](https://github.com/Playacem/Allrondism#credits) - Guys who helped me.
 ###Contributing
 ***
 #### Submitting a PR
