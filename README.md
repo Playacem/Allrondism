@@ -1,3 +1,5 @@
+**This project is no longer maintained and only exists for reference.**
+
 Welcome to the Allrondism GitHub page
 ===
 
